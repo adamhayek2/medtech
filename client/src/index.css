@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    html {
+        font-family: 'futur';
+        src: local('futur'), url(./resources/fonts/futura/futur.ttf) format('ttf');
+    }
+}
