@@ -4,7 +4,7 @@
 
 
 @layer base {
-    html {
+    #root {
         font-family: 'futur';
         src: local('futur'), url(./resources/fonts/futura/futur.ttf) format('ttf');
     }

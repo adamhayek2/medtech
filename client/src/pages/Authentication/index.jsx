@@ -21,8 +21,9 @@ const Authentication = () => {
     try {
       const response = await UserLogin(username, password);
       localStorage.setItem('token', response.token);
+      localStorage.setItem('role', response.user_type.type);
       setError(false); 
-      navigate('/');
+      navigate('/home');
     } catch (error) {
       console.error('Login failed', error);
       setError(true); 
