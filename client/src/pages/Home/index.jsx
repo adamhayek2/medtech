@@ -1,7 +1,6 @@
 import React from 'react'
 import NavBar from '../../component/NavBar'
 import SideNav from '../../component/SideNav'
-import PatienCard from '../../component/PatientCard'
 import Patients from '../../component/Patients'
 
 const Home = () => {
