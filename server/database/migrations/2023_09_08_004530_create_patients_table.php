@@ -9,8 +9,8 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->integer('first_name');
-            $table->integer('last_name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->integer('age');
             $table->integer('gender_id');
             $table->text('phone_number');
