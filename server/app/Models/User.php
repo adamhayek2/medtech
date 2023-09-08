@@ -41,5 +41,9 @@ class User extends Authenticatable implements JWTSubject {
     public function getUserTypeTypeAttribute(){
         return $this->userType->type;
     }
+    
+    public function reports() {
+        return $this->hasMany(AiReport::class, 'patient_id');
+    }
 
 }

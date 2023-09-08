@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ReportController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -21,6 +22,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::post('logout', [AuthController::class,'logout']);
         Route::post('refresh', [AuthController::class,'refresh']);
         Route::get('all_patients', [PatientController::class,'getAll']);
+        Route::get('all_reports', [ReportController::class,'getAll']);
     }); 
     
 });
