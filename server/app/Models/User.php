@@ -12,8 +12,8 @@ class User extends Authenticatable implements JWTSubject {
     use HasFactory, Notifiable;
 
     protected $fillable = [
+        'user_type_id',
         'name',
-        'email',
         'password',
     ];
 
@@ -26,14 +26,20 @@ class User extends Authenticatable implements JWTSubject {
         'email_verified_at' => 'datetime',
     ];
 
-    public function getJWTIdentifier()
-    {
+    public function getJWTIdentifier() {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
-    {
+    public function getJWTCustomClaims() {
         return [];
+    }
+ 
+    public function userType() {
+        return $this->belongsTo(UserType::class, 'user_type_id');
+    }
+
+    public function getUserTypeTypeAttribute(){
+        return $this->userType->type;
     }
 
 }

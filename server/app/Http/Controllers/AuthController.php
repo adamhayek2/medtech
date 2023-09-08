@@ -18,10 +18,10 @@ class AuthController extends Controller {
 
     public function login(Request $request) {
         $request->validate([
-            'email' => 'required|string|email',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
@@ -33,6 +33,7 @@ class AuthController extends Controller {
 
         $user = Auth::user();
         $user->token = $token;
+        $userTypeName = $user->user_type_type;
         return response()->json([
                 'status' => 'success',
                 'data' => $user,
@@ -42,17 +43,17 @@ class AuthController extends Controller {
 
     public function register(Request $request){
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'user_type_id' => 'required|integer',
+            'username' => 'required|string|max:255',
             'password' => 'required|string|min:6',
         ]);
 
         $user = new User;
 
-        $user->name = $request->name;
-        $user->email = $request->email;
+        $user->user_type_id = $request->user_type_id;
+        $user->username = $request->username;
         $user->password = Hash::make($request->password);
-
+        
         $user->save();
 
         $token = Auth::login($user);
