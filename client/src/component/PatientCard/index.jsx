@@ -8,7 +8,7 @@ const PatienCard = ({name, illness, status}) => {
         <p className='text-[22px] font-bold font text-primary'>{name}</p>
         <p className='text-base font-futuraBK  '>{illness}</p>
         <div className='w-full flex flex-row justify-between'>
-            <p className='text-xl'>{status}</p>
+            <p className='text-base'>{status}</p>
             <ArrowSVG/>
         </div>
     </div>
