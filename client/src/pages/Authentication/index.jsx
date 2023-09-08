@@ -23,7 +23,7 @@ const Authentication = () => {
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.user_type.type);
       setError(false); 
-      navigate('/home');
+      navigate('/patients');
     } catch (error) {
       console.error('Login failed', error);
       setError(true); 
