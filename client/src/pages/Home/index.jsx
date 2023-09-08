@@ -2,6 +2,7 @@ import React from 'react'
 import NavBar from '../../component/NavBar'
 import SideNav from '../../component/SideNav'
 import PatienCard from '../../component/PatientCard'
+import Patients from '../../component/Patients'
 
 const Home = () => {
 
@@ -10,7 +11,8 @@ const Home = () => {
       <NavBar/> 
       <div className='flex flex-row'>
         <SideNav/>
-        <PatienCard name={"Adam Hayek"} illness={"Normal"} status={"free to go"}/>
+        {/* <PatienCard name={"Adam Hayek"} illness={"Normal"} status={"free to go"}/> */}
+        <Patients/>
       </div>
     </div>
   )
