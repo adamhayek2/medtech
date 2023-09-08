@@ -7,6 +7,7 @@ module.exports = {
     extend: {},
     fontFamily: {
       'futur': ['futur', 'sans-serif'],
+      'futuraBK': ['futura Bk BT', 'sans-serif'],
     },
     colors: {
       transparent: 'transparent',
