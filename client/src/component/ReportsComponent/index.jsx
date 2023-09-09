@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import PageTitle from '../PageTite'
 import ReportCard from '../ReportCard'
+import GetReports from '../../apis/GetReports'
 
 const ReportsComponent = () => {
-    const [Reports, setReport] = useState([]);
+    const [reports, setReport] = useState([]);
     const [error, setError] = useState(false);
 
     const fetchReports = async () => {
@@ -11,7 +12,6 @@ const ReportsComponent = () => {
       const response = await GetReports();
       setError(false); 
       setReport(response)
-      console.log(response)
     } catch (error) {
       console.error('error:', error);
       setError(true); 
@@ -27,7 +27,7 @@ const ReportsComponent = () => {
         <PageTitle title={"Reports"}/>
         <div className='flex flex-row flex-wrap gap-10 justify-between'>
             {reports.map((report) => (
-            <ReportCard name={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
+            <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
             ))}
         </div>
     </div>
