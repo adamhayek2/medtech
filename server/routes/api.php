@@ -24,5 +24,10 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('all_patients', [PatientController::class,'getAll']);
         Route::get('all_reports', [ReportController::class,'getAll']);
     }); 
+
+    Route::group(["prefix" => "patients"], function () {
+        Route::get('search', [PatientController::class,'search']);
+        
+    }); 
     
 });

@@ -19,6 +19,7 @@ class ReportController extends Controller {
 
     $reports = $reports->map(function ($report) {
         $report['full_name'] = $report->patientName;
+        $report['report_data'] = json_decode($report->report_data);
         return $report;
     });
 

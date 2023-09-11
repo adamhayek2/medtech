@@ -10,7 +10,7 @@ class PatientController extends Controller {
 
     public function getAll(){
 
-    $patients  = Patient::get();
+        $patients  = Patient::get();
         
         if(!$patients){
             return response()->json([
@@ -24,6 +24,21 @@ class PatientController extends Controller {
             $patient['status'] = $patient->patient_status;
             return $patient;
         });
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $patients
+        ]);
+    }
+
+    public function search(Request $request) {
+        $searchQuery = $request->input('query');
+        
+        $patients = Patient::where(function ($query) use ($searchQuery) {
+                            $query->where('first_name', 'like', '%' . $searchQuery . '%')
+                            ->orWhere('last_name', 'like', '%' . $searchQuery . '%');
+                        })
+                        ->get();
 
         return response()->json([
             "status" => "success", 
