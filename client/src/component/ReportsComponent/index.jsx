@@ -23,11 +23,11 @@ const ReportsComponent = () => {
   }, []);
   
   return (
-    <div className='h-screen w-full flex flex-col gap-14 bg-grey p-14'>
+    <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
         <PageTitle title={"Reports"}/>
         <div className='flex flex-row flex-wrap gap-10 justify-between'>
             {reports.map((report) => (
-            <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
+              <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
             ))}
         </div>
     </div>

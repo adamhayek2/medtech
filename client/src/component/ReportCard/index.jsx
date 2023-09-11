@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReactComponent as SingleReportSVG } from "../../resources/svg/single_report_icon.svg";
 
 
-const ReportCard = ({name,patientName, id, status, report, date}) => {
+const ReportCard = ({patientName, id, status, report, date}) => {
 
   const navigate = useNavigate();
 

@@ -9,7 +9,7 @@ const SideNav = () => {
     const role = localStorage.getItem('role')
     console.log(role)
   return (
-    <div className='w-1/6 h-screen bg-secondary flex flex-col p-6 text-white'> 
+    <div className='fixed w-1/6 h-screen bg-secondary flex flex-col p-6 text-white'> 
         <div className='flex flex-col gap-10 items-start'>
             {role === "admin" ? (
                 <>
