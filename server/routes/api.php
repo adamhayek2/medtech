@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\AppointmentController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -27,6 +28,11 @@ Route::group(["middleware" => "auth:api"], function() {
 
     Route::group(["prefix" => "patients"], function () {
         Route::get('search', [PatientController::class,'search']);
+        
+    }); 
+    
+    Route::group(["prefix" => "appointments"], function () {
+        Route::get('get_appointments', [AppointmentController::class,'getAppointments']);
         
     }); 
     

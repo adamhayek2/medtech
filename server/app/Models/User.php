@@ -33,7 +33,7 @@ class User extends Authenticatable implements JWTSubject {
     public function getJWTCustomClaims() {
         return [];
     }
- 
+
     public function userType() {
         return $this->belongsTo(UserType::class, 'user_type_id');
     }

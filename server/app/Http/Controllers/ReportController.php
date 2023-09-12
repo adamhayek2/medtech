@@ -28,4 +28,16 @@ class ReportController extends Controller {
         "data" => $reports
     ]);
     }
+
+    public function search(Request $request) {
+        $searchQuery = $request->input('query');
+    
+        $reports = AiReport::where(function ($query) use ($searchQuery) {
+                        $query->where('patientName', 'like', '%' . $searchQuery . '%')
+                        ->orwhere('report_data', 'like', '%' . $searchQuery . '%');
+                    })
+                    ->get();
+    
+        return response()->json(['reports' => $reports]);
+    }
 }
