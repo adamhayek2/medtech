@@ -24,7 +24,7 @@ const Patients = () => {
   }, []);
   
   return (
-    <div className='h-screen w-full flex flex-col gap-14 bg-grey p-14'>
+    <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
         <PageTitle title={"Patients"}/>
         <div className='flex flex-row flex-wrap gap-10 justify-between'>
             {patients.map((patient) => (

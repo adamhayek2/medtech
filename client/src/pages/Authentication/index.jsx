@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'react-lottie';
-import Input from '../../component/Input';
-import Button from '../../component/Button';
+import Input from '../../component/base/Input';
+import Button from '../../component/base/Button';
 import UserLogin from '../../apis/UserLogin';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import * as heartBeat from '../../resources/animations/heartbeat.json'

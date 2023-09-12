@@ -1,0 +1,91 @@
+*{
+    border: none !important;
+}
+
+.rbc-time-gutter  .rbc-timeslot-group, .rbc-time-slot, .rbc-time-header-content, .rbc-event, .rbc-time-content{
+    border: none !important;
+}
+
+.rbc-label{
+    background-color: transparent !important;
+}
+
+.rbc-time-slot{
+    transform: translateY(-13px);
+}
+
+.rbc-toolbar{
+    flex-direction: row-reverse;
+    position: sticky;
+    top: 0;
+    z-index: 9;
+    background-color: white;
+    margin-bottom: 0px !important;
+}
+
+.rbc-toolbar-label{
+    text-align: left !important;
+}
+.rbc-allday-cell{
+    display: none !important;
+}
+
+.rbc-toolbar-label{
+    font-size: 48px !important;
+    font-weight: bold;
+}
+
+.rbc-header{
+    font-size: 30px !important;
+    border: 0px !important;
+}
+
+.rbc-time-header{
+    border: 0px !important;
+    border-bottom: 2px solid #3540D8 !important;
+    position: sticky;
+    top: 72px;
+    z-index: 9;
+    background-color: white;
+}
+
+.rbc-time-view{
+    border: 0px !important;
+}
+
+.rbc-toolbar{
+    border: 0px !important;
+}
+
+.rbc-event{
+    background-color: #3540D8 !important;
+    padding: 10px 15px !important;
+    flex-direction: column-reverse !important;
+    border-radius: 8px !important;
+
+}
+
+.rbc-event-content{
+    font-size: 15px !important;
+}
+
+.rbc-event-label{
+    font-size: 10px !important;
+}
+
+.rbc-timeslot-group{
+    min-height: 80px !important;
+    border-bottom: 1px solid #ddd !important;
+}
+.rbc-time-view{
+    border: none !important;
+}
+
+.rbc-timeslot-group:nth-child(1) .rbc-label{
+    display: none;
+}
+
+.text-grey{
+    color: rgb(255, 255, 255, 0.7);
+}
+

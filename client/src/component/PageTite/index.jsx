@@ -1,12 +1,11 @@
 import React from 'react'
-import { ReactComponent as SearchSVG } from "../../resources/svg/search.svg";
-import SearchInput from '../SearchInput';
+import SearchInput from '../base/SearchInput';
 
 const PageTitle = ({title}) => {
   return (
     <div className='w-full flex flex-row justify-between'>
         <p className='font-bold text-4xl'>{title}</p>
-        <SearchInput/>
+        <SearchInput query={title}/>
     </div>
   )
 }
