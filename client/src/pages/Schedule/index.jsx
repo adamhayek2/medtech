@@ -1,4 +1,7 @@
 import React from 'react'
+import NavBar from '../../component/NavBar'
+import SideNav from '../../component/SideNav'
+import CalenderComponent from '../../component/CalenderComponent'
 
 const Schedule = () => {
   return (
