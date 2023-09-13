@@ -49,11 +49,14 @@ const ReportsComponent = () => {
           <PageTitle title={"Reports"}/>
           <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
         </div>
-        <div className='flex flex-row flex-wrap gap-10 justify-between'>
-            {reports.map((report) => (
-              <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
-            ))}
-        </div>
+        {reports === 0 ? 
+          <div>no reports</div> : 
+          <div className='flex flex-row flex-wrap gap-10 justify-between'>
+          {reports.map((report) => (
+            <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
+          ))}
+      </div>
+      }
     </div>
   )
 }
