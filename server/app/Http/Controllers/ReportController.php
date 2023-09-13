@@ -32,12 +32,23 @@ class ReportController extends Controller {
     public function search(Request $request) {
         $searchQuery = $request->input('query');
     
-        $reports = AiReport::where(function ($query) use ($searchQuery) {
-                        $query->where('patientName', 'like', '%' . $searchQuery . '%')
-                        ->orwhere('report_data', 'like', '%' . $searchQuery . '%');
-                    })
-                    ->get();
-    
-        return response()->json(['reports' => $reports]);
+        $reports = AiReport::where('report_data', 'like', '%' . $searchQuery . '%')
+                ->get()
+                ->map(function ($report) {
+                    return [
+                        'id' => $report->id,
+                        'report_data' => $report->report_data,
+                        'status' => $report->status,
+                        'approved_by_doctor_id' => $report->approved_by_doctor_id,
+                        'patient' => $report->patient->name, 
+                        'created_at' => $report->created_at, 
+                        'updated_at' => $report->updated_at, 
+                    ];
+                });
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $reports
+        ]);
     }
 }

@@ -14,14 +14,19 @@ class AppointmentController extends Controller
     $appointments = Appointment::where('doctor_id', $user->id)
         ->get()
         ->map(function ($appointment) {
-            $start = \DateTime::createFromFormat('Y-m-d H:i:s', "{$appointment->start}");
-            $end = \DateTime::createFromFormat('Y-m-d H:i:s', "{$appointment->end}");
+            // $start = \DateTime::createFromFormat('Y-m-d H:i:s', "{$appointment->start}");
+            // $end = \DateTime::createFromFormat('Y-m-d H:i:s', "{$appointment->end}");
+
+            $startDateTime = new \DateTime($appointment->start);
+            $formattedStart = $startDateTime->format('D M d Y H:i:s \G\M\TO (e)');
+            $endDateTime = new \DateTime($appointment->end);
+            $formattedEnd = $endDateTime->format('D M d Y H:i:s \G\M\TO (e)');
 
             return [
                 'id' => $appointment->id,
                 'title' => $appointment->purpose,
-                'start' => "new Date(" . $start->format('Y, m, d, H, i') . ")",
-                'end' => "new Date(" . $end->format('Y, m, d, H, i') . ")",
+                'start' => $formattedStart,
+                'end' => $formattedEnd,
                 'patient' => $appointment->patient->name, 
             ];
         });

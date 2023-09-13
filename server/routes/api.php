@@ -31,6 +31,11 @@ Route::group(["middleware" => "auth:api"], function() {
         
     }); 
     
+    Route::group(["prefix" => "reports"], function () {
+        Route::get('search', [ReportController::class,'search']);
+        
+    }); 
+    
     Route::group(["prefix" => "appointments"], function () {
         Route::get('get_appointments', [AppointmentController::class,'getAppointments']);
         
