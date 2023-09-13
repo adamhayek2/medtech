@@ -4,9 +4,10 @@ import PageTitle from '../PageTite'
 import ReportCard from '../ReportCard'
 import GetReports from '../../apis/GetReports'
 import SearchInput from '../base/SearchInput'
+import ReportSearch from '../../apis/ReportSearch';
 
 const ReportsComponent = () => {
-    const [reports, setReport] = useState([]);
+    const [reports, setReports] = useState([]);
     const [error, setError] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const debouncedSearchValue = useDebounce(searchValue, 300);
@@ -15,7 +16,7 @@ const ReportsComponent = () => {
       try {
         const response = await GetReports(); 
         setError(false); 
-        setReport(response)
+        setReports(response)
       } catch (error) {
         console.error('error:', error);
         setError(true); 
@@ -24,92 +25,10 @@ const ReportsComponent = () => {
 
     const fetchSearchResult = async () => {
       try {
-        const response = [
-          {
-              "id": 2,
-              "report_data": {
-                  "blood_tests": [
-                      {
-                          "test_name": "Complete Blood Count (CBC)",
-                          "date": "2023-08-10",
-                          "result": {
-                              "hemoglobin": "14.2 g/dL",
-                              "white_blood_cells": "7.2 K/µL",
-                              "platelet_count": "250 K/µL"
-                          }
-                      },
-                      {
-                          "test_name": "Lipid Profile",
-                          "date": "2023-08-15",
-                          "result": {
-                              "total_cholesterol": "180 mg/dL",
-                              "hdl_cholesterol": "45 mg/dL",
-                              "ldl_cholesterol": "120 mg/dL",
-                              "triglycerides": "150 mg/dL"
-                          }
-                      }
-                  ],
-                  "scans": [
-                      {
-                          "scan_type": "X-ray",
-                          "date": "2023-07-25",
-                          "impression": "No abnormalities detected."
-                      },
-                      {
-                          "scan_type": "MRI",
-                          "date": "2023-08-05",
-                          "impression": "Mild inflammation in the left knee joint."
-                      }
-                  ],
-                  "appointments": [
-                      {
-                          "doctor": "Dr. Emily Smith",
-                          "appointment_date": "2023-09-02",
-                          "reason": "Follow-up on MRI results",
-                          "notes": "Prescribed physical therapy."
-                      },
-                      {
-                          "doctor": "Dr. Emily Smith",
-                          "appointment_date": "2023-09-15",
-                          "reason": "General check-up",
-                          "notes": "Discuss medication changes."
-                      }
-                  ],
-                  "medications": [
-                      {
-                          "medication_name": "Ibuprofen",
-                          "dosage": "400 mg",
-                          "frequency": "As needed for pain",
-                          "prescribed_by": "Dr. Emily Smith"
-                      },
-                      {
-                          "medication_name": "Lisinopril",
-                          "dosage": "10 mg",
-                          "frequency": "Once daily",
-                          "prescribed_by": "Dr. Emily Smith"
-                      }
-                  ]
-              },
-              "status": 1,
-              "approved_by_doctor_id": 1,
-              "patient_id": 1,
-              "created_at": null,
-              "updated_at": null,
-              "full_name": "nabiha nabiha",
-              "patient": {
-                  "id": 1,
-                  "first_name": "nabiaha",
-                  "last_name": "nabiha",
-                  "age": 25,
-                  "gender_id": 1,
-                  "phone_number": "+961123456",
-                  "status_id": 1,
-                  "blood_type_id": 1
-              }
-          }
-      ]
+        const response = await ReportSearch({ query: searchValue });
         setError(false); 
-        setReport(response)
+        setReports(response);
+        console.log(response)
       } catch (error) {
         console.error('error:', error);
         setError(true); 
