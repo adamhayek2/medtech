@@ -5,7 +5,7 @@ const PageTitle = ({title}) => {
   return (
     <div className='w-full flex flex-row justify-between'>
         <p className='font-bold text-4xl'>{title}</p>
-        <SearchInput query={title}/>
+        {/* <SearchInput query={title}/> */}
     </div>
   )
 }

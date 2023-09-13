@@ -1,4 +1,4 @@
-*{
+[class*="rbc"]{
     border: none !important;
 }
 .rbc-calendar{
@@ -94,6 +94,6 @@
 }
 
 .rbc-today{
-    background-color:  rgb(53, 64, 216, 0.1) !important;
+    background-color:  rgba(53, 64, 216, 0.07) !important;
 }
 
