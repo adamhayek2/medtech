@@ -7,6 +7,7 @@ import SearchInput from '../base/SearchInput'
 const Patients = () => {
     const [patients, setPatient] = useState([]);
     const [error, setError] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
 
 
     const fetchPatients = async () => {
@@ -28,7 +29,7 @@ const Patients = () => {
   return (
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
         <PageTitle title={"Patients"}/>
-        <SearchInput />
+        <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
         <div className='flex flex-row flex-wrap gap-10 justify-between'>
             {patients.map((patient) => (
             <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
