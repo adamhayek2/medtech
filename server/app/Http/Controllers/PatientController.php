@@ -38,8 +38,20 @@ class PatientController extends Controller {
                             $query->where('first_name', 'like', '%' . $searchQuery . '%')
                             ->orWhere('last_name', 'like', '%' . $searchQuery . '%');
                         })
-                        ->get();
-
+                        ->get()
+                        ->map(function ($patient) {
+                            return [
+                                'id' => $patient->id,
+                                'age' => $patient->age,
+                                'blood_type_id' => $patient->blood_type_id,
+                                'gender_id' => $patient->gender_id,
+                                'full_name' => $patient->name, 
+                                'status' => $patient->status, 
+                                'status_id' => $patient->status_id, 
+                                'phone_number' => $patient->phone_number, 
+                            ];
+                        });
+                        
         return response()->json([
             "status" => "success", 
             "data" => $patients

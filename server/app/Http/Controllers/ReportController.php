@@ -37,7 +37,7 @@ class ReportController extends Controller {
                 ->map(function ($report) {
                     return [
                         'id' => $report->id,
-                        'report_data' => $report->report_data,
+                        'report_data' => json_decode($report->report_data),
                         'status' => $report->status,
                         'approved_by_doctor_id' => $report->approved_by_doctor_id,
                         'patient' => $report->patient->name, 
