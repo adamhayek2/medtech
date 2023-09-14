@@ -17,6 +17,7 @@ const ReportsComponent = () => {
         const response = await GetReports(); 
         setError(false); 
         setReports(response)
+        if(response === "Unauthorized") setError(true)
       } catch (error) {
         console.error('error:', error);
         setError(true); 
@@ -49,7 +50,7 @@ const ReportsComponent = () => {
           <PageTitle title={"Reports"}/>
           <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
         </div>
-        {reports === 0 ? 
+        {reports === 0 || error ? 
           <div>no reports</div> : 
           <div className='flex flex-row flex-wrap gap-10 justify-between'>
           {reports.map((report) => (

@@ -12,6 +12,8 @@ const ReportSearch = async ({query}) => {
                 query: query 
             }
         });
+
+        if(response.data.message) return response.data.message;
         return response.data.data;
     } catch (error) {
         console.error('Error fetching posts', error);
