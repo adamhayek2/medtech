@@ -17,7 +17,7 @@ const Patients = () => {
       const response = await GetPatients();
       setError(false); 
       setPatient(response)
-      console.log(response)
+      if(response === "Unauthorized") setError(true)
     } catch (error) {
       console.error('error:', error);
       setError(true); 
@@ -37,7 +37,11 @@ const Patients = () => {
     }
 
   useEffect(() => {
-    fetchPatients();
+    if (debouncedSearchValue) {
+      fetchSearchResult();
+    }else{
+      fetchPatients();
+    }
   }, []);
   
   return (
