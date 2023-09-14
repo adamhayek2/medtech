@@ -32,8 +32,8 @@ Route::group(["middleware" => "auth:api"], function() {
     }); 
     
     Route::group(["prefix" => "reports"], function () {
+        Route::get("/{id?}", [ReportController::class, "singleReport"]);
         Route::get('search', [ReportController::class,'search']);
-        
     }); 
     
     Route::group(["prefix" => "appointments"], function () {

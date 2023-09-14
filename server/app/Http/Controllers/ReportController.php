@@ -51,4 +51,26 @@ class ReportController extends Controller {
             "data" => $reports
         ]);
     }
+
+    public function singleReport($id) {
+        $report = AiReport::where('id', $id)->get()->map(function ($report) {
+            return [
+                'id' => $report->id,
+                'report_data' => json_decode($report->report_data),
+                'status' => $report->status,
+                'approved_by_doctor_id' => $report->approved_by_doctor_id,
+                'patient' => $report->patient, 
+                'patient_name' => $report->patient->name, 
+                'created_at' => $report->created_at, 
+                'updated_at' => $report->updated_at, 
+            ];
+        });
+    
+        if (!$report) {
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+    
+    
+        return response()->json(['report' => $report]);
+    }
 }
