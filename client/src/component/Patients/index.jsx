@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from 'react'
+import { useDebounce } from "@uidotdev/usehooks";
 import PatienCard from '../PatientCard'
 import PageTitle from '../PageTite'
 import GetPatients from '../../apis/GetPatients'
 import SearchInput from '../base/SearchInput'
+import PatientSearch from '../../apis/PatientSearch';
 
 const Patients = () => {
     const [patients, setPatient] = useState([]);
     const [error, setError] = useState(false);
     const [searchValue, setSearchValue] = useState("");
-
+    const debouncedSearchValue = useDebounce(searchValue, 300);
 
     const fetchPatients = async () => {
     try {
@@ -21,6 +23,18 @@ const Patients = () => {
       setError(true); 
     }
   }
+
+  const fetchSearchResult = async () => {
+      try {
+        const response = await PatientSearch({ query: searchValue });
+        setError(false); 
+        setPatient(response);
+        console.log(response)
+      } catch (error) {
+        console.error('error:', error);
+        setError(true); 
+      }
+    }
 
   useEffect(() => {
     fetchPatients();
