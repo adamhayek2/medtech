@@ -71,6 +71,9 @@ class ReportController extends Controller {
         }
     
     
-        return response()->json(['report' => $report]);
+        return response()->json([
+            "status" => "success", 
+            "data" => $reports
+        ]);
     }
 }
