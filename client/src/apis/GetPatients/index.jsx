@@ -9,6 +9,8 @@ const GetPatients = async () => {
               Authorization: `Bearer ${localStorage.getItem("token")}`
             }
           });
+          
+      if(response.data.message) return response.data.message;
       return response.data.data;
     } catch (error) {
       console.error('Error fetching posts', error);
