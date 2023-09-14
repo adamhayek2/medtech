@@ -14,11 +14,11 @@ const ReportsComponent = () => {
 
     const fetchReports = async () => {
       try {
-        const response = await GetReports(); 
         setError(false); 
+        const response = await GetReports(); 
         setReports(response)
-        if(response === "Unauthorized") setError(true)
       } catch (error) {
+        setError(true); 
         console.log("no")
         
         setError(true); 
@@ -30,10 +30,8 @@ const ReportsComponent = () => {
         const response = await ReportSearch({ query: searchValue });
         setError(false); 
         setReports(response);
-        console.log(response)
       } catch (error) {
         console.error('error:', error);
-        setError(true); 
       }
     }
 
