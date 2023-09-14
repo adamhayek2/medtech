@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useDebounce } from "@uidotdev/usehooks";
 import PatienCard from '../PatientCard'
+import PatientSearch from '../../apis/PatientSearch';
 import PageTitle from '../PageTite'
 import GetPatients from '../../apis/GetPatients'
 import SearchInput from '../base/SearchInput'
-import PatientSearch from '../../apis/PatientSearch';
 
 const Patients = () => {
     const [patients, setPatient] = useState([]);
@@ -42,17 +42,20 @@ const Patients = () => {
     }else{
       fetchPatients();
     }
-  }, []);
+  }, [debouncedSearchValue]);
   
   return (
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
         <PageTitle title={"Patients"}/>
         <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
-        <div className='flex flex-row flex-wrap gap-10 justify-between'>
+        {patients.length === 0 || error ? 
+          <div>no reports</div> : 
+          <div className='flex flex-row flex-wrap gap-10 justify-between'>
             {patients.map((patient) => (
-            <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
-            ))}
-        </div>
+              <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
+              ))}
+          </div> 
+        }   
     </div>
   )
 }
