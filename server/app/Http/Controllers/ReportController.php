@@ -73,7 +73,7 @@ class ReportController extends Controller {
     
         return response()->json([
             "status" => "success", 
-            "data" => $reports
+            "data" => $report
         ]);
     }
 }
