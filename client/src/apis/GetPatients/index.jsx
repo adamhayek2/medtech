@@ -10,10 +10,9 @@ const GetPatients = async () => {
             }
           });
           
-      if(response.data.message) return response.data.message;
       return response.data.data;
     } catch (error) {
-      console.error('Error fetching posts', error);
+      throw error
     }
   };
 export default GetPatients

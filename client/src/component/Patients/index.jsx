@@ -14,13 +14,12 @@ const Patients = () => {
 
     const fetchPatients = async () => {
     try {
-      const response = await GetPatients();
       setError(false); 
+      const response = await GetPatients();
       setPatient(response)
-      if(response === "Unauthorized") setError(true)
     } catch (error) {
-      console.error('error:', error);
       setError(true); 
+      console.error('error:', error);
     }
   }
 

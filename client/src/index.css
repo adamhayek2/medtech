@@ -6,6 +6,6 @@
 @layer base {
     #root {
         font-family: futur, futuraBK;
-        src: local('futur'), url(./resources/fonts/futura/futur.ttf) format('ttf');
+        src: local('futur'), url(/src/resources/fonts/futura/futur.ttf) format('ttf');
     }
 }

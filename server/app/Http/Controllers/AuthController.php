@@ -13,7 +13,7 @@ class AuthController extends Controller {
         return response()->json([
             'status' => 'Error',
             'message' => 'Unauthorized',
-        ], 200);
+        ], 401);
     }
 
     public function login(Request $request) {
