@@ -46,15 +46,17 @@ const Patients = () => {
   
   return (
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
+      <div className='w-full flex flex-row justify-between'>
         <PageTitle title={"Patients"}/>
         <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
-        {patients.length === 0 || error ? 
-          <div>no reports</div> : 
-          <div className='flex flex-row flex-wrap gap-10 justify-between'>
-            {patients.map((patient) => (
-              <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
-              ))}
-          </div> 
+      </div>
+      {patients.length === 0 || error ? 
+        <div>no reports</div> : 
+        <div className='flex flex-row flex-wrap gap-10 justify-between'>
+          {patients.map((patient) => (
+            <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
+            ))}
+        </div> 
         }   
     </div>
   )
