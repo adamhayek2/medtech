@@ -10,13 +10,17 @@ const SingleReportComponent = () => {
     const fetchSingleReport = async () => {
         try {
           setError(false); 
-          const response = await SingleReport(id); 
+          const response = await SingleReport({id}); 
           setReport(response)
           console.log(response)
         } catch (error) {
           setError(true); 
         }
       }
+
+      useEffect(() => {
+        fetchSingleReport();
+      }, []);
 
   return (
     <div>SingleReportComponent</div>
