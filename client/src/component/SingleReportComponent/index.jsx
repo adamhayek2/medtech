@@ -33,15 +33,24 @@ const SingleReportComponent = () => {
             <PageTitle title={`Report ${report.id}`}/>
             </div>
             <div className='w-1/5 flex flex-row flex-wrap gap-10 justify-between'>
-                <div className='flex flex-col h-full w-full'>
-                    <div className='flex flex-col px-16 py-12 bg-white rounded-lg gap-[22px] items-center'>
+                <div className='flex flex-col h-full w-full gap-[22px]'>
+                    <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{report.patient_name}</h1>
                         <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
                         <Button label={'View Profile'}/>
                     </div>
-                    <div className='flex flex-col px-16 py-12 bg-white rounded-lg gap-[22px] items-center'>
+                    <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[#7D7D7D]'>Status:</h1>
                         <p className=' text-[22px] text-primary font-bold'> {report.patient_status}</p>
+                    </div>
+                    <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center '>
+                        <h1 className='text-[22px] font-bold text-primary'>Informations</h1>
+                        <div className='flex flex-col items-center gap-1'>
+                            <p className='text-[#7D7D7D]'>Gender: {report.gender}</p>
+                            <p className='text-[#7D7D7D]'>Age: {report.patient.age}</p>
+                            <p className='text-[#7D7D7D]'>Blood type: {report.blood_type}</p>
+                            <p className='text-[#7D7D7D]'>Contact: {report.patient.phone_number}</p>
+                        </div>
                     </div>
                 </div>
             </div>
