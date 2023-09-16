@@ -1,16 +1,18 @@
 import React from 'react'
-import { ReactComponent as PillSVG } from "../../resources/svg/pill.svg";
+import { ReactComponent as PillSVG } from "../../../resources/svg/pill.svg";
 
 
-const Medication = ({name, frequency, to, medicationName}) => {
+const Medication = ({name, frequency, to, medicationName, dosage}) => {
   return (
-    <div className='flex flex-col gap-2 p-3'>
-        <div className='font-[18px]'>{name}</div>
+    <div className='flex flex-col gap-5 p-3 items-center'>
+        <div className='font-[18px]'>{to}</div>
         <div className='text-base text-[#7D7D7D] italic'>{frequency}</div>
-        <div className='text-base text-[#7D7D7D] italic'>{to}</div>
         <div className='flex flex-row gap-3'>
             <PillSVG/>
-            <div>{medicationName}</div>
+            <div className='flex flex-col'>
+                <div>{name}</div>
+                <div>{dosage}</div>
+            </div>
         </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { ReactComponent as ScansSVG } from "../../resources/svg/scan.svg";
 import SingleReport from '../../apis/SingleReport';
 import PageTitle from '../PageTite';
 import Button from '../base/Button';
+import Medication from '../base/Medication';
 
 const SingleReportComponent = () => {
     const { id } = useParams();
@@ -84,6 +85,17 @@ const SingleReportComponent = () => {
                                     <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
                                 </div>
                             </div>
+                        ))}
+                        </div>
+                        <div className='w-full flex flex-row justify-end'>
+                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
+                        </div>
+                    </div>
+                    <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                        <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
+                        <div className='flex flex-row items-center gap-10'>
+                        {report.report_data.medications.map((tem) => (
+                            <Medication name={tem.medication_name} frequency={tem.frequency} to={"Heart regolation"} dosage={tem.dosage}/>
                         ))}
                         </div>
                         <div className='w-full flex flex-row justify-end'>
