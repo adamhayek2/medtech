@@ -66,7 +66,7 @@ class ReportController extends Controller {
             'approved_by_doctor_id' => $report->approved_by_doctor_id,
             'patient' => $report->patient, 
             'gender' => $report->patient->gender->gender, 
-            'gender' => $report->patient->bloodType->name, 
+            'blood_type' => $report->patient->bloodType->name, 
             'patient_status' => $report->patient->patient_status,
             'patient_name' => $report->patient->name, 
             'created_at' => $report->created_at, 
