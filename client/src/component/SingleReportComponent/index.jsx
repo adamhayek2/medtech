@@ -98,7 +98,7 @@ const SingleReportComponent = () => {
                             <Medication name={tem.medication_name} frequency={tem.frequency} to={"Heart regolation"} dosage={tem.dosage}/>
                         ))}
                         </div>
-                        <div className='w-full flex flex-row justify-end'>
+                        <div className='w-full flex flex-row justify-end bg-primary/20 border-[1px] border-dashed border-primary'>
                             <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
                         </div>
                     </div>
