@@ -55,8 +55,8 @@ const ReportsComponent = () => {
           {reports.map((report) => (
             <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
           ))}
-      </div>
-      }
+          </div>
+        }
     </div>
   )
 }
