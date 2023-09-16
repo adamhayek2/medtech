@@ -39,6 +39,10 @@ const SingleReportComponent = () => {
                         <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
                         <Button label={'View Profile'}/>
                     </div>
+                    <div className='flex flex-col px-16 py-12 bg-white rounded-lg gap-[22px] items-center'>
+                        <h1 className='text-[#7D7D7D]'>Status:</h1>
+                        <p className=' text-[22px] text-primary font-bold'> {report.patient_status}</p>
+                    </div>
                 </div>
             </div>
         </div>
