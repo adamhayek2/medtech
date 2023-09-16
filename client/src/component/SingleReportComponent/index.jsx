@@ -80,7 +80,7 @@ const SingleReportComponent = () => {
                             <div className='flex flex-row items-center gap-3'>
                                 <ScansSVG/>
                                 <div className='flex flex-col '>
-                                    <div className='text-[18px]'>{tem.test_name}</div>
+                                    <div className='text-[18px]'>{tem.scan_type}</div>
                                     <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
                                 </div>
                             </div>
