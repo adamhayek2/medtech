@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import { ReactComponent as BloodTestSVG } from "../../resources/svg/blood-test.svg";
+import { ReactComponent as ScansSVG } from "../../resources/svg/scan.svg";
 import SingleReport from '../../apis/SingleReport';
 import PageTitle from '../PageTite';
 import Button from '../base/Button';
@@ -34,7 +35,7 @@ const SingleReportComponent = () => {
             <PageTitle title={`Report ${report.id}`}/>
             </div>
             <div className='flex flex-row gap-10'>
-                <div className='w-1/5 flex flex-col h-full gap-[22px]'>
+                <div className='w-1/5 flex flex-col h-full gap-10'>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{report.patient_name}</h1>
                         <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
@@ -54,13 +55,30 @@ const SingleReportComponent = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-4/5'>
-                <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                <div className='w-4/5 flex flex-col gap-10'>
+                    <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
                         <h1 className='text-[22px] font-bold text-primary'>Tests</h1>
                         <div className='flex flex-row items-center gap-10'>
                         {report.report_data.blood_tests.map((tem) => (
                             <div className='flex flex-row items-center gap-3'>
                                 <BloodTestSVG/>
+                                <div className='flex flex-col '>
+                                    <div className='text-[18px]'>{tem.test_name}</div>
+                                    <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
+                                </div>
+                            </div>
+                        ))}
+                        </div>
+                        <div className='w-full flex flex-row justify-end'>
+                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
+                        </div>
+                    </div>
+                    <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                        <h1 className='text-[22px] font-bold text-primary'>Scans</h1>
+                        <div className='flex flex-row items-center gap-10'>
+                        {report.report_data.scans.map((tem) => (
+                            <div className='flex flex-row items-center gap-3'>
+                                <ScansSVG/>
                                 <div className='flex flex-col '>
                                     <div className='text-[18px]'>{tem.test_name}</div>
                                     <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
