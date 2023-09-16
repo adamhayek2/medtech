@@ -40,7 +40,7 @@ const SingleReportComponent = () => {
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{report.patient_name}</h1>
                         <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
-                        <Button label={'View Profile'}/>
+                        <Button label={'View Profile'} BgColor={'bg-primary'} textColor={'text-white'}/>
                     </div>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[#7D7D7D]'>Status:</h1>
@@ -71,7 +71,7 @@ const SingleReportComponent = () => {
                         ))}
                         </div>
                         <div className='w-full flex flex-row justify-end'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
+                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}  BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
                         </div>
                     </div>
                     <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
@@ -88,7 +88,7 @@ const SingleReportComponent = () => {
                         ))}
                         </div>
                         <div className='w-full flex flex-row justify-end'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
+                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}  BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
                         </div>
                     </div>
                     <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
@@ -98,8 +98,8 @@ const SingleReportComponent = () => {
                             <Medication name={tem.medication_name} frequency={tem.frequency} to={"Heart regolation"} dosage={tem.dosage}/>
                         ))}
                         </div>
-                        <div className='w-full flex flex-row justify-end bg-primary/20 border-[1px] border-dashed border-primary'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}/>
+                        <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg'>
+                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Add'} BgColor={"bg-primary/20"} textColor={"text-black"}/>
                         </div>
                     </div>
                 </div>
