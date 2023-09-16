@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Reports from './pages/Reports';
 import Schedule from './pages/Schedule';
 import SingleReport from './pages/SingleReport';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         <Route path="/reports" element={<Reports/>}/> 
         <Route path="/report/:id" element={<SingleReport/>}/> 
         <Route path="/schedule" element={<Schedule/>}/> 
+
+
+        <Route path="/dashboard" element={<Dashboard/>}/> 
       </Routes>
     </BrowserRouter> 
   );

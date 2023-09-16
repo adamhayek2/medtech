@@ -73,7 +73,7 @@ const Authentication = () => {
                     Username or password is incorrect,kindly try again 
                   </div>
                   <div className='h-12'>
-                    <Button label={"Login"}/>
+                    <Button label={"Login"} BgColor={'bg-white'} textColor={'text-primary'}/>
                   </div>
                 </form>
             </div>
