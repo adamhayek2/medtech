@@ -32,8 +32,8 @@ const SingleReportComponent = () => {
             <div className='w-full flex flex-row justify-between'>
             <PageTitle title={`Report ${report.id}`}/>
             </div>
-            <div className='w-1/5 flex flex-row flex-wrap gap-10 justify-between'>
-                <div className='flex flex-col h-full w-full gap-[22px]'>
+            <div className='flex flex-row gap-10'>
+                <div className='w-1/5 flex flex-col h-full gap-[22px]'>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{report.patient_name}</h1>
                         <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
@@ -52,6 +52,8 @@ const SingleReportComponent = () => {
                             <p className='text-[#7D7D7D]'>Contact: {report.patient.phone_number}</p>
                         </div>
                     </div>
+                </div>
+                <div className='w-4/5'>
                 </div>
             </div>
         </div>
