@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../../component/NavBar'
 import SideNav from '../../component/SideNav'
+import DashboardComponent from '../../component/DashboardComponent'
 
 const Dashboard = () => {
   return (
@@ -8,7 +9,7 @@ const Dashboard = () => {
       <NavBar/> 
       <div className='flex flex-row'>
         <SideNav/>
-        
+        <DashboardComponent/>
       </div>
     </div>
   )
