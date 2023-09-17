@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\AdminController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -40,8 +41,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('get_appointments', [AppointmentController::class,'getAppointments']);
         
     }); 
-    
-    Route::group(["prefix" => "admin"], function () {
+    Route::group(["middleware" => "auth.admin", 'prefix' => 'admin'], function(){
         Route::get('dashboard', [AdminController::class,'dashboard']);
     }); 
     

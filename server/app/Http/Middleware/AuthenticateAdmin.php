@@ -5,8 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Auth;
 
-class AdminMiddleware
+class AuthenticateAdmin
 {
     /**
      * Handle an incoming request.
@@ -23,6 +24,6 @@ class AdminMiddleware
         return response()->json([
             'status' => 'Error',
             'message' => 'Unauthorized',
-        ], 200);       
+        ], 401);       
     }
 }
