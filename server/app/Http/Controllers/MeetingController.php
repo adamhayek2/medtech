@@ -35,6 +35,8 @@ class MeetingController extends Controller
 
             $attendee->meeting_id = $meeting->id;
             $attendee->staff_id = $temp['staff_id'];
+
+            $attendee->save();
         }
 
         return response()->json([
