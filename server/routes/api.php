@@ -8,6 +8,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\MeetingController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -45,6 +46,7 @@ Route::group(["middleware" => "auth:api"], function() {
     Route::group(["middleware" => "auth.admin", 'prefix' => 'admin'], function(){
         Route::get('dashboard', [AdminController::class,'dashboard']);
         Route::get('get_staff', [StaffController::class,'getStaff']);
+        Route::get('create_meeting', [MeetingController::class,'create']);
     }); 
     
 });
