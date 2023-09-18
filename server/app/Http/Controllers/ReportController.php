@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\AiReport;
 
 class ReportController extends Controller {
@@ -79,5 +80,53 @@ class ReportController extends Controller {
             "status" => "success", 
             "data" => $formattedResponse
         ]);
+    }
+
+    public function approveReport(Request $request) {
+        $user = Auth::user();
+
+        $request->validate([
+            'report_id' => 'required|integer',
+        ]);
+
+        $report = AiReport::find($request->report_id);
+
+        if (!$report) {
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+
+        $report->update([
+            'status' => true,
+            'approved_by_doctor_id' => $user->id
+        ]);
+
+        return response()->json([
+            "status" => "success", 
+            "messgae" => "Report Labled Aprroved Successfully"
+        ]);
+    }
+
+    public function updateReportData(Request $request, $id) {
+        $user = Auth::user();
+
+        $report = AiReport::find($id);
+
+        if (!$report) {
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+
+        $request->validate([
+            'report_data' => 'required|json',
+        ]);
+
+        $report->update([
+            'approved_by_doctor_id' => $user->id,
+            'report_data' => $request->report_data,
+        ]);
+
+        return response()->json([
+            "status" => "success", 
+            "messgae" => "Report Updated Successfully"
+        ], 200);
     }
 }
