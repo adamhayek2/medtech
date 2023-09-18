@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class AiReport extends Model {
     use HasFactory;
-    
+
+    protected $fillable = [
+        'report_data',
+    ];
+
     public function patient() {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
