@@ -19,6 +19,21 @@ class StaffController extends Controller
             });
         }
 
+        if ($request->has('min_age')) {
+            $minAge = $request->input('min_age');
+            $minBirthYear = now()->year - $minAge;
+            $query->whereYear('date_of_birth', '<=', $minBirthYear);
+        }
+    
+        if ($request->has('max_age')) {
+            $maxAge = $request->input('max_age');
+            if ($request->has('max_age')) {
+                $maxAge = $request->input('max_age');
+                $maxBirthYear = now()->year - $maxAge;
+                $query->whereYear('date_of_birth', '>=', $maxBirthYear);
+            }
+        }
+
         $staff = $query->get();
 
         return response()->json([
