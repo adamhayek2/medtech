@@ -31,6 +31,7 @@ Route::group(["middleware" => "auth:api"], function() {
 
     Route::group(["prefix" => "patients"], function () {
         Route::get('search', [PatientController::class,'search']);
+        Route::post('add', [PatientController::class,'create']);
         
     }); 
     
@@ -43,6 +44,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('get_appointments', [AppointmentController::class,'getAppointments']);
         
     }); 
+    
     Route::group(["middleware" => "auth.admin", 'prefix' => 'admin'], function(){
         Route::get('dashboard', [AdminController::class,'dashboard']);
         Route::get('get_staff', [StaffController::class,'getStaff']);

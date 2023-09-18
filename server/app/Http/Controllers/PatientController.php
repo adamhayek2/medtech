@@ -57,4 +57,35 @@ class PatientController extends Controller {
             "data" => $patients
         ]);
     }
+
+    public function create(Request $request) {
+
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'age' => 'required|integer',
+            'gender_id' => 'required|integer',
+            'phone_number' => 'required|string',
+            'status_id' => 'required|integer',
+            'blood_type_id' => 'required|integer',
+        ]);
+
+        $patient = new Patient;
+
+        $patient->first_name = $request->first_name;
+        $patient->last_name = $request->last_name;
+        $patient->age = $request->age;
+        $patient->gender_id = $request->gender_id;
+        $patient->phone_number = $request->phone_number;
+        $patient->status_id = $request->status_id;
+        $patient->blood_type_id = $request->blood_type_id;
+
+        $patient->save();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $patient,
+        ]);
+    }
+    
 }
