@@ -20,4 +20,5 @@ class Staff extends Model
     public function gender() {
         return $this->belongsTo(Gender::class, 'gender_id');
     }
+    
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StaffController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -43,6 +44,7 @@ Route::group(["middleware" => "auth:api"], function() {
     }); 
     Route::group(["middleware" => "auth.admin", 'prefix' => 'admin'], function(){
         Route::get('dashboard', [AdminController::class,'dashboard']);
+        Route::get('get_staff', [StaffController::class,'getStaff']);
     }); 
     
 });
