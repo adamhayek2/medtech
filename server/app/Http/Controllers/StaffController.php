@@ -34,6 +34,16 @@ class StaffController extends Controller
             }
         }
 
+        if ($request->has('department')) {
+            $departmentId = $request->input('department');
+            $query->where('department_id', $departmentId);
+        }
+
+        if ($request->has('gender')) {
+            $genderId = $request->input('gender');
+            $query->where('gender_id', $genderId);
+        }
+
         $staff = $query->get();
 
         return response()->json([
