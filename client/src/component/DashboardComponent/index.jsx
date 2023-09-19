@@ -1,7 +1,7 @@
 import React from 'react'
-import { ResponsiveLine } from '@nivo/line'
 import PageTitle from '../PageTite'
 import DashboardStatisticsCard from '../DashboardStatisticsCard'
+import LineChart from '../LineChart'
 
 const DashboardComponent = () => {
 
@@ -14,6 +14,7 @@ const DashboardComponent = () => {
             <DashboardStatisticsCard about={"patients"} number={123} label={"Patients entered today"}/>
             <DashboardStatisticsCard about={"virus"} number={"Corona virus"} label={"is Today's common disease"}/>
         </div>
+        <LineChart/>
     </div>
   )
 }
