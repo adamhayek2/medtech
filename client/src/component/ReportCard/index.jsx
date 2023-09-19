@@ -18,7 +18,7 @@ const ReportCard = ({patientName, id, status, report, date}) => {
             <p className='text-[22px] font-bold font text-primary'>{id}</p>
             <SingleReportSVG/>
         </div>
-        <div className='flex flex-row gap-3 justify-center'>
+        <div className='flex flex-col gap-3 justify-center items-center'>
             <p className='text-base font-futuraBK'>{patientName}</p>
             
             <p className='text-base font-futuraBK'>{date}</p>
