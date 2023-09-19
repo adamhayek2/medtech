@@ -8,7 +8,7 @@ const Dashboard = () => {
     <div className='flex flex-col font-futur'>
       <NavBar/> 
       <div className='flex flex-row'>
-        <SideNav/>
+        <SideNav active={'Dashboard'}/>
         <DashboardComponent/>
       </div>
     </div>

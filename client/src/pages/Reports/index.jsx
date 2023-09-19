@@ -9,7 +9,7 @@ const Reports = () => {
     <div className='flex flex-col font-futur'>
       <NavBar/> 
       <div className='flex flex-row'>
-        <SideNav/>
+        <SideNav active={'Report'}/>
         <ReportsComponent/>
       </div>
     </div>

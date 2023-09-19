@@ -5,7 +5,7 @@ import { ReactComponent as ScheduleSVG } from "../../resources/svg/schedule_icon
 import { ReactComponent as ReportSVG } from "../../resources/svg/reports_icon.svg";
 import { ReactComponent as PatientSVG } from "../../resources/svg/patients_icon.svg";
 
-const SideNav = () => {
+const SideNav = ({active}) => {
     const role = localStorage.getItem('role')
     console.log(role)
   return (
@@ -13,27 +13,27 @@ const SideNav = () => {
         <div className='flex flex-col gap-10 items-start'>
             {role === "admin" ? (
                 <>
-                <div className='flex flex-row justify-center items-center gap-3'>
+                <div className={`${active === 'Dashboard' ? 'font-bold' : '' } flex flex-row justify-center items-center gap-3`}>
                     <DashboardSVG/>
-                    <p className='text-2xl'>Dashboard</p>
+                    <p className={`${active === 'Dashboard' ? 'text-3xl' : 'text-2xl' }`}>Dashboard</p>
                 </div>
-                <div className='flex flex-row justify-center items-center gap-3'>
+                <div className={`${active === 'Employees' ? 'font-bold' : '' } flex flex-row justify-center items-center gap-3`}>
                     <EmployeesSVG/>
-                    <p className='text-2xl'>Employees</p>
+                    <p className={`${active === 'Employees' ? 'text-3xl' : 'text-2xl' }`}>Employees</p>
                 </div>
                 </>
             ) : "" }
-            <div className='flex flex-row justify-center items-center gap-3'>
+            <div className={`${active === 'Schedule' ? 'font-bold' : '' } flex flex-row justify-center items-center gap-3`}>
                 <ScheduleSVG/>
-                <p className='text-2xl'>Schedule</p>
+                <p className={`${active === 'Schedule' ? 'text-3xl' : 'text-2xl' }`}>Schedule</p>
             </div>
-            <div className='flex flex-row justify-center items-center gap-3'>
+            <div className={`${active === 'Report' ? 'font-bold' : '' } flex flex-row justify-center items-center gap-3`}>
                 <ReportSVG/>
-                <p className='text-2xl'>Report</p>
+                <p className={`${active === 'Report' ? 'text-3xl' : 'text-2xl' }`}>Reports</p>
             </div>
-            <div className='flex flex-row justify-center items-center gap-3'>
+            <div className={`${active === 'Patients' ? 'font-bold' : '' } flex flex-row justify-center items-center gap-3`}>
                 <PatientSVG/>
-                <p className='text-2xl'>Patients</p>
+                <p className={`${active === 'Patients' ? 'text-3xl' : 'text-2xl' }`}>Patients</p>
             </div>
         </div>
     </div>

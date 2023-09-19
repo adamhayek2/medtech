@@ -8,7 +8,7 @@ const Schedule = () => {
     <div className='flex flex-col font-futur'>
       <NavBar/> 
       <div className='flex flex-row'>
-        <SideNav/>
+        <SideNav active={'Schedule'}/>
         <CalenderComponent/>
       </div>
     </div>
