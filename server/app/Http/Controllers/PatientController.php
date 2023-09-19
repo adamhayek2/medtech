@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
 use App\Models\AiReport;
+use Carbon\Carbon;
 
 class PatientController extends Controller {
 
@@ -99,7 +100,20 @@ class PatientController extends Controller {
             ]);
         }
 
-        $report = AiReport::where('patient_id', $patient->id)->get();
+        $report = AiReport::where('patient_id', $patient->id)
+        ->get()
+        ->map(function ($report) {
+            return [
+                'id' => $report->id,
+                'report_data' => json_decode($report->report_data),
+                'status' => $report->status,
+                'approved_by_doctor_id' => $report->approved_by_doctor_id,
+                'full_name' => $report->patient->name, 
+                'time' => Carbon::parse( $report->created_at)->format('Y-m-d H:i:s'),
+                'created_at' => $report->created_at, 
+                'updated_at' => $report->updated_at, 
+            ];
+        });;
 
         if(!$report){
             return response()->json([
