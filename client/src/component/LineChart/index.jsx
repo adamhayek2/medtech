@@ -54,7 +54,7 @@ const LineChart = () => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'transportation',
+                legend: 'Patients',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
