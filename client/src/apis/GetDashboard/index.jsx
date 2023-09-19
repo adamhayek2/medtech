@@ -10,7 +10,7 @@ const GetDashboard = async () => {
             }
           });
           
-      return response.data;
+      return response.data.data;
     } catch (error) {
       throw error
     }
