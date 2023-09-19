@@ -51,4 +51,56 @@ class StaffController extends Controller
             "data" => $staff
         ]);
     }
+
+    public function add(Request $request) {
+        $request->validate([
+            'department_id' => 'required|integer',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date',
+            'phone_number' => 'required|string',
+            'gender_id' => 'required|integer',
+            'major' => 'required|string',
+            'user_type_id' => 'required|integer',
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if($request->user_type_id == 1) {
+            return response()->json([
+                "status" => "error", 
+                "message" => "Cannot add an admin, please contact your it professional"
+            ], 422 );
+        }
+
+        try {
+            $register = app('App\Http\Controllers\AuthController')->register($request);
+            $registerData = $register->getData(); 
+        }catch(\Exception $e){
+            return response()->json([
+                "status" => "error", 
+                "message" => $e->getMessage()
+            ], 422 );
+        }
+
+        $staff = new Staff;
+
+        $staff->user_id = $registerData->data->id;
+        $staff->department_id = $request->department_id;
+        $staff->first_name = $request->first_name;
+        $staff->last_name = $request->last_name;
+        $staff->email = $request->email;
+        $staff->date_of_birth = $request->date_of_birth;
+        $staff->phone_number = $request->phone_number;
+        $staff->gender_id = $request->gender_id;
+        $staff->major = $request->major;
+        
+        $staff->save();
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $staff
+        ]);
+    }
 }

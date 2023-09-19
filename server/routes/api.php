@@ -49,6 +49,7 @@ Route::group(["middleware" => "auth:api"], function() {
     Route::group(["middleware" => "auth.admin", 'prefix' => 'admin'], function(){
         Route::get('dashboard', [AdminController::class,'dashboard']);
         Route::get('get_staff', [StaffController::class,'getStaff']);
+        Route::post('add_staff', [StaffController::class,'add']);
         Route::get('create_meeting', [MeetingController::class,'create']);
     }); 
 
