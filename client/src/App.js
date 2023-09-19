@@ -5,6 +5,7 @@ import Reports from './pages/Reports';
 import Schedule from './pages/Schedule';
 import SingleReport from './pages/SingleReport';
 import Dashboard from './pages/Dashboard';
+import SinglePatient from './pages/SinglePatient';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Authentication />}/> 
         <Route path="/patients" element={<Home/>}/> 
+        <Route path="/patients/:id" element={<SinglePatient/>}/> 
         <Route path="/reports" element={<Reports/>}/> 
         <Route path="/report/:id" element={<SingleReport/>}/> 
         <Route path="/schedule" element={<Schedule/>}/> 
