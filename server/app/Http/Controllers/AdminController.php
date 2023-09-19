@@ -24,17 +24,24 @@ class AdminController extends Controller
         foreach ($todaysPatients as $patient) {
             $report = AiReport::find($patient->id);
 
-            // $timeDifferences[$patient->id] = $report;
             if ($report) {
-                $timeDifference = $patient->updated_at->diffInHours($report->created_at);
-                $timeDifferences[$patient->id] = $timeDifference;
+                $timeDifference = $patient->updated_at->diffInMinutes($report->created_at);
+                $timeDifferences[] = [
+                            'x' => $patient->name,
+                            'y' => $timeDifference,
+                ];
             }
         }
+
+        $formattedTimeDifferences = $timeDifferences[] = [
+            'id' => 1, 
+            'data' => $timeDifferences,
+        ];
 
         return response()->json([
             'reportsTodayCount' => $reportsTodayCount,
             'mostRepeatedLabel' => $mostRepeatedLabel,
-            'timeDifferences' => $timeDifferences,
+            'timeDifferences' => $formattedTimeDifferences,
         ]);
     }
 }
