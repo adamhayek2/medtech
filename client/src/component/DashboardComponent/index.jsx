@@ -1,5 +1,6 @@
 import React from 'react'
 import PageTitle from '../PageTite'
+import DashboardStatisticsCard from '../DashboardStatisticsCard'
 
 const DashboardComponent = () => {
   return (
