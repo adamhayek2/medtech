@@ -34,7 +34,7 @@ class AdminController extends Controller
         }
 
         $formattedTimeDifferences = $timeDifferences[] = [
-            'id' => 1, 
+            'id' => '1', 
             'data' => $timeDifferences,
         ];
 

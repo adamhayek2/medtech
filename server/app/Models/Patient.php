@@ -17,7 +17,7 @@ class Patient extends Model
         return $this->belongsTo(Status::class, 'status_id');
     }
 
-    public function getPatientStatusAttribute() {
+    public function getStatusNameAttribute() {
         return $this->status->name;
     }
 

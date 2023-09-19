@@ -21,7 +21,7 @@ class PatientController extends Controller {
 
         $patients = $patients->map(function ($patient) {
             $patient['full_name'] = $patient->name;
-            $patient['status'] = $patient->patient_status;
+            $patient['status'] = $patient->status_name;
             return $patient;
         });
 
