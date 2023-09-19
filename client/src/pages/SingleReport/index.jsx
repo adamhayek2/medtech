@@ -8,7 +8,7 @@ const SingleReport = () => {
     <div className='flex flex-col font-futur'>
       <NavBar/> 
       <div className='flex flex-row'>
-        <SideNav active={'Report'}/>
+        <SideNav/>
         <SingleReportComponent/>
       </div>
     </div>

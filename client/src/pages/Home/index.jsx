@@ -9,8 +9,7 @@ const Home = () => {
     <div className='flex flex-col font-futur'>
       <NavBar/> 
       <div className='flex flex-row'>
-        <SideNav active={'Patients'}/>
-        {/* <PatienCard name={"Adam Hayek"} illness={"Normal"} status={"free to go"}/> */}
+        <SideNav/>
         <Patients/>
       </div>
     </div>
