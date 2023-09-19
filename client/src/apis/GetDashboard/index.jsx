@@ -2,7 +2,7 @@ import axios from "axios";
 
 const apiUrl = 'http://127.0.0.1:8000/api/admin/dashboard';
 
-const GetPatients = async () => {
+const GetDashboard = async () => {
     try {
         const response = await axios.get(apiUrl, {
             headers: {
@@ -15,4 +15,4 @@ const GetPatients = async () => {
       throw error
     }
   };
-export default GetPatients
+export default GetDashboard
