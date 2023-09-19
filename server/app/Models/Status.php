@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     use HasFactory;
+    public $timestamps = false;
 
     public function patients() {
         return $this->hasMany(Patient::class, 'status_id');
