@@ -1,4 +1,5 @@
 import React from 'react'
+import SinglePatientComponent from '../../component/SinglePatientCompnent'
 
 const SinglePatient = () => {
   return (
@@ -6,6 +7,7 @@ const SinglePatient = () => {
       <NavBar/> 
       <div className='flex flex-row'>
         <SideNav active={'Dashboard'}/>
+        <SinglePatientComponent/>
       </div>
     </div>
   )
