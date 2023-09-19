@@ -99,7 +99,7 @@ class PatientController extends Controller {
             ]);
         }
 
-        $report = AiReport::find($patient->id);
+        $report = AiReport::where('patient_id', $patient->id)->get();
 
         if(!$report){
             return response()->json([
