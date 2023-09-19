@@ -8,6 +8,10 @@ const DashboardComponent = () => {
         <div className='w-full flex flex-row justify-between'>
           <PageTitle title={"Dashboard"}/>
         </div>
+        <div className='flex flex-row gap-20'>
+            <DashboardStatisticsCard about={"patients"} number={123} label={"Patients entered today"}/>
+            <DashboardStatisticsCard about={"virus"} number={"Corona virus"} label={"is Today's common disease"}/>
+        </div>
     </div>
   )
 }
