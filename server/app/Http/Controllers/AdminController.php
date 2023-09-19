@@ -39,9 +39,12 @@ class AdminController extends Controller
         ];
 
         return response()->json([
-            'reportsTodayCount' => $reportsTodayCount,
-            'mostRepeatedLabel' => $mostRepeatedLabel,
-            'timeDifferences' => $formattedTimeDifferences,
-        ]);
+            'status' => 'success',
+            'data' => [
+                'reportsTodayCount' => $reportsTodayCount,
+                'mostRepeatedLabel' => $mostRepeatedLabel,
+                'timeDifferences' => $formattedTimeDifferences,
+            ],
+        ], 200);
     }
 }
