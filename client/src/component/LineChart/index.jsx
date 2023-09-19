@@ -1,42 +1,11 @@
 import React from 'react'
 import { ResponsiveLine } from '@nivo/line'
 
-const LineChart = () => {
-    const data = [
-        {
-          "id": "1",
-          "data": [
-            {
-              "x": "patient1",
-              "y": 203
-            },
-            {
-              "x": "patient2",
-              "y": 181
-            },
-            {
-              "x": "patient3",
-              "y": 241
-            },
-            {
-              "x": "patient4",
-              "y": 36
-            },
-            {
-              "x": "patient5",
-              "y": 273
-            },
-            {
-              "x": "patient6",
-              "y": 260
-            },
-          ]
-        },
-        
-      ]
+const LineChart = ({data}) => {
+    const formattedData = [data]
     return (
         <ResponsiveLine
-            data={data}
+            data={formattedData}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
             xScale={{ type: 'point' }}
             yScale={{

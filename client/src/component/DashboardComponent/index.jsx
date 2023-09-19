@@ -23,16 +23,21 @@ const DashboardComponent = () => {
   }, []);
 
   return (
-    <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
-        <div className='w-full flex flex-row justify-between'>
-          <PageTitle title={"Dashboard"}/>
-        </div>
-        <div className='flex flex-row gap-20'>
-            <DashboardStatisticsCard about={"patients"} number={123} label={"Patients entered today"}/>
-            <DashboardStatisticsCard about={"virus"} number={"Corona virus"} label={"is Today's common disease"}/>
-        </div>
-        <LineChart/>
-    </div>
+    <>
+    {dashboardData.length === 0 || error ? 
+      <div>no reports</div> : 
+      <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
+          <div className='w-full flex flex-row justify-between'>
+            <PageTitle title={"Dashboard"}/>
+          </div>
+          <div className='flex flex-row gap-20'>
+              <DashboardStatisticsCard about={"patients"} number={dashboardData.reportsTodayCount} label={"Patients entered today"}/>
+              <DashboardStatisticsCard about={"virus"} number={dashboardData.mostRepeatedLabel} label={"is Today's common disease"}/>
+          </div>
+          <LineChart data={dashboardData.timeDifferences}/>
+      </div>
+    }
+    </>
   )
 }
 
