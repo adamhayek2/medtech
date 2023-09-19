@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\AiReport;
+use Carbon\Carbon;
 
 class ReportController extends Controller {
 
@@ -19,8 +20,9 @@ class ReportController extends Controller {
     }
 
     $reports = $reports->map(function ($report) {
-        $report['full_name'] = $report->patientName;
+        $report['full_name'] = $report->patient->name;
         $report['report_data'] = json_decode($report->report_data);
+        $report['time'] =  Carbon::parse( $report->created_at)->format('Y-m-d H:i:s');
         return $report;
     });
 
