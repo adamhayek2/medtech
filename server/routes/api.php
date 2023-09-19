@@ -38,7 +38,6 @@ Route::group(["middleware" => "auth:api"], function() {
     Route::group(["prefix" => "reports"], function () {
         Route::get("/{id?}", [ReportController::class, "singleReport"]);
         Route::get('search', [ReportController::class,'search']);
-        Route::post('/{id}/update_report_data', [ReportController::class,'updateReportData']);
     }); 
     
     Route::group(["prefix" => "appointments"], function () {
@@ -50,6 +49,10 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('dashboard', [AdminController::class,'dashboard']);
         Route::get('get_staff', [StaffController::class,'getStaff']);
         Route::get('create_meeting', [MeetingController::class,'create']);
+    }); 
+
+    Route::group(["middleware" => "auth.doc", 'prefix' => 'doctor'], function(){
+        Route::post('report/{id}/update_report_data', [ReportController::class,'updateReportData']);
     }); 
     
 });
