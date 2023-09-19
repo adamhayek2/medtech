@@ -6,33 +6,24 @@ import { ReactComponent as ScheduleSVG } from "../../resources/svg/schedule_icon
 import { ReactComponent as ReportSVG } from "../../resources/svg/reports_icon.svg";
 import { ReactComponent as PatientSVG } from "../../resources/svg/patients_icon.svg";
 
-const SideNav = ({active}) => {
+const SideNav = () => {
     const navItems = [
-        {
-          text: 'Dashboard',
-          path: '/dashboard',
-          icon: <DashboardSVG />,
-        },
-        {
-          text: 'Employees',
-          path: '/employees',
-          icon: <EmployeesSVG />,
-        },
-        {
-          text: 'Schedule',
-          path: '/schedule',
-          icon: <ScheduleSVG />,
-        },
-        {
-          text: 'Reports',
-          path: '/reports',
-          icon: <ReportSVG />,
-        },
-        {
-          text: 'Patients',
-          path: '/patients',
-          icon: <PatientSVG />,
-        },
+      
+      {
+        text: 'Schedule',
+        path: '/schedule',
+        icon: <ScheduleSVG />,
+      },
+      {
+        text: 'Reports',
+        path: '/reports',
+        icon: <ReportSVG />,
+      },
+      {
+        text: 'Patients',
+        path: '/patients',
+        icon: <PatientSVG />,
+      }
       ];
 
     const navigate = useNavigate();
@@ -43,7 +34,22 @@ const SideNav = ({active}) => {
 
     const location  = useLocation();
     
-    const role = localStorage.getItem('role')
+    const role = localStorage.getItem('role');
+
+    if (role === 'admin') {
+      navItems.unshift(
+        {
+          text: 'Dashboard',
+          path: '/dashboard',
+          icon: <DashboardSVG />,
+        },
+        {
+          text: 'Employees',
+          path: '/employees',
+          icon: <EmployeesSVG />,
+        },
+      );
+    };
     
   return (
     <div className="fixed w-1/6 h-screen bg-secondary flex flex-col p-6 text-white">
