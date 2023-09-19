@@ -4,7 +4,7 @@ import { ResponsiveLine } from '@nivo/line'
 const LineChart = () => {
     const data = [
         {
-          "id": "japan",
+          "id": "1",
           "data": [
             {
               "x": "patient1",
