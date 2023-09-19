@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
+use App\Models\AiReport;
 
 class PatientController extends Controller {
 
@@ -88,4 +89,29 @@ class PatientController extends Controller {
         ]);
     }
     
+    public function getReports($id) {
+        $patient = Patient::find($id);
+
+        if(!$patient){
+            return response()->json([
+                "status" => "success", 
+                "message" => "This patient doesn't exist"
+            ]);
+        }
+
+        $report = AiReport::find($patient->id);
+
+        if(!$report){
+            return response()->json([
+                "status" => "success", 
+                "message" => "No reports for this patient"
+            ]);
+        }
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $report
+        ], 200);
+
+    }
 }

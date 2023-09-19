@@ -31,6 +31,7 @@ Route::group(["middleware" => "auth:api"], function() {
 
     Route::group(["prefix" => "patients"], function () {
         Route::get('search', [PatientController::class,'search']);
+        Route::get('/{id}/get_reports', [PatientController::class,'getReports']);
         Route::post('add', [PatientController::class,'create']);
         
     }); 
