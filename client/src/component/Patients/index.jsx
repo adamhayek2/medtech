@@ -5,6 +5,8 @@ import PatientSearch from '../../apis/PatientSearch';
 import PageTitle from '../PageTite'
 import GetPatients from '../../apis/GetPatients'
 import SearchInput from '../base/SearchInput'
+import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+
 
 const Patients = () => {
     const [patients, setPatient] = useState([]);
@@ -50,7 +52,10 @@ const Patients = () => {
         <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
       </div>
       {!patients || patients.length === 0 || error ? 
-        <div>no reports</div> : 
+        <div className='w-full h-full flex flex-col items-center'>
+          <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
+          <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
+        </div> : 
         <div className={`flex flex-row flex-wrap ${patients.length <= 4 ? 'gap-10 justify-start' :'justify-between'}`}>
           {patients.map((patient) => (
             <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
