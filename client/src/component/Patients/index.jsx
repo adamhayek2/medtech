@@ -49,7 +49,7 @@ const Patients = () => {
         <PageTitle title={"Patients"}/>
         <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
       </div>
-      {patients.length === 0 || error ? 
+      {!patients || patients.length === 0 || error ? 
         <div>no reports</div> : 
         <div className={`flex flex-row flex-wrap ${patients.length <= 4 ? 'gap-10 justify-start' :'justify-between'}`}>
           {patients.map((patient) => (
