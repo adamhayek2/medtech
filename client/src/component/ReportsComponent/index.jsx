@@ -51,7 +51,7 @@ const ReportsComponent = () => {
         </div>
         {!reports || error || reports.length === 0? 
           <div>no reports</div> : 
-          <div className='flex flex-row flex-wrap gap-10 justify-between'>
+          <div className={`flex flex-row flex-wrap ${reports.length <= 4 ? 'gap-10 justify-start' :'justify-between'}`}>
           {reports.map((report) => (
             <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.created_at}/>
           ))}
