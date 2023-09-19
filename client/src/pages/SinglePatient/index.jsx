@@ -1,5 +1,7 @@
 import React from 'react'
 import SinglePatientComponent from '../../component/SinglePatientCompnent'
+import NavBar from '../../component/NavBar'
+import SideNav from '../../component/SideNav'
 
 const SinglePatient = () => {
   return (
