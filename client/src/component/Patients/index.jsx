@@ -51,7 +51,7 @@ const Patients = () => {
       </div>
       {patients.length === 0 || error ? 
         <div>no reports</div> : 
-        <div className='flex flex-row flex-wrap gap-10 justify-between'>
+        <div className={`flex flex-row flex-wrap ${patients.length <= 4 ? 'gap-10 justify-start' :'justify-between'}`}>
           {patients.map((patient) => (
             <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
             ))}
