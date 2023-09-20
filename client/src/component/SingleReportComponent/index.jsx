@@ -44,7 +44,7 @@ const SingleReportComponent = () => {
                     </div>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[#7D7D7D]'>Status:</h1>
-                        <p className=' text-[22px] text-primary font-bold'> {report.patient_status}</p>
+                        <p className=' text-[22px] text-primary font-bold'> {report.patient.status.name}</p>
                     </div>
                     <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-[22px] items-center '>
                         <h1 className='text-[22px] font-bold text-primary'>Informations</h1>
