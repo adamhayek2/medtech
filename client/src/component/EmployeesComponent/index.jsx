@@ -7,12 +7,14 @@ import PatienCard from '../PatientCard';
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
 import { ReactComponent as AddSVG } from "../../resources/svg/add.svg";
 import EmployeeCard from '../EmployeeCard';
+import AddStaff from '../modals/AddStaff';
 
 const EmployeesComponent = () => {
     const [employees, setEmployees] = useState([]);
     const [filter, setFilter] = useState("");
     const [error, setError] = useState(false);
     const [searchValue, setSearchValue] = useState("");
+    const [openModal, setOpenModal] = useState(false)
     const debouncedSearchValue = useDebounce(searchValue, 300);
 
     const FetchStaff = async (search) => {
@@ -50,7 +52,7 @@ const EmployeesComponent = () => {
                 <PageTitle title={"Employees"}/>
                 <div className='flex flex-row justify-center items-center gap-3'>
                     <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
-                    <AddSVG onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}} className='h-5 w-5 cursor-pointer'/>
+                    <AddSVG onClick={() => setOpenModal(true)} className='h-5 w-5 cursor-pointer'/>
                 </div>
             </div>
             {!employees || employees.length === 0 || error ? 
@@ -70,6 +72,7 @@ const EmployeesComponent = () => {
                     ))}
                 </div> 
             }   
+            <AddStaff open = {openModal} onClose={() => setOpenModal(false)}/>
         </div>
       )
 }

@@ -33,16 +33,11 @@ const AddStaff = ({open, onClose}) => {
     if(!open) return null
 
     return (
-        <div onClick={onClose} className='fixed w-screen h-screen bg-black/[.6] '>
-        <div onClick={(e) => {
-            e.stopPropagation()
-        }}
-        className=''>
-            <form className='flex flex-col centering bg-white w-1/4 p-10 justify-center items-center rounded'>
+        <div onClick={onClose} className='flex flex-row justify-end fixed w-full h-full bg-[#000000]/30 z-10 top-0 left-0'>
+            <form className='flex flex-col bg-white w-1/4 p-10 justify-center items-center'>
 
                 <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/>
             </form>
-        </div>
     </div>
     )
 }
