@@ -15,4 +15,8 @@ class AiReport extends Model {
     public function patient() {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
+
+    public function status() {
+        return $this->belongsTo(Status::class, 'status');
+    }
 }
