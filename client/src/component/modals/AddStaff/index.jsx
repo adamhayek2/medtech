@@ -33,12 +33,24 @@ const AddStaff = ({open, onClose}) => {
     if(!open) return null
 
     return (
-        <div onClick={onClose} className='flex flex-row justify-end fixed w-full h-full bg-[#000000]/30 z-10 top-0 left-0'>
-            <form className='flex flex-col bg-white w-1/4 p-10 justify-center items-center'>
-
-                <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/>
+        <div onClick={onClose} className='flex flex-row justify-end fixed w-full h-full bg-[#000000]/30 z-10 top-0 left-0 '>
+            <form 
+                onClick={(e) => {
+                    e.stopPropagation()
+                }}
+                className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] ${!open ? 'translate-x-full' : 'translate-x-0'}`}
+            >
+                <Input
+                name="username"
+                value={username}
+                type={"text"}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Username"
+                theme={"blue"}
+                />
+                {/* <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/> */}
             </form>
-    </div>
+        </div>
     )
 }
 
