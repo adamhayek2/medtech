@@ -45,7 +45,7 @@ const EmployeesComponent = () => {
             <div className='w-full flex flex-row justify-between'>
                 <PageTitle title={"Employees"}/>
                 <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
-            </div>
+            </div> 
         </div>
       )
 }
