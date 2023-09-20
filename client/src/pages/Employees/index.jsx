@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from '../../component/NavBar'
 import SideNav from '../../component/SideNav'
+import EmployeesComponent from '../../component/EmployeesComponent'
 
 const Employees = () => {
   return (
@@ -8,6 +9,7 @@ const Employees = () => {
       <NavBar/> 
       <div className='flex flex-row'>
         <SideNav/>
+        <EmployeesComponent/>
       </div>
     </div>
   )
