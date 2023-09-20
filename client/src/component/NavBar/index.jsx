@@ -1,10 +1,13 @@
 import React,{useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import { ReactComponent as NotificationSVG } from "../../resources/svg/notification-thin.svg";
 import { ReactComponent as Profile } from "../../resources/svg/profile.svg";
+import UserLogout from '../../apis/UserLogout';
 
 const NavBar = () => {
   const [showOptions, setShowOptions] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleMouseEnter = () => {
     setShowOptions(true);
@@ -14,13 +17,23 @@ const NavBar = () => {
     setShowOptions(false);
   };
 
+  const navigate = useNavigate();
+  
   const handleSeeProfileClick = () => {
-    // Implement the action for "See Profile" here
+        navigate('/profile');
   };
 
-  const handleLogoutClick = () => {
-    // Implement the action for "Logout" here
-  };
+  const handleLogoutClick = async () => {
+    try {
+      setError(false); 
+      const response = await UserLogout();
+      navigate('/');
+    } catch (error) {
+      setError(true); 
+      console.error('error:', error);
+    }
+  }
+
 
   return (
     <div className='sticky top-0 flex-no-wrap relative flex w-full items-center justify-between bg-primary py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-6 z-10'>
