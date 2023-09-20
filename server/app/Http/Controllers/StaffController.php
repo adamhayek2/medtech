@@ -107,4 +107,23 @@ class StaffController extends Controller
             "data" => $staff
         ]);
     }
+
+    public function singleStaff($id) {
+        $staff = Staff::with(['user.userType', 'department', 'gender'])
+        ->find($id);
+
+        if (!$staff) {
+            return response()->json([
+                "status" => "error", 
+                "message" => "Couldn't find Empoyee"
+            ], 404 );
+        }
+
+        $staff['hired_at'] = Carbon::parse($staff->created_at)->format('Y-m-d');
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $staff
+        ], 200);
+    }
 }

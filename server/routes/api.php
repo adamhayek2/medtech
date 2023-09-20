@@ -50,6 +50,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('dashboard', [AdminController::class,'dashboard']);
         Route::get('get_staff', [StaffController::class,'getStaff']);
         Route::post('add_staff', [StaffController::class,'add']);
+        Route::get('staff_profile/{id?}', [StaffController::class,'singleStaff']);
         Route::get('create_meeting', [MeetingController::class,'create']);
     }); 
 
