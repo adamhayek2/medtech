@@ -18,7 +18,7 @@ const NavBar = () => {
   };
 
   const navigate = useNavigate();
-  
+
   const handleSeeProfileClick = () => {
         navigate('/profile');
   };
@@ -26,7 +26,8 @@ const NavBar = () => {
   const handleLogoutClick = async () => {
     try {
       setError(false); 
-      const response = await UserLogout();
+      const token = localStorage.getItem("token");
+      const response = await UserLogout(token);
       navigate('/');
     } catch (error) {
       setError(true); 
