@@ -6,6 +6,7 @@ import Schedule from './pages/Schedule';
 import SingleReport from './pages/SingleReport';
 import Dashboard from './pages/Dashboard';
 import SinglePatient from './pages/SinglePatient';
+import Employees from './pages/Employees';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
 
         <Route path="/dashboard" element={<Dashboard/>}/> 
+        <Route path="/employees" element={<Employees/>}/> 
       </Routes>
     </BrowserRouter> 
   );
