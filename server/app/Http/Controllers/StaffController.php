@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use Carbon\Carbon;
 
 class StaffController extends Controller
 {
@@ -44,7 +45,10 @@ class StaffController extends Controller
             $query->where('gender_id', $genderId);
         }
 
-        $staff = $query->get();
+        $staff = $query->get()->map(function ($temp) {
+            $temp['hired_at'] =  Carbon::parse( $temp->created_at)->format('Y-m-d');
+            return $temp;
+        });;
 
         return response()->json([
             "status" => "success", 
