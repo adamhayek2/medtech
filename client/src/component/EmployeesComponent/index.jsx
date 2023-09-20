@@ -5,6 +5,7 @@ import PageTitle from '../PageTite';
 import SearchInput from '../base/SearchInput';
 import PatienCard from '../PatientCard';
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+import { ReactComponent as AddSVG } from "../../resources/svg/add.svg";
 import EmployeeCard from '../EmployeeCard';
 
 const EmployeesComponent = () => {
@@ -47,7 +48,10 @@ const EmployeesComponent = () => {
         <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
             <div className='w-full flex flex-row justify-between'>
                 <PageTitle title={"Employees"}/>
-                <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
+                <div className='flex flex-row justify-center items-center gap-3'>
+                    <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
+                    <AddSVG onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}} className='h-5 w-5 cursor-pointer'/>
+                </div>
             </div>
             {!employees || employees.length === 0 || error ? 
                 <div className='w-full h-full flex flex-col items-center'>
