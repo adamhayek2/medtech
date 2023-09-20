@@ -17,9 +17,9 @@ const EmployeeCard = ({name, id, department, major, hireDate}) => {
       <p className='text-[22px] font-bold font text-primary'>{name}</p>
       <div className='w-full flex flex-row justify-between'>
         <div>
-          <p className='text-base'>{department}</p>
-          <p className='text-base'>{major}</p>
-          <p className='text-base italic text-[#000000]/50'>{hireDate}</p>
+          <p className='text-base'>Department: {department}</p>
+          <p className='text-base'>Major: {major}</p>
+          <p className='text-base italic text-[#000000]/50'>Hired at: {hireDate}</p>
         </div>
         <ArrowSVG/>
       </div>
