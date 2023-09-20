@@ -3,9 +3,11 @@ import { useDebounce } from "@uidotdev/usehooks";
 import GetStaff from '../../apis/GetStaff';
 import PageTitle from '../PageTite';
 import SearchInput from '../base/SearchInput';
+import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+import EmployeeCard from '../EmployeeCard';
 
 const EmployeesComponent = () => {
-    const [patients, setPatient] = useState([]);
+    const [employees, setEmployees] = useState([]);
     const [filter, setFilter] = useState("");
     const [error, setError] = useState(false);
     const [searchValue, setSearchValue] = useState("");
@@ -15,7 +17,7 @@ const EmployeesComponent = () => {
         try {
         setError(false); 
         const response = await GetStaff({filter: ''});
-        setPatient(response)
+        setEmployees(response)
         } catch (error) {
         setError(true); 
         console.error('error:', error);
@@ -25,7 +27,7 @@ const EmployeesComponent = () => {
         try {
           const response = await GetStaff({filter: searchValue});
           setError(false); 
-          setPatient(response);
+          setEmployees(response);
         } catch (error) {
           console.error('error:', error);
           setError(true); 
@@ -45,7 +47,7 @@ const EmployeesComponent = () => {
             <div className='w-full flex flex-row justify-between'>
                 <PageTitle title={"Employees"}/>
                 <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
-            </div> 
+            </div>
         </div>
       )
 }
