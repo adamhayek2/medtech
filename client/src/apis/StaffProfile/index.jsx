@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const EmployeeProfile = async ({id}) => {
+const StaffProfile = async ({id}) => {
     try {
         const response = await axios.get(`http://127.0.0.1:8000/api/admin/staff_profile${id}`, {
             headers: {
@@ -13,4 +13,4 @@ const EmployeeProfile = async ({id}) => {
     }
 }
 
-export default EmployeeProfile
+export default StaffProfile
