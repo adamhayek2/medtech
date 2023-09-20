@@ -15,7 +15,7 @@ const EmployeeCard = ({name, id, department, major, hireDate}) => {
   return (
     <div className='flex flex-col p-6 rounded-lg w-[31%] grow-0 bg-white cursor-pointer' onClick={openEmployeeProfile}>
       <p className='text-[22px] font-bold font text-primary'>{name}</p>
-      <div className='w-full flex flex-row justify-between'>
+      <div className='w-full flex flex-row justify-between items-end'>
         <div>
           <p className='text-base'>Department: {department}</p>
           <p className='text-base'>Major: {major}</p>
