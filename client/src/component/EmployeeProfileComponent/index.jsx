@@ -4,11 +4,13 @@ import PageTitle from '../PageTite';
 import Button from '../base/Button';
 import StaffProfile from '../../apis/StaffProfile';
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+import EditStaff from '../modals/EditStaff';
 
 
 const EmployeeProfileComponent = () => {
     const { id } = useParams();
     const [employee, setEmployee] = useState([]);
+    const [openModal, setOpenModal] = useState(false)
     const [error, setError] = useState(false);
 
     const fetchEmployeeProfile = async () => {
@@ -42,8 +44,12 @@ const EmployeeProfileComponent = () => {
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{`${employee.first_name} ${employee.last_name}`}</h1>
                         <p className='text-[#7D7D7D]'>Staff ID: {employee.id}</p>
-                        <Button label={'Edit Profile'} BgColor={'bg-primary'} textColor={'text-white'}/>
-                        <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                        <div onClick={() => setOpenModal(true)} className='w-full'>
+                            <Button label={'Edit Profile'} BgColor={'bg-primary'} textColor={'text-white'} />
+                        </div>
+                        <div onClick={() => setOpenModal(true)} className='w-full'>
+                            <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                        </div>
                     </div>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[#7D7D7D]'>Major:</h1>
@@ -91,6 +97,7 @@ const EmployeeProfileComponent = () => {
             </div> 
         </div>
         }
+        <EditStaff open = {openModal} onClose={() => setOpenModal(false)} profileInfos={employee}/>
     </div>
   )
 }

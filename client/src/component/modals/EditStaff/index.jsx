@@ -3,9 +3,8 @@ import Input from '../../base/Input';
 import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
-import CreateStaff from '../../../apis/CreateStaff';
 
-const AddStaff = ({open, onClose}) => {
+const EditStaff = ({open, onClose, profileInfos}) => {
     const [fistName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -14,9 +13,6 @@ const AddStaff = ({open, onClose}) => {
     const [dateOfBirth, setDateOfBirth] = useState();
     const [department, setDepartment] = useState();
     const [major, setMajor] = useState('');
-    const [user_type, setUserType] = useState();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [data, setData] = useState([]);
     const [error, setError] = useState();
 
@@ -29,15 +25,12 @@ const AddStaff = ({open, onClose}) => {
         setDateOfBirth('');
         setDepartment('');
         setMajor('');
-        setUserType('');
-        setUsername('');
-        setPassword('');
     };
-    const addStaff = async (e) => {
+    const edit = async (e) => {
         e.preventDefault();
         try {
             setError(false); 
-            const response = await CreateStaff(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major, user_type, username, password );
+            // const response = await EditStaffInfo(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major );
             onClose();
             resetState();
           } catch (error) {
@@ -66,7 +59,7 @@ const AddStaff = ({open, onClose}) => {
         <div onClick={onClose} className='flex flex-row justify-end fixed w-full min-h-full bg-[#000000]/30 z-10 top-0 left-0 overflow-y-scroll'>
             <form 
                 onClick={(e) => { e.stopPropagation() }}
-                onSubmit={addStaff}
+                onSubmit={edit}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
                 <div className=' flex flex-row gap-3'>
@@ -104,7 +97,7 @@ const AddStaff = ({open, onClose}) => {
                 theme={"blue"}
                 />
                 <div className='w-full flex flex-row gap-3'>
-                    <DropdownMenu placeholder={"Gender"} onChange={setGender} options={data.genders}/>
+                    <DropdownMenu placeholder={profileInfos.gender.gender} onChange={setGender} options={data.genders}/>
                     <Input
                     name="date_of_birth"
                     value={dateOfBirth}
@@ -115,22 +108,6 @@ const AddStaff = ({open, onClose}) => {
                     />
                 </div>
                 <Input
-                name="username"
-                value={username}
-                type={"text"}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
-                theme={"blue"}
-                />
-                <Input
-                name="password"
-                value={password}
-                type={"password"}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                theme={"blue"}
-                />
-                <Input
                 name="major"
                 value={major}
                 type={"text"}
@@ -138,14 +115,13 @@ const AddStaff = ({open, onClose}) => {
                 placeholder="Major"
                 theme={"blue"}
                 />
-                <DropdownMenu placeholder={"depatment"} onChange={setDepartment} options={data.departments}/>
-                <DropdownMenu placeholder={"role"} onChange={setUserType} options={data.userTypes}/>
+                <DropdownMenu placeholder={profileInfos.department.name} onChange={setDepartment} options={data.departments}/>
                 <div className='w-full h-[56px]'>
-                    <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'} />
+                    <Button label={'Submit'} BgColor={'bg-primary'} textColor={'text-white'} />
                 </div>
             </form>
         </div>
     )
 }
 
-export default AddStaff
+export default EditStaff
