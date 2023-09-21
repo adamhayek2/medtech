@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Gender;
+use App\Models\Department;
+use App\Models\UserType;
+
+class DataController extends Controller {
+    public function getData() {
+        $userTypes = UserType::where('type', '!=', 'admin')
+        ->get()
+        ->map(function ($userType){
+            return[
+                'id' => $userType->id,
+                'name' => $userType->type,
+            ];      
+        });
+        $departments = Department::all(['id', 'name']);
+        $genders = Gender::all()->map(function ($gender){
+            return[
+                'id' => $gender->id,
+                'name' => $gender->gender,
+            ];      
+        });;
+
+        if(!$userTypes || !$departments || !$genders) return response()->json(['error' => 'error has occured'], 404);
+
+        $data = [
+            'userTypes' => $userTypes,
+            'departments' => $departments,
+            'genders' => $genders,
+        ];
+
+        return response()->json([
+            "status" => "success", 
+            "data" => $data
+        ], 200);
+    }
+}

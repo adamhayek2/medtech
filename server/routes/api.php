@@ -9,6 +9,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\DataController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -27,6 +28,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::post('refresh', [AuthController::class,'refresh']);
         Route::get('all_patients', [PatientController::class,'getAll']);
         Route::get('all_reports', [ReportController::class,'getAll']);
+        Route::get('get_data', [DataController::class, 'getData']);
     }); 
 
     Route::group(["prefix" => "patients"], function () {
