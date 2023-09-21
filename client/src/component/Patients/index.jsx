@@ -49,7 +49,13 @@ const Patients = () => {
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
       <div className='w-full flex flex-row justify-between'>
         <PageTitle title={"Patients"}/>
-        <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
+        {localStorage.getItem('item') === 'receptionist'? 
+          <div className='flex flex-row justify-center items-center gap-3'>
+              <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
+              <AddSVG onClick={() => setOpenModal(true)} className='h-5 w-5 cursor-pointer'/>
+          </div> : 
+          <SearchInput onChange={(e) => {setSearchValue(e.target.value)}}/>
+        }
       </div>
       {!patients || patients.length === 0 || error ? 
         <div className='w-full h-full flex flex-col items-center'>
