@@ -8,14 +8,14 @@ import EditStaffInfos from '../../../apis/EditStaffProfile';
 
 const EditStaff = ({open, onClose, profileInfos}) => {
     const { id } = useParams();
-    const [fistName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setphoneNumber] = useState('');
-    const [gender, setGender] = useState();
-    const [dateOfBirth, setDateOfBirth] = useState();
-    const [department, setDepartment] = useState();
-    const [major, setMajor] = useState('');
+    const [fistName, setFirstName] = useState(profileInfos.first_name);
+    const [lastName, setLastName] = useState(profileInfos.last_name);
+    const [email, setEmail] = useState(profileInfos.email);
+    const [phoneNumber, setphoneNumber] = useState(profileInfos.phone_number);
+    const [gender, setGender] = useState(profileInfos.gender_id);
+    const [dateOfBirth, setDateOfBirth] = useState(profileInfos.date_of_birth);
+    const [department, setDepartment] = useState(profileInfos.Department_id);
+    const [major, setMajor] = useState(profileInfos.major);
     const [data, setData] = useState([]);
     const [error, setError] = useState();
 
