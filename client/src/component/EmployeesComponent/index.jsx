@@ -60,7 +60,7 @@ const EmployeesComponent = () => {
                 <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
                 <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
                 </div> : 
-                <div className={`flex flex-row flex-wrap ${employees.length <= 4 ? 'gap-10 justify-start' :'justify-between'}`}>
+                <div className={`flex flex-row flex-wrap gap-10 ${employees.length <= 4 ? ' justify-start' :'justify-between'}`}>
                 {employees.map((employee) => (
                     <EmployeeCard 
                         key={employee.id} 
