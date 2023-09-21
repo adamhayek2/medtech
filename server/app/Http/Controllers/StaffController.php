@@ -85,7 +85,7 @@ class StaffController extends Controller
             return response()->json([
                 "status" => "error", 
                 "message" => $e->getMessage()
-            ], 422 );
+            ], 406 );
         }
 
         $staff = new Staff;
