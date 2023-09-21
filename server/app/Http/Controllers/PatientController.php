@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
 use App\Models\AiReport;
+use App\Models\Room;
 use Carbon\Carbon;
 
 class PatientController extends Controller {
@@ -72,6 +73,15 @@ class PatientController extends Controller {
             'blood_type_id' => 'required|integer',
         ]);
 
+        $room = Room::whereNull('patient_id')->first();
+
+        if (!$room) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No available rooms at the moment.',
+            ], 422);
+        }
+
         $patient = new Patient;
 
         $patient->first_name = $request->first_name;
@@ -83,6 +93,9 @@ class PatientController extends Controller {
         $patient->blood_type_id = $request->blood_type_id;
 
         $patient->save();
+
+        $room->patient_id = $patient->id;
+        $room->save();
 
         return response()->json([
             'status' => 'success',
