@@ -23,7 +23,7 @@ class DataController extends Controller {
                 'id' => $gender->id,
                 'name' => $gender->gender,
             ];      
-        });;
+        });
 
         if(!$userTypes || !$departments || !$genders) return response()->json(['error' => 'error has occured'], 404);
 
