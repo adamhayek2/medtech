@@ -1,10 +1,13 @@
 import React, {useState,useEffect} from 'react'
+import { useParams } from 'react-router-dom';
 import Input from '../../base/Input';
 import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
+import EditStaffInfos from '../../../apis/EditStaffProfile';
 
 const EditStaff = ({open, onClose, profileInfos}) => {
+    const { id } = useParams();
     const [fistName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -30,7 +33,7 @@ const EditStaff = ({open, onClose, profileInfos}) => {
         e.preventDefault();
         try {
             setError(false); 
-            // const response = await EditStaffInfo(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major );
+            const response = await EditStaffInfos(id, fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major);
             onClose();
             resetState();
           } catch (error) {
