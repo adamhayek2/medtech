@@ -3,6 +3,7 @@ import Input from '../../base/Input';
 import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
+import CreateStaff from '../../../apis/CreateStaff';
 
 const AddStaff = ({open, onClose}) => {
     const [fistName, setFirstName] = useState('');
@@ -38,7 +39,7 @@ const AddStaff = ({open, onClose}) => {
             setError(false); 
             const response = await CreateStaff(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major, user_type, username, password );
             onClose();
-            resetState();
+            // resetState();
           } catch (error) {
             console.error('Failed to create', error);
             setError(true); 
@@ -97,7 +98,7 @@ const AddStaff = ({open, onClose}) => {
                 <Input
                 name="phone_number"
                 value={phoneNumber}
-                type={"email"}
+                type={"text"}
                 onChange={(e) => setphoneNumber(e.target.value)}
                 placeholder="Phone number"
                 theme={"blue"}
