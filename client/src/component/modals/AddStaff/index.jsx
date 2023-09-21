@@ -32,6 +32,18 @@ const AddStaff = ({open, onClose}) => {
         setUsername('');
         setPassword('');
     };
+    const addStaff = async (e) => {
+        e.preventDefault();
+        try {
+            setError(false); 
+            const response = await CreateStaff(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major, user_type, username, password );
+            onClose();
+            resetState();
+          } catch (error) {
+            console.error('Failed to create', error);
+            setError(true); 
+          }
+    }
 
     const fetchData = async () => {
         try {
@@ -53,6 +65,7 @@ const AddStaff = ({open, onClose}) => {
         <div onClick={onClose} className='flex flex-row justify-end fixed w-full min-h-full bg-[#000000]/30 z-10 top-0 left-0 overflow-y-scroll'>
             <form 
                 onClick={(e) => { e.stopPropagation() }}
+                onSubmit={addStaff}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
                 <div className=' flex flex-row gap-3'>
