@@ -126,4 +126,42 @@ class StaffController extends Controller
             "data" => $staff
         ], 200);
     }
+
+    public function edit(Request $request, $id) {
+        $request->validate([
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'date_of_birth' => 'required|date',
+            'phone_number' => 'required|string',
+            'gender_id' => 'required|integer',
+            'major' => 'required|string',
+            'department_id' => 'required|integer',
+        ]);
+
+        $staff = Staff::find($id);
+
+        if (!$staff) {
+            return response()->json([
+                "status" => "error",
+                "message" => "Staff member not found"
+            ], 404);
+        }
+
+        $staff->first_name = $request->first_name;
+        $staff->last_name = $request->last_name;
+        $staff->email = $request->email;
+        $staff->date_of_birth = $request->date_of_birth;
+        $staff->phone_number = $request->phone_number;
+        $staff->gender_id = $request->gender_id;
+        $staff->major = $request->major;
+        $staff->department_id = $request->department_id;
+
+        $staff->save();
+
+        return response()->json([
+            "status" => "success",
+            "data" => $staff
+        ]);
+    }
 }
