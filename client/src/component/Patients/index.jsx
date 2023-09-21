@@ -3,14 +3,17 @@ import { useDebounce } from "@uidotdev/usehooks";
 import PatienCard from '../PatientCard'
 import PatientSearch from '../../apis/PatientSearch';
 import PageTitle from '../PageTite'
+import { ReactComponent as AddSVG } from "../../resources/svg/add.svg";
 import GetPatients from '../../apis/GetPatients'
 import SearchInput from '../base/SearchInput'
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+import AddPatientModal from '../modals/addPatientModal';
 
 
 const Patients = () => {
     const [patients, setPatient] = useState([]);
     const [error, setError] = useState(false);
+    const [openModal, setOpenModal] = useState(false)
     const [searchValue, setSearchValue] = useState("");
     const debouncedSearchValue = useDebounce(searchValue, 300);
 
@@ -49,7 +52,7 @@ const Patients = () => {
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
       <div className='w-full flex flex-row justify-between'>
         <PageTitle title={"Patients"}/>
-        {localStorage.getItem('item') === 'receptionist'? 
+        {localStorage.getItem('role') === 'receptionist'? 
           <div className='flex flex-row justify-center items-center gap-3'>
               <SearchInput onChange={(e) => {setSearchValue(`?search=${e.target.value}`)}}/>
               <AddSVG onClick={() => setOpenModal(true)} className='h-5 w-5 cursor-pointer'/>
@@ -68,6 +71,7 @@ const Patients = () => {
             ))}
         </div> 
         }   
+        <AddPatientModal open = {openModal} onClose={() => setOpenModal(false)}/>
     </div>
   )
 }
