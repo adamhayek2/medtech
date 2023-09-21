@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Input from '../../base/Input';
 import Button from '../../base/Button';
+import DropdownMenu from '../../base/DropdownMenu';
 
 const AddStaff = ({open, onClose}) => {
     const [fistName, setFirstName] = useState('');
@@ -104,6 +105,9 @@ const AddStaff = ({open, onClose}) => {
                 placeholder="Major"
                 theme={"blue"}
                 />
+                <DropdownMenu placeholder={"depatment"} onChange={setDepartment} />
+                {/* <DropdownMenu placeholder={"Gender"} onChange={setGender} options={}/>
+                <DropdownMenu placeholder={"role"} onChange={setUserType} options={}/> */}
                 
                 {/* <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'}/> */}
             </form>
