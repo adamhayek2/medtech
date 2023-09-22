@@ -9,7 +9,7 @@ const Input = ({ type, placeholder, value, onChange, theme }) => {
         {placeholder}
       </label> 
       <input 
-        className={`${theme === 'blue' ? 'text-primary' : 'text-white' }z-10 h-full w-full rounded-md px-3.5 py-4 outline-none bg-transparent `} 
+        className={`${theme === 'blue' ? 'text-primary' : 'text-white' } z-10 h-full w-full rounded-md px-3.5 py-4 outline-none bg-transparent `} 
         type={type} 
         value={value}
         onChange={onChange}

@@ -27,6 +27,8 @@ const SingleReportComponent = () => {
         fetchSingleReport();
       }, []);
 
+      const isDoctor = localStorage.getItem('role') === 'doctor';
+
   return (
     <div className='min-h-screen w-5/6 ml-auto'>
     {report.length === 0 || error ? 
@@ -71,7 +73,11 @@ const SingleReportComponent = () => {
                         ))}
                         </div>
                         <div className='w-full flex flex-row justify-end'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}  BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                            {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                                <div className='w-32 h-12'>
+                                    <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                                </div>: ""
+                            }
                         </div>
                     </div>
                     <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
@@ -88,7 +94,11 @@ const SingleReportComponent = () => {
                         ))}
                         </div>
                         <div className='w-full flex flex-row justify-end'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Edit'}  BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                            {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                                <div className='w-32 h-12'>
+                                    <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                                </div>: ""
+                            }
                         </div>
                     </div>
                     <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
@@ -98,9 +108,11 @@ const SingleReportComponent = () => {
                             <Medication name={tem.medication_name} frequency={tem.frequency} to={"Heart regolation"} dosage={tem.dosage}/>
                         ))}
                         </div>
-                        <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg'>
-                            <Button label={report.approved_by_doctor_id === 0 ? 'See all' : 'Add'} BgColor={"bg-primary/20"} textColor={"text-black"}/>
-                        </div>
+                        {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                            <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg h-12'>
+                                <Button label={"Edit"} BgColor={"bg-primary/20"} textColor={"text-black"}/>
+                            </div>: ""
+                        }
                     </div>
                 </div>
             </div>
