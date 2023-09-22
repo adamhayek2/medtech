@@ -3,10 +3,11 @@ import Input from '../../base/Input';
 import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
-import CreateStaff from '../../../apis/CreateStaff';
+import AddStaff from '../../../apis/AddPatient';
+import AddPatient from '../../../apis/AddPatient';
 
 const AddPatientModal = ({open, onClose}) => {
-    const [fistName, setFirstName] = useState('');
+    const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setphoneNumber] = useState('');
     const [gender, setGender] = useState();
@@ -29,7 +30,7 @@ const AddPatientModal = ({open, onClose}) => {
         e.preventDefault();
         try {
             setError(false); 
-            // const response = await CreateStaff(fistName, lastName, email,phoneNumber, gender, dateOfBirth, department, major, user_type, username, password );
+            const response = await AddPatient(firstName, lastName, phoneNumber, gender, age, status, bloodType);
             onClose();
             resetState();
           } catch (error) {
@@ -64,7 +65,7 @@ const AddPatientModal = ({open, onClose}) => {
                 <div className=' flex flex-row gap-3'>
                     <Input
                     name="First name"
-                    value={fistName}
+                    value={firstName}
                     type={"text"}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="First name"
