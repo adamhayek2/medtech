@@ -6,10 +6,13 @@ import SingleReport from '../../apis/SingleReport';
 import PageTitle from '../PageTite';
 import Button from '../base/Button';
 import Medication from '../base/Medication';
+import EditReportModal from '../modals/EditReportModal';
 
 const SingleReportComponent = () => {
     const { id } = useParams();
     const [report, setReport] = useState([]);
+    const [openModal, setOpenModal] = useState(false)
+    const [selectEditType, SetSelectEditType] = useState('blood_tests')
     const [error, setError] = useState(false);
 
     const fetchSingleReport = async () => {
@@ -21,12 +24,17 @@ const SingleReportComponent = () => {
         } catch (error) {
           setError(true); 
         }
-      }
+    }
+      
 
       useEffect(() => {
         fetchSingleReport();
       }, []);
 
+      const openModalHandler = (type) => {
+        setOpenModal(true);
+        SetSelectEditType(type)
+      }
       const isDoctor = localStorage.getItem('role') === 'doctor';
 
   return (
@@ -66,7 +74,7 @@ const SingleReportComponent = () => {
                             <div className='flex flex-row items-center gap-3'>
                                 <BloodTestSVG/>
                                 <div className='flex flex-col '>
-                                    <div className='text-[18px]'>{tem.test_name}</div>
+                                    <div className='text-[18px]'>{tem.name}</div>
                                     <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
                                 </div>
                             </div>
@@ -74,7 +82,7 @@ const SingleReportComponent = () => {
                         </div>
                         <div className='w-full flex flex-row justify-end'>
                             {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                                <div className='w-32 h-12'>
+                                <div className='w-32 h-12' onClick={() => openModalHandler('blood_tests')}>
                                     <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
                                 </div>: ""
                             }
@@ -87,7 +95,7 @@ const SingleReportComponent = () => {
                             <div className='flex flex-row items-center gap-3'>
                                 <ScansSVG/>
                                 <div className='flex flex-col '>
-                                    <div className='text-[18px]'>{tem.scan_type}</div>
+                                    <div className='text-[18px]'>{tem.name}</div>
                                     <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
                                 </div>
                             </div>
@@ -95,7 +103,7 @@ const SingleReportComponent = () => {
                         </div>
                         <div className='w-full flex flex-row justify-end'>
                             {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                                <div className='w-32 h-12'>
+                                <div className='w-32 h-12' onClick={() => openModalHandler('scans')}>
                                     <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
                                 </div>: ""
                             }
@@ -109,13 +117,14 @@ const SingleReportComponent = () => {
                         ))}
                         </div>
                         {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                            <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg h-12'>
+                            <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg h-12' onClick={() => openModalHandler('medications')}>
                                 <Button label={"Edit"} BgColor={"bg-primary/20"} textColor={"text-black"}/>
                             </div>: ""
                         }
                     </div>
                 </div>
             </div>
+            <EditReportModal open = {openModal} onClose={() => setOpenModal(false)} reportData={report} type={selectEditType}/>
         </div>
         }
     </div>
