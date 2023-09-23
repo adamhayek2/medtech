@@ -14,6 +14,7 @@ const Authentication = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const fcm_token = localStorage.getItem('fcm_token')
 
   const navigate = useNavigate();
 
@@ -22,7 +23,7 @@ const Authentication = () => {
 
     try {
       
-      const response = await UserLogin(username, password);
+      const response = await UserLogin(username, password, fcm_token);
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.user_type.type);
       setError(false); 
@@ -42,6 +43,10 @@ const Authentication = () => {
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
+
+  useEffect(() => {
+    if(!fcm_token) fetchToken(); 
+  }, []);
 
   return (
     <div className='w-screen h-screen flex flex-row justify-center items-center font-futur'>

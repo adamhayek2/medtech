@@ -2,11 +2,12 @@ import axios from 'axios';
 
 const apiUrl = 'http://127.0.0.1:8000/api/guest/login';
 
-const loginUser = async (username, password) => {
+const loginUser = async (username, password, fcm_token) => {
   try {
     const response = await axios.post(apiUrl, {
       username,
-      password
+      password,
+      fcm_token
     });
 
     return response.data.data;
