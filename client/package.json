@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@uidotdev/usehooks": "^2.2.0",
     "axios": "^1.5.0",
+    "firebase": "^10.4.0",
     "nivo": "^0.31.0",
     "react": "^18.2.0",
     "react-big-calendar": "^1.8.2",
