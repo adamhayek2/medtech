@@ -20,6 +20,7 @@ class AuthController extends Controller {
         $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
+            'fcm_token' => 'string',
         ]);
         $credentials = $request->only('username', 'password');
 
@@ -34,6 +35,14 @@ class AuthController extends Controller {
         $user = Auth::user();
         $user->token = $token;
         $userTypeName = $user->user_type_type;
+
+        $fcm_token = $request->input('fcm_token');
+
+        $this_user = User::find($user->id);
+        $this_user->fcm_token = $request->fcm_token;
+        $this_user->save();
+
+
         return response()->json([
                 'status' => 'success',
                 'data' => $user,
