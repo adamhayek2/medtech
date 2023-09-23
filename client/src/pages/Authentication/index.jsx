@@ -6,12 +6,14 @@ import Button from '../../component/base/Button';
 import UserLogin from '../../apis/UserLogin';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import * as heartBeat from '../../resources/animations/heartbeat.json'
+import { useEffect } from 'react';
+import fetchToken from '../../utils/initializingFirebase';
 
 const Authentication = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false); 
+  const [error, setError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -19,6 +21,7 @@ const Authentication = () => {
     e.preventDefault();
 
     try {
+      
       const response = await UserLogin(username, password);
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.user_type.type);
@@ -39,7 +42,6 @@ const Authentication = () => {
       preserveAspectRatio: 'xMidYMid slice'
     }
   };
-
 
   return (
     <div className='w-screen h-screen flex flex-row justify-center items-center font-futur'>
