@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Gender;
 use App\Models\Department;
 use App\Models\UserType;
+use App\Models\BloodType;
+use App\Models\Status;
 
 class DataController extends Controller {
     public function getData() {
@@ -25,12 +27,18 @@ class DataController extends Controller {
             ];      
         });
 
-        if(!$userTypes || !$departments || !$genders) return response()->json(['error' => 'error has occured'], 404);
+        $statuses = Status::all();
+
+        $bloodTypes = BloodType::all();
+
+        if(!$userTypes || !$departments || !$genders || !$statuses || !$bloodTypes) return response()->json(['error' => 'error has occured'], 404);
 
         $data = [
             'userTypes' => $userTypes,
             'departments' => $departments,
             'genders' => $genders,
+            'statuses' => $statuses,
+            'bloodTypes' => $bloodTypes,
         ];
 
         return response()->json([

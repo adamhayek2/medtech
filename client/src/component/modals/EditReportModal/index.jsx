@@ -1,9 +1,12 @@
 import React, {useState} from 'react'
+import { useParams } from 'react-router-dom';
 import Input from '../../base/Input';
 import Button from '../../base/Button';
 import EditStaffInfos from '../../../apis/EditStaffProfile';
+import EditReport from '../../../apis/EditReport';
 
 const EditReportModal = ({open, onClose, reportData, type}) => {
+    const { id } = useParams();
     const [bloodTest, setBloodTest] = useState(reportData.report_data.blood_tests);
     const [scan, setScan] = useState(reportData.report_data.scans);
     const [medication,setMedications] = useState(reportData.report_data.medications);
@@ -31,11 +34,11 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
 
     const edit = async (e) => {
         e.preventDefault();
-        appoitments = reportData.report_data.appoitments
-        newReport = {bloodTest, scan, medication, appoitments }
+        const appoitments = reportData.report_data.appoitments
+        const newReport = {bloodTest, scan, medication, appoitments }
         try { 
             setError(false); 
-            const response = await editReport(newReport );
+            const response = await EditReport(id, newReport );
             onClose();
           } catch (error) {
             console.error('Failed to create', error);
