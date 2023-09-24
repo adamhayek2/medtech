@@ -17,6 +17,10 @@ class Staff extends Model
         return $this->belongsTo(Department::class, 'department_id');
     }
 
+    public function getDepartmentNameAttribute() {
+        return $this->department->name;
+    }
+
     public function gender() {
         return $this->belongsTo(Gender::class, 'gender_id');
     }
