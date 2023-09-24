@@ -115,9 +115,15 @@ class NotificationController extends Controller {
 
         $notifications = Notification::where('staff_id', $user->staff->id)->get();
 
+        $message = $notifications->toArray();
+
+        $notifications->each(function ($notification) {
+            $notification->update(['seen' => true]);
+        });
+
         return response()->json([
             'status' => 'success',
-            'data' => $notifications,
+            'data' => $message,
         ], 200);
     }
     
