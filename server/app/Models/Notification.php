@@ -15,4 +15,8 @@ class Notification extends Model
         'title',
         'body',
     ];
+
+    public function staff() {
+        return $this->belongsTo(Staff::class, 'staff_id');
+    }
 }
