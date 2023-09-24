@@ -30,6 +30,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::get('all_patients', [PatientController::class,'getAll']);
         Route::get('all_reports', [ReportController::class,'getAll']);
         Route::get('get_data', [DataController::class, 'getData']);
+        Route::get('all_notifications', [NotificationController::class, 'getNotifications']);
     }); 
 
     Route::group(["prefix" => "patients"], function () {

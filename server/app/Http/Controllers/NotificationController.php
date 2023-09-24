@@ -105,5 +105,20 @@ class NotificationController extends Controller {
             'message' => 'Notification sent',
         ], 200);
     }
+
+    public function getNotifications() {
+        $user = Auth::user();
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        $notifications = Notification::where('staff_id', $user->staff->id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $notifications,
+        ], 200);
+    }
     
 }
