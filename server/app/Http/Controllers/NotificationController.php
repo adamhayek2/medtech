@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase; 
 use Kreait\Firebase\Messaging\CloudMessage;
 use App\Models\User;
+use App\Models\Meeting;
 use Auth;
 
 class NotificationController extends Controller {
@@ -39,12 +40,39 @@ class NotificationController extends Controller {
         $body = $request->body;
 
         $tokens = User::whereHas('userType', function ($query) {
-        $query->where('type', 'doctor');
-        })
-        ->whereHas('staff', function ($query) {
-        $query->whereHas('department', function ($subQuery) {
-            $subQuery->where('name', 'emergency');
-        });
+                        $query->where('type', 'doctor');
+                    })
+                    ->whereHas('staff', function ($query) {
+                        $query->whereHas('department', function ($subQuery) {
+                            $subQuery->where('name', 'emergency');
+                    });
+                })->pluck('fcm_token')->toArray();
+
+        $message = CloudMessage::fromArray([
+            'notification' => [
+                'title' => $title,
+                'body' => $body
+                ],
+            ]);
+        
+
+        $response = $this->notification->sendMulticast($message, $tokens);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Notification sent',
+        ], 200);
+    }
+
+    public function meetingNotification(Request $request) {
+        $meeting_id = $request->meeting_id;
+        $title = $request->title;
+        $body = $request->body;
+
+        $meeting = Meeting::find($meeting_id);
+
+        $tokens = $meeting->attendees->map(function ($attendee) {
+            return $attendee->staff->user;
         })->pluck('fcm_token')->toArray();
 
         $message = CloudMessage::fromArray([
