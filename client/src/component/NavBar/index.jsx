@@ -4,9 +4,11 @@ import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import { ReactComponent as NotificationSVG } from "../../resources/svg/notification-thin.svg";
 import { ReactComponent as Profile } from "../../resources/svg/profile.svg";
 import UserLogout from '../../apis/UserLogout';
+import Notifications from '../modals/Notifications';
 
 const NavBar = () => {
   const [showOptions, setShowOptions] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
   const [error, setError] = useState(false);
 
   const handleMouseEnter = () => {
@@ -43,7 +45,7 @@ const NavBar = () => {
                 <h1 className='text-4xl text-white'>medtech</h1>
             </div>
             <div className='flex justify-center items-center gap-6'>
-                <NotificationSVG height={"35px"} width={"32px"} />
+                <NotificationSVG height={"35px"} width={"32px"} onClick={() => setOpenModal(true)} />
                 <div onMouseEnter={handleMouseEnter}
                     >
                   <Profile height={"35px"}/>
@@ -58,6 +60,7 @@ const NavBar = () => {
                 </div>
               </div>
             </div>
+            <Notifications open = {openModal} onClose={() => setOpenModal(false)}/>
         </div>
     
   )
