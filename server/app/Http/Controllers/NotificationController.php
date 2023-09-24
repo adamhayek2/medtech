@@ -7,6 +7,7 @@ use Kreait\Laravel\Firebase\Facades\Firebase;
 use Kreait\Firebase\Messaging\CloudMessage;
 use App\Models\User;
 use App\Models\Meeting;
+use App\Models\Notification;
 use Auth;
 
 class NotificationController extends Controller {
@@ -35,18 +36,32 @@ class NotificationController extends Controller {
         ], 200);
     }
 
-     public function reportNotifications(Request $request) {
+    public function reportNotifications(Request $request) {
         $title = $request->title;
         $body = $request->body;
 
-        $tokens = User::whereHas('userType', function ($query) {
+        $users = User::whereHas('userType', function ($query) {
                         $query->where('type', 'doctor');
                     })
                     ->whereHas('staff', function ($query) {
                         $query->whereHas('department', function ($subQuery) {
                             $subQuery->where('name', 'emergency');
                     });
-                })->pluck('fcm_token')->toArray();
+                });
+        
+        $tokens = $users->pluck('fcm_token')->toArray();
+
+        $temps = $users->get();
+        foreach ($temps as $temp) {
+            $notification = new Notification;
+
+            $notification->staff_id = $temp->staff->id;
+            $notification->seen = false;
+            $notification->title = $title;
+            $notification->body = $body;
+    
+            $notification->save();
+        }
 
         $message = CloudMessage::fromArray([
             'notification' => [
