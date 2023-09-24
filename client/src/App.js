@@ -13,20 +13,26 @@ import { fetchToken, onMessageListener } from './utils/initializingFirebase';
 import toast, { Toaster } from 'react-hot-toast';
 
 function App() {
-  const [notification, setNotification] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   const fcm_token = localStorage.getItem('fcm_token');
 
   useEffect(() => {
     if (!fcm_token) fetchToken();
     const not = onMessageListener().then((payload) => {
-      const receivedNotification = {
+      const receivedNotifications = {
         title: payload?.notification?.title,
         body: payload?.notification?.body,
       };
-      console.log(receivedNotification);
-    
+
+      setNotification((notifications) => [
+        ...notifications,
+        receivedNotifications,
+      ]);
+      return () => {
+        not.catch((err) => console.log('failed: ', err));
+      };
     });
-  }, [notification]);
+  }, [notifications]);
 
   return (
     <>
