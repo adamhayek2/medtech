@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Kreait\Laravel\Firebase\Facades\Firebase; 
 use Kreait\Firebase\Messaging\CloudMessage;
-
+use App\Models\User;
 use Auth;
 
 class NotificationController extends Controller {
@@ -34,13 +34,19 @@ class NotificationController extends Controller {
         ], 200);
     }
 
-    public function casting(Request $request) {
+    public function casting( Request $request) {
         $title = $request->input('title');
         $body = $request->input('body');
-
-        $tokens = [
-            'fdyjxwUDCevoB2mmKEsPIv:APA91bEGgZG0lNMDC3J0_ofEXabuZS2TTHXm_D4t6iL8p468dtYoY8xxhYxkZROKd_K4mz_65gAKoG7S3QxlZvHXlrbP1JC-ukX9l5wofRNaXhSeYRYcSIZwgGdYSAFEiYLxv-oFDCHE',
-        ];
+        $tokens =User::whereHas('userType', function ($query) {
+            $query->where('type', 'doctor');
+            })
+            ->whereHas('staff', function ($query) {
+            $query->whereHas('department', function ($subQuery) {
+                $subQuery->where('name', 'emergency');
+            });
+            })->pluck('fcm_token')->toArray();
+            return $tokens;
+        
 
         $message = CloudMessage::fromArray([
             'notification' => [
