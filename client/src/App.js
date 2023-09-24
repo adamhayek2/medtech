@@ -24,7 +24,7 @@ function App() {
         body: payload?.notification?.body,
       };
 
-      setNotification((notifications) => [
+      setNotifications((notifications) => [
         ...notifications,
         receivedNotifications,
       ]);
@@ -38,10 +38,10 @@ function App() {
             <div className="flex items-start">
               <div className="ml-3 flex-1">
                 <p className="text-xl text-gray-900 font-futur">
-                  {receivedNotification.title}
+                  {receivedNotifications.title}
                 </p>
                 <p className="mt-1 text-gray-500 text-base font-futur">
-                  {receivedNotification.body}
+                  {receivedNotifications.body}
                 </p>
               </div>
             </div>
