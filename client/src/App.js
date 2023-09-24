@@ -28,9 +28,34 @@ function App() {
         ...notifications,
         receivedNotifications,
       ]);
-      return () => {
-        not.catch((err) => console.log('failed: ', err));
-      };
+      toast.custom((t) => (
+        <div
+          className={`${
+            t.visible ? 'animate-enter' : 'animate-leave'
+          } max-w-md w-full bg-white rounded-lg pointer-events-auto flex font-futur`}
+        >
+          <div className="flex-1 w-full p-4">
+            <div className="flex items-start">
+              <div className="ml-3 flex-1">
+                <p className="text-xl text-gray-900 font-futur">
+                  {receivedNotification.title}
+                </p>
+                <p className="mt-1 text-gray-500 text-base font-futur">
+                  {receivedNotification.body}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex border-l border-primary">
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-xl font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 font-futura text-primary"
+            >
+              X
+            </button>
+          </div>
+        </div>
+      ));
     });
   }, [notifications]);
 
