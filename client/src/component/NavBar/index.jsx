@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import { ReactComponent as NotificationSVG } from "../../resources/svg/notification-thin.svg";
@@ -33,8 +33,7 @@ const NavBar = () => {
       setError(true); 
       console.error('error:', error);
     }
-  }
-
+  } 
 
   return (
     <div className='sticky top-0 flex-no-wrap relative flex w-full items-center justify-between bg-primary py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-6 z-10'>
@@ -44,7 +43,7 @@ const NavBar = () => {
                 <h1 className='text-4xl text-white'>medtech</h1>
             </div>
             <div className='flex justify-center items-center gap-6'>
-                <NotificationSVG height={"35px"} width={"32px"}/>
+                <NotificationSVG height={"35px"} width={"32px"} />
                 <div onMouseEnter={handleMouseEnter}
                     >
                   <Profile height={"35px"}/>

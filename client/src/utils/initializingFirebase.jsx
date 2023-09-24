@@ -19,8 +19,18 @@ const fetchToken = () => {
   return getToken(messaging, {vapidKey: 'BGO-2IZw57eOyCnb3roLzQlayrdy_26BUuEOqH4fCuVL6gh0rtAQp-Hgyb7k8plGhWnlwpsqW0mGhVUFjSLGy3s'})
   .then((currentToken) => {
     localStorage.setItem('fcm_token', currentToken);
+    console.log(currentToken)
   }).catch((err) => {
     console.log('An error occurred while retrieving token. ', err);
   });
 }
-export default fetchToken
+
+const onMessageListener = () =>
+  new Promise((resolve) => {
+    onMessage(messaging, (payload) => {
+      resolve(payload);
+    });
+});
+
+
+export { fetchToken, onMessageListener };

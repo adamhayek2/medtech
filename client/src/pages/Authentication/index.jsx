@@ -6,8 +6,7 @@ import Button from '../../component/base/Button';
 import UserLogin from '../../apis/UserLogin';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
 import * as heartBeat from '../../resources/animations/heartbeat.json'
-import { useEffect } from 'react';
-import fetchToken from '../../utils/initializingFirebase';
+
 
 const Authentication = () => {
 
@@ -44,9 +43,6 @@ const Authentication = () => {
     }
   };
 
-  useEffect(() => {
-    if(!fcm_token) fetchToken(); 
-  }, []);
 
   return (
     <div className='w-screen h-screen flex flex-row justify-center items-center font-futur'>
