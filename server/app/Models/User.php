@@ -46,4 +46,7 @@ class User extends Authenticatable implements JWTSubject {
         return $this->hasMany(AiReport::class, 'patient_id');
     }
 
+    public function staff() {
+        return $this->hasOne(Staff::class, 'user_id');
+    }
 }
