@@ -9,4 +9,8 @@ class Meeting extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    
+    public function attendees() {
+        return $this->hasMany(Attendee::class, 'meeting_id');
+    }
 }

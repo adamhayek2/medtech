@@ -62,4 +62,5 @@ class NotificationController extends Controller {
             'message' => 'Notification sent',
         ], 200);
     }
+    
 }
