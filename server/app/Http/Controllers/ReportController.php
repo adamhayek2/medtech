@@ -3,41 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Kreait\Laravel\Firebase\Facades\Firebase; 
-use Kreait\Firebase\Messaging\CloudMessage;
-use Auth;
 use App\Models\AiReport;
 use Carbon\Carbon;
 
 class ReportController extends Controller {
-       
-    protected $notification;
-    public function __construct()
-    {
-        $this->notification = Firebase::messaging();
-    }
 
     public function getAll() {
-    $reports  = AiReport::get();
-        
-    if(!$reports){
+        $reports  = AiReport::get();
+            
+        if(!$reports){
+            return response()->json([
+                "status" => "success", 
+                "message" => "No patients arrived yet"
+            ]);
+        }
+
+        $reports = $reports->map(function ($report) {
+            $report['full_name'] = $report->patient->name;
+            $report['report_data'] = json_decode($report->report_data);
+            $report['time'] =  Carbon::parse( $report->created_at)->format('Y-m-d H:i:s');
+            return $report;
+        });
+
         return response()->json([
             "status" => "success", 
-            "message" => "No patients arrived yet"
+            "data" => $reports
         ]);
-    }
-
-    $reports = $reports->map(function ($report) {
-        $report['full_name'] = $report->patient->name;
-        $report['report_data'] = json_decode($report->report_data);
-        $report['time'] =  Carbon::parse( $report->created_at)->format('Y-m-d H:i:s');
-        return $report;
-    });
-
-    return response()->json([
-        "status" => "success", 
-        "data" => $reports
-    ]);
     }
 
     public function search(Request $request) {
@@ -140,22 +131,5 @@ class ReportController extends Controller {
         ], 200);
     }
 
-    public function notification(Request $request) {
-        $FcmToken = 'fdyjxwUDCevoB2mmKEsPIv:APA91bEGgZG0lNMDC3J0_ofEXabuZS2TTHXm_D4t6iL8p468dtYoY8xxhYxkZROKd_K4mz_65gAKoG7S3QxlZvHXlrbP1JC-ukX9l5wofRNaXhSeYRYcSIZwgGdYSAFEiYLxv-oFDCHE';
-        $title = $request->input('title');
-        $body = $request->input('body');
-        $message = CloudMessage::fromArray([
-        'token' => $FcmToken,
-        'notification' => [
-            'title' => $title,
-            'body' => $body
-            ],
-        ]);
-        $this->notification->send($message);
-
-        return response()->json([
-            "status" => "success", 
-            "messgae" => "sent"
-        ], 200);
-    }
+    
 }

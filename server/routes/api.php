@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\NotificationController;
 
 
 Route::group(["prefix" => "guest"], function() {
@@ -59,7 +60,7 @@ Route::group(["middleware" => "auth:api"], function() {
 
     Route::group(["middleware" => "auth.doc", 'prefix' => 'doctor'], function(){
         Route::post('report/{id}/update_report_data', [ReportController::class,'updateReportData']);
-        Route::post('send', [ReportController::class,'notification']);
+        Route::post('send', [NotificationController::class,'casting']);
     }); 
     
 });
