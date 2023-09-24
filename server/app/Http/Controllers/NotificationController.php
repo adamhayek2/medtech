@@ -34,19 +34,18 @@ class NotificationController extends Controller {
         ], 200);
     }
 
-    public function casting( Request $request) {
-        $title = $request->input('title');
-        $body = $request->input('body');
-        $tokens =User::whereHas('userType', function ($query) {
-            $query->where('type', 'doctor');
-            })
-            ->whereHas('staff', function ($query) {
-            $query->whereHas('department', function ($subQuery) {
-                $subQuery->where('name', 'emergency');
-            });
-            })->pluck('fcm_token')->toArray();
-            return $tokens;
-        
+     public function reportNotifications(Request $request) {
+        $title = $request->title;
+        $body = $request->body;
+
+        $tokens = User::whereHas('userType', function ($query) {
+        $query->where('type', 'doctor');
+        })
+        ->whereHas('staff', function ($query) {
+        $query->whereHas('department', function ($subQuery) {
+            $subQuery->where('name', 'emergency');
+        });
+        })->pluck('fcm_token')->toArray();
 
         $message = CloudMessage::fromArray([
             'notification' => [
