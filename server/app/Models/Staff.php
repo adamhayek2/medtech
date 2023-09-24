@@ -24,5 +24,9 @@ class Staff extends Model
     public function gender() {
         return $this->belongsTo(Gender::class, 'gender_id');
     }
+
+    public function notifications() {
+        return $this->hasMany(Notification::class, 'staff_id');
+    }
     
 }
