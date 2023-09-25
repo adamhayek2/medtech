@@ -9,8 +9,10 @@
 
 
 void setup() {
-  // put your setup code here, to run once:
-
+  pinmod(in 1, OUTPUT);
+  pinmod(in 2, OUTPUT);
+  pinmod(in 3, OUTPUT);
+  pinmod(in 4, OUTPUT);
 }
 
 void loop() {
