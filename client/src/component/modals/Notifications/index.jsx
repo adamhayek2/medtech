@@ -34,7 +34,7 @@ const Notifications = ({open, onClose}) => {
           </div> : 
           <div className={`flex flex-col bg-grey w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}>            
           {notifications.map((notification) => (
-              <SingleNotification key={notification.id} name={notification}/>
+              <SingleNotification key={notification.id} notification={notification}/>
           ))}
           </div> 
         }   
