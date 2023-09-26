@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\AiReport;
 use Carbon\Carbon;
+use Auth;
 
 class ReportController extends Controller {
 
