@@ -107,3 +107,15 @@ void room1to2() {
   forward();
   forward();
 }
+
+void room2to1() {
+  fullTurning();
+  forward();
+  forward();
+  rightTurning();
+  forward();
+  forward();
+  rightTurning();
+  forward();
+  forward();
+}
