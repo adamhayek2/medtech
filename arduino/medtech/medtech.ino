@@ -8,7 +8,12 @@
 int currentRoom = 0;
 
 void setup() {
-  // put your setup code here, to run once:
+  pinMode(enA, OUTPUT);
+  pinMode(enB, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
 
 }
 
