@@ -35,7 +35,7 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
     const edit = async (e) => {
         e.preventDefault();
         const appoitments = reportData.report_data.appoitments
-        const newReport = {bloodTest, scan, medication, appoitments }
+        const newReport = {'blood_tests': bloodTest, 'scans': scan, 'medications': medication, 'appointments': appoitments }
         try { 
             setError(false); 
             const response = await EditReport(id, newReport );
