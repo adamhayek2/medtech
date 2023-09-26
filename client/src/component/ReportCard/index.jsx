@@ -28,11 +28,11 @@ const ReportCard = ({patientName, id, status, report, date}) => {
                 <tbody>
                     <tr>
                         <td align='right' className='font-bold border-r-2 px-2'>Blood Tests </td>
-                        <td><p className='truncate w-32 px-2 py-1'>{report.blood_tests.map(test => test.test_name).join(', ')}</p></td>
+                        <td><p className='truncate w-32 px-2 py-1'>{report.blood_tests.map(test => test.name).join(', ')}</p></td>
                     </tr>
                     <tr>
                         <td align='right' className='font-bold border-r-2 pr-2'>Scans </td>
-                        <td><p className='truncate w-32 px-2 py-1'>{report.scans.map(scan => scan.scan_type).join(', ')}</p></td>
+                        <td><p className='truncate w-32 px-2 py-1'>{report.scans.map(scan => scan.name).join(', ')}</p></td>
                     </tr>
                     <tr>
                         <td align='right' className='font-bold border-r-2 pr-2'>Appointments </td>
