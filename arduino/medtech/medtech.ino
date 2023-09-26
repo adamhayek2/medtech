@@ -84,3 +84,14 @@ void room0to2() {
   forward();
   forward();
 }
+
+void room2to0() {
+  fullTurning();
+  forward();
+  forward();
+  rightTurning();
+  forward();
+  leftTurning();
+  forward();
+  fullTurning();
+}
