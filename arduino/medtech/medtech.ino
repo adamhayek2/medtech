@@ -30,3 +30,8 @@ void motorControl(int speedA, int speedB, int dirA, int dirB, int dirC, int dirD
   digitalWrite(in3, dirC);  // Motor 2 direction control
   digitalWrite(in4, dirD);  // Motor 2 direction control
 }
+
+void forward() {
+  motorControl(200, 200, HIGH, LOW, HIGH, LOW);
+  delay(2000); // Run forward for 2 seconds
+}
