@@ -56,3 +56,11 @@ void fullTurning() {
   delay(960); // turn left 180 degrees
 }
 
+void room0to1() {
+  forward();
+  leftTurning();
+  forward();
+  rightTurning();
+  forward();
+  forward();
+}
