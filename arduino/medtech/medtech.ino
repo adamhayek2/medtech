@@ -19,7 +19,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
+  
 }
 
 void motorControl(int speedA, int speedB, int dirA, int dirB, int dirC, int dirD) {
@@ -39,4 +39,9 @@ void forward() {
 void backward() {
   motorControl(200, 200, LOW, HIGH, LOW, HIGH);
   delay(2000); // Run Backward for 2 seconds
+}
+
+void leftTurning() {
+  motorControl(200, 200, LOW, HIGH, HIGH, LOW);
+  delay(480); // turn left 90 degrees
 }
