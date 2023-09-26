@@ -4,8 +4,8 @@ import axios from "axios";
 
 const EditReport = async (id, newReport) => {
     try {
-        const response = await axios.post(`http://127.0.0.1:8000/api/reports/${id}update_report_data`,{
-              report_data: newReport,
+        const response = await axios.post(`http://127.0.0.1:8000/api/doctor/report/${id}/update_report_data`,{
+              report_data: JSON.stringify(newReport),
             }, 
         {
             headers: {
