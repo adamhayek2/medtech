@@ -35,3 +35,8 @@ void forward() {
   motorControl(200, 200, HIGH, LOW, HIGH, LOW);
   delay(2000); // Run forward for 2 seconds
 }
+
+void backward() {
+  motorControl(200, 200, LOW, HIGH, LOW, HIGH);
+  delay(2000); // Run Backward for 2 seconds
+}
