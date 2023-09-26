@@ -21,3 +21,12 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 }
+
+void motorControl(int speedA, int speedB, int dirA, int dirB, int dirC, int dirD) {
+  analogWrite(enA, speedA); // Motor 1 speed control
+  analogWrite(enB, speedB); // Motor 2 speed control
+  digitalWrite(in1, dirA);  // Motor 1 direction control
+  digitalWrite(in2, dirB);  // Motor 1 direction control
+  digitalWrite(in3, dirC);  // Motor 2 direction control
+  digitalWrite(in4, dirD);  // Motor 2 direction control
+}
