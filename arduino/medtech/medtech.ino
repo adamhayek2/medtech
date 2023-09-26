@@ -5,6 +5,8 @@
 #define in3 7    // Motor 2 control input 1
 #define in4 6    // Motor 2 control input 2
 
+int currentRoom = 0;
+
 void setup() {
   // put your setup code here, to run once:
 
