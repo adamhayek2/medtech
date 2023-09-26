@@ -75,3 +75,12 @@ void room1to0() {
   forward();
   fullTurning();
 }
+
+void room0to2() {
+  forward();
+  rightTurning();
+  forward();
+  leftTurning();
+  forward();
+  forward();
+}
