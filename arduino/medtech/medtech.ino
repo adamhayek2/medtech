@@ -45,3 +45,8 @@ void leftTurning() {
   motorControl(200, 200, LOW, HIGH, HIGH, LOW);
   delay(480); // turn left 90 degrees
 }
+
+void leftTurning() {
+  motorControl(200, 200, HIGH, LOW, LOW, HIGH);
+  delay(480); // turn left 90 degrees
+}
