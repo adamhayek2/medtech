@@ -19,7 +19,7 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  
+
 }
 
 void motorControl(int speedA, int speedB, int dirA, int dirB, int dirC, int dirD) {
@@ -69,9 +69,9 @@ void room1to0() {
   fullTurning();
   forward();
   forward();
-  rightTurning();
-  forward();
   leftTurning();
+  forward();
+  rightTurning();
   forward();
   fullTurning();
 }
