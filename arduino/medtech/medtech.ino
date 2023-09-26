@@ -46,7 +46,7 @@ void leftTurning() {
   delay(480); // turn left 90 degrees
 }
 
-void leftTurning() {
+void rightTurning() {
   motorControl(200, 200, HIGH, LOW, LOW, HIGH);
   delay(480); // turn left 90 degrees
 }
@@ -63,4 +63,15 @@ void room0to1() {
   rightTurning();
   forward();
   forward();
+}
+
+void room1to0() {
+  fullTurning();
+  forward();
+  forward();
+  rightTurning();
+  forward();
+  leftTurning();
+  forward();
+  fullTurning();
 }
