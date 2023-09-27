@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AiReport;
+use App\Models\Patient;
 use App\Models\Image;
 use Carbon\Carbon;
 use Auth;
@@ -142,9 +143,16 @@ class ReportController extends Controller {
         $imagePath = public_path('images/') . uniqid() . '.jpg';
         file_put_contents($imagePath, $imageData);
 
+        $report = new AiReport;
+
+        $report->patient_id = Patient::latest()->first()->id;
+
+        $report->save();
+
         $image = new Image;
 
         $image->path = $imagePath;
+        $image->report_id = $report->id;
 
         $image->save();
 
