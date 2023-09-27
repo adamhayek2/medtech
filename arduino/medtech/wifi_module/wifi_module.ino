@@ -38,8 +38,7 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) {
-    int roomCommand = Serial.parseInt();
-    Serial.println(roomCommand);
+    String imageData = Serial.readStringUntil('\n');
 
   }
 }
