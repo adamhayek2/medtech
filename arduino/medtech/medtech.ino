@@ -1,3 +1,5 @@
+#include <camera_functions.h>
+
 #define enA 10   // PWM pin for Motor 1
 #define enB 11   // PWM pin for Motor 2
 #define in1 9    // Motor 1 control input 1
