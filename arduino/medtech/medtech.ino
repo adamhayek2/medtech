@@ -26,6 +26,20 @@ void loop() {
     Serial.println(targetRoom);
   } 
 
+  if(targetRoom == 1){
+    room0to1();
+    delay(1000);
+    captureImage();
+    delay(1000);
+    room0to1()
+  }else if(targetRoom == 2){
+    room0to2();
+    delay(1000);
+    captureImage();
+    delay(1000);
+    room0to2()
+  }
+
 }
 
 void motorControl(int speedA, int speedB, int dirA, int dirB, int dirC, int dirD) {
