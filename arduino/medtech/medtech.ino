@@ -1,4 +1,4 @@
-#include <camera_functions.h>
+// #include <camera_functions.h>
 
 #define enA 10   // PWM pin for Motor 1
 #define enB 11   // PWM pin for Motor 2
@@ -15,30 +15,41 @@ void setup() {
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
   Serial.begin(9600);
-  initializeCamera();
+  // initializeCamera();
 
 }
 
 void loop() {
   if (Serial.available()) {
     int targetRoom = Serial.parseInt();
-    Serial.print("the robot is going to room");
-    Serial.println(targetRoom);
-  } 
+    
+  
 
-  if(targetRoom == 1){
-    room0to1();
-    delay(1000);
-    captureImage();
-    delay(1000);
-    room0to1()
-  }else if(targetRoom == 2){
-    room0to2();
-    delay(1000);
-    captureImage();
-    delay(1000);
-    room0to2()
-  }
+    if(targetRoom == 1){
+      Serial.print("the robot is going to room");
+      Serial.println(targetRoom);
+      room0to1();
+      Serial.println("iam in room 1");
+      delay(1000);
+      // captureImage();
+      delay(1000);
+      room1to0();
+      Serial.println("iam in room 0");
+      stop();
+    }else if(targetRoom == 2){
+      Serial.print("the robot is going to room");
+      Serial.println(targetRoom);
+      room0to2();
+      Serial.println("iam in room 2");
+      delay(1000);
+      // captureImage();
+      delay(1000);
+      room2to0();
+      Serial.println("iam in room 0");
+      stop();
+
+    };
+  };
 
 }
 
@@ -74,6 +85,9 @@ void rightTurning() {
 void fullTurning() {
   motorControl(200, 200, HIGH, LOW, LOW, HIGH);
   delay(960); // turn left 180 degrees
+}
+void stop() {
+  motorControl(200, 200, LOW, LOW, LOW, LOW);
 }
 
 void room0to1() {
