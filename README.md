@@ -25,7 +25,7 @@
 
 ### Mockups
 
-| Home screen                         | Menu Screen                          | Order Screen                                          |
+| Login Screen                        | Schedule Screen                     | Report Screen                                         |
 | ----------------------------------- | ------------------------------------ | ----------------------------------------------------- |
 | ![Landing](./readme/demo/login.png) | ![fsdaf](./readme/demo/schedule.png) | ![fsdaf](./readme/demo/Single%20report-%20mockup.png) |
 
