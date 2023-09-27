@@ -593,7 +593,7 @@ static void captureImg(uint16_t wg, uint16_t hg){
     _delay_ms(100);
 }
 
-void setup(){
+void initializeCamera(){
   arduinoUnoInut();
   camInit();
   setRes();
@@ -601,6 +601,6 @@ void setup(){
   wrReg(0x11, 12); //Earlier it had the value: wrReg(0x11, 12); New version works better for me :) !!!!
 }
 
-void loop(){
+void captureImage(){
   captureImg(320, 240);
 }
