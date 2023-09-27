@@ -10,6 +10,7 @@ AsyncWebServer server(80);
 
 void setup() {
   Serial.begin(115200);
+  Serial2.begin(9600);
 
   WiFi.begin(ssid, password);
 
@@ -23,8 +24,8 @@ void setup() {
     JsonObject jsonObj = json.as<JsonObject>();
     if (jsonObj.containsKey("room")) {
       int roomCommand = jsonObj["room"];
-      Serial.print("Received room command: ");
       Serial.println(roomCommand);
+      Serial2.print(roomCommand);
 
     }
 

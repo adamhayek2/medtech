@@ -5,8 +5,6 @@
 #define in3 7    // Motor 2 control input 1
 #define in4 6    // Motor 2 control input 2
 
-int currentRoom = 0;
-
 void setup() {
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
@@ -14,12 +12,16 @@ void setup() {
   pinMode(in2, OUTPUT);
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
-  Serial.begin(115200);
-  
+  Serial.begin(9600);
+
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  if (Serial.available()) {
+    int targetRoom = Serial.parseInt();
+    Serial.print("the robot is going to room");
+    Serial.println(targetRoom);
+  } 
 
 }
 
