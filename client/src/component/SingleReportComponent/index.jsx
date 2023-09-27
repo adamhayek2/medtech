@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
+import * as tf from '@tensorflow/tfjs';
 import { ReactComponent as BloodTestSVG } from "../../resources/svg/blood-test.svg";
 import { ReactComponent as ScansSVG } from "../../resources/svg/scan.svg";
 import SingleReport from '../../apis/SingleReport';
@@ -8,12 +9,16 @@ import Button from '../base/Button';
 import Medication from '../base/Medication';
 import EditReportModal from '../modals/EditReportModal';
 
+const model_url = '/model/model.json'
+
 const SingleReportComponent = () => {
     const { id } = useParams();
     const [report, setReport] = useState([]);
     const [openModal, setOpenModal] = useState(false)
     const [selectEditType, SetSelectEditType] = useState('blood_tests')
     const [error, setError] = useState(false);
+    const [model, setModel] = useState(null);
+  
 
     const fetchSingleReport = async () => {
         try {
@@ -25,17 +30,40 @@ const SingleReportComponent = () => {
           setError(true); 
         }
     }
+
+    const predict = async (image) => {
+        if (model) {
+          const inputTensor = tf.browser.fromPixels(image);
+          const resizedInput = tf.image.resizeBilinear(inputTensor, [256, 256]);
+          const input = resizedInput.expandDims(0);
+          const prediction = model.predict(input);
+          const predictionValues = await prediction.data(); 
+    
+          const predictedClassIndex = predictionValues.indexOf(Math.max(...predictionValues));
+    
+          const classaNames = ['blunt', 'bullet', 'skintears'];
+          const predictedClassName = classaNames[predictedClassIndex];
+          console.log(predictedClassName);
+          console.log(predictionValues)
+          console.log(predictionValues)
+        }
+    };
       
 
-      useEffect(() => {
-        fetchSingleReport();
-      }, []);
+    useEffect(() => {
+    fetchSingleReport();
+    async function loadModel() {
+        const loadedModel = await tf.loadLayersModel(model_url);
+        setModel(loadedModel);
+    }
+    loadModel();
+    }, []);
 
-      const openModalHandler = (type) => {
-        setOpenModal(true);
-        SetSelectEditType(type)
-      }
-      const isDoctor = localStorage.getItem('role') === 'doctor';
+    const openModalHandler = (type) => {
+    setOpenModal(true);
+    SetSelectEditType(type)
+    }
+    const isDoctor = localStorage.getItem('role') === 'doctor';
 
   return (
     <div className='min-h-screen w-5/6 ml-auto'>
@@ -67,7 +95,7 @@ const SingleReportComponent = () => {
                     </div>
                 </div>
                 {report.report_data === null ? 
-                    <div className='w-4/5 h-14'>
+                    <div className='w-4/5 h-14' onClick={ () => predict(report.image)}>
                         <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
                     </div>
                     : 
