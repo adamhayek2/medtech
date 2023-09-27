@@ -3,8 +3,8 @@
 #include <AsyncJson.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "Hayek";
+const char* password = "71606301";
 
 AsyncWebServer server(80);
 
@@ -25,7 +25,7 @@ void setup() {
       int roomCommand = jsonObj["room"];
       Serial.print("Received room command: ");
       Serial.println(roomCommand);
-      
+
     }
 
     request->send(200, "application/json", "{\"message\": \"Command sent to Arduino successfully\"}");
@@ -33,4 +33,12 @@ void setup() {
   server.addHandler(jsonHandler);
 
   server.begin();
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    int roomCommand = Serial.parseInt();
+    Serial.println(roomCommand);
+
+  }
 }
