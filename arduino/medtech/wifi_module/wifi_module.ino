@@ -10,7 +10,7 @@ AsyncWebServer server(80);
 
 void setup() {
   Serial.begin(115200);
-  
+
   WiFi.begin(ssid, password);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -18,4 +18,9 @@ void setup() {
     Serial.println("Connecting to WiFi...");
   }
   Serial.println("Connected to WiFi");
+
+  AsyncCallbackJsonWebHandler* jsonHandler = new AsyncCallbackJsonWebHandler("/goto_room", [](AsyncWebServerRequest *request, JsonVariant &json) {
+  
+  server.begin();
+}
 }
