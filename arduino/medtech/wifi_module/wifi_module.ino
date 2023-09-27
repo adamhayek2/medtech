@@ -20,7 +20,17 @@ void setup() {
   Serial.println("Connected to WiFi");
 
   AsyncCallbackJsonWebHandler* jsonHandler = new AsyncCallbackJsonWebHandler("/goto_room", [](AsyncWebServerRequest *request, JsonVariant &json) {
-  
+    JsonObject jsonObj = json.as<JsonObject>();
+    if (jsonObj.containsKey("room")) {
+      int roomCommand = jsonObj["room"];
+      Serial.print("Received room command: ");
+      Serial.println(roomCommand);
+      
+    }
+
+    request->send(200, "application/json", "{\"message\": \"Command sent to Arduino successfully\"}");
+  });
+  server.addHandler(jsonHandler);
+
   server.begin();
-}
 }
