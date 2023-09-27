@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AiReport;
+use App\Models\Image;
 use Carbon\Carbon;
 use Auth;
 
@@ -130,6 +131,24 @@ class ReportController extends Controller {
             "status" => "success", 
             "messgae" => "Report Updated Successfully"
         ], 200);
+    }
+
+    public function create(Request $request) {
+        $base64Data = $request->input('data');
+
+        list($type, $data) = explode(';', $base64Data);
+        list(, $data) = explode(',', $data);
+        $imageData = base64_decode($data);
+        $imagePath = public_path('images/') . uniqid() . '.jpg';
+        file_put_contents($imagePath, $imageData);
+
+        $image = new Image;
+
+        $image->path = $imagePath;
+
+        $image->save();
+
+        return response()->json(['message' => 'Image saved successfully'], 201);
     }
     
 }
