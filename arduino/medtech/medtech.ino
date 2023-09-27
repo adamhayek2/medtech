@@ -15,6 +15,7 @@ void setup() {
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
   Serial.begin(9600);
+  initializeCamera();
 
 }
 
