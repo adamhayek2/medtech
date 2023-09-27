@@ -131,6 +131,5 @@ class ReportController extends Controller {
             "messgae" => "Report Updated Successfully"
         ], 200);
     }
-
     
 }
