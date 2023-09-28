@@ -15,7 +15,7 @@ class OpenAIController extends Controller {
             'diagnosis' => 'required|string',
         ]);
 
-        $doctorsType = Request::create('/path/to/your/api/endpoint', 'GET', ['type' => 2]);
+        $doctorsType = Request::create('', 'GET', ['type' => 2]);
         $doctors = app('App\Http\Controllers\StaffController')->getStaff($doctorsType);
         $doctorsData = json_decode($doctors->getContent());
 
@@ -53,9 +53,12 @@ class OpenAIController extends Controller {
 
         $modified_report = app('App\Http\Controllers\ReportController')->singleReport($report->id);
 
+        $appointments_request = Request::create('App\Http\Controllers\AppointmentController', 'POST', ['report' => $modified_report]);
+        $appointments = app('App\Http\Controllers\AppointmentController')->addAppointments($appointments_request);
+
         return response()->json([
             "status" => "success", 
-            "data" => $modified_report
+            "data" => $modified_report,
         ]);
 
     }

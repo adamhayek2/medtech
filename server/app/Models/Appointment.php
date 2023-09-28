@@ -9,6 +9,8 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     public function patient() {
         return $this->belongsTo(Patient::class, 'patient_id');
     }
