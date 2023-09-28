@@ -1,8 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
+import Lottie from 'react-lottie';
 import * as tf from '@tensorflow/tfjs';
 import { ReactComponent as BloodTestSVG } from "../../resources/svg/blood-test.svg";
 import { ReactComponent as ScansSVG } from "../../resources/svg/scan.svg";
+import * as loadingSVG from '../../resources/animations/loading.json'
 import SingleReport from '../../apis/SingleReport';
 import PageTitle from '../PageTite';
 import Button from '../base/Button';
@@ -19,6 +21,7 @@ const SingleReportComponent = () => {
     const [selectEditType, SetSelectEditType] = useState('blood_tests')
     const [error, setError] = useState(false);
     const [model, setModel] = useState(null);
+    const [loading, setLoading] = useState(false);
   
 
     const fetchSingleReport = async () => {
@@ -33,6 +36,8 @@ const SingleReportComponent = () => {
     }
 
     const predict = async () => {
+        setLoading(true)
+        console.log(loading)
         if (model) {
           const inputTensor = tf.browser.fromPixels(document.getElementById('img'));
           const resizedInput = tf.image.resizeBilinear(inputTensor, [256, 256]);
@@ -51,6 +56,7 @@ const SingleReportComponent = () => {
             const response = await Predict({ id, predictedClassName}); 
             setReport(response)
             console.log(response)
+            setLoading(false)
           } catch (error) {
             setError(true); 
           }
@@ -73,9 +79,18 @@ const SingleReportComponent = () => {
     }
     const isDoctor = localStorage.getItem('role') === 'doctor';
 
+    const defaultOptions = {
+        loop: true,
+        autoplay: true, 
+        animationData: loadingSVG,
+        rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+        }
+      };
+
   return (
     <div className='min-h-screen w-5/6 ml-auto'>
-    {report.length === 0 || error ? 
+    {report.length === 0 || error ?
         <div>no reports</div> :
         <div className='min-h-screen flex flex-col gap-14 bg-grey p-14'>
             <div className='w-full flex flex-row justify-between'>
@@ -102,73 +117,81 @@ const SingleReportComponent = () => {
                         </div>
                     </div>
                 </div>
-                {report.report_data === null ? 
-                    <div className='w-4/5 h-14' onClick={ () => predict()}>
 
-                        <img src={`data:image/jpeg;base64,${report.image}`} alt="" className='hidden' id='img'/>
-                        <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                {loading ? (
+                    <div className="w-4/5 flex justify-center items-center">
+                        <Lottie options={defaultOptions} height={400} width={500} />
                     </div>
-                    : 
-                    <div className='w-4/5 flex flex-col gap-10'>
-                        <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
-                            <h1 className='text-[22px] font-bold text-primary'>Tests</h1>
-                            <div className='flex flex-row items-center gap-10'>
-                            {report.report_data.blood_tests.map((tem) => (
-                                <div className='flex flex-row items-center gap-3'>
-                                    <BloodTestSVG/>
-                                    <div className='flex flex-col '>
-                                        <div className='text-[18px]'>{tem.name}</div>
-                                        <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
+                    ) : (
+                        <div className='w-4/5 flex flex-col gap-10'>
+                        {report.report_data === null ? (
+                            <div className='w-full h-14' onClick={ () => predict()}>
+                                <img src={`data:image/jpeg;base64,${report.image}`} alt="" className='hidden' id='img'/>
+                                <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                            </div>
+                        ) : (
+                            <div className='w-full flex flex-col gap-10'>
+                                <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                                    <h1 className='text-[22px] font-bold text-primary'>Tests</h1>
+                                    <div className='flex flex-row items-center gap-10'>
+                                    {report.report_data.blood_tests.map((tem) => (
+                                        <div className='flex flex-row items-center gap-3'>
+                                            <BloodTestSVG/>
+                                            <div className='flex flex-col '>
+                                                <div className='text-[18px]'>{tem.name}</div>
+                                                <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    </div>
+                                    <div className='w-full flex flex-row justify-end'>
+                                        {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                                            <div className='w-32 h-12' onClick={() => openModalHandler('blood_tests')}>
+                                                <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                                            </div>: ""
+                                        }
                                     </div>
                                 </div>
-                            ))}
-                            </div>
-                            <div className='w-full flex flex-row justify-end'>
-                                {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                                    <div className='w-32 h-12' onClick={() => openModalHandler('blood_tests')}>
-                                        <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
-                                    </div>: ""
-                                }
-                            </div>
-                        </div>
-                        <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
-                            <h1 className='text-[22px] font-bold text-primary'>Scans</h1>
-                            <div className='flex flex-row items-center gap-10'>
-                            {report.report_data.scans.map((tem) => (
-                                <div className='flex flex-row items-center gap-3'>
-                                    <ScansSVG/>
-                                    <div className='flex flex-col '>
-                                        <div className='text-[18px]'>{tem.name}</div>
-                                        <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
+                                <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                                    <h1 className='text-[22px] font-bold text-primary'>Scans</h1>
+                                    <div className='flex flex-row items-center gap-10'>
+                                    {report.report_data.scans.map((tem) => (
+                                        <div className='flex flex-row items-center gap-3'>
+                                            <ScansSVG/>
+                                            <div className='flex flex-col '>
+                                                <div className='text-[18px]'>{tem.name}</div>
+                                                <div className='text-base text-[#7D7D7D] italic'>{tem.date}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                    </div>
+                                    <div className='w-full flex flex-row justify-end'>
+                                        {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                                            <div className='w-32 h-12' onClick={() => openModalHandler('scans')}>
+                                                <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
+                                            </div>: ""
+                                        }
                                     </div>
                                 </div>
-                            ))}
+                                <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
+                                    <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
+                                    <div className='flex flex-row items-center gap-10'>
+                                    {report.report_data.medications.map((tem) => (
+                                        <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
+                                    ))}
+                                    </div>
+                                    {report.approved_by_doctor_id !== 0 || isDoctor ? 
+                                        <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg h-12' onClick={() => openModalHandler('medications')}>
+                                            <Button label={"Edit"} BgColor={"bg-primary/20"} textColor={"text-black"}/>
+                                        </div>: ""
+                                    }
+                                </div>
+                                <EditReportModal open = {openModal} onClose={() => setOpenModal(false)} reportData={report} type={selectEditType}/>       
                             </div>
-                            <div className='w-full flex flex-row justify-end'>
-                                {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                                    <div className='w-32 h-12' onClick={() => openModalHandler('scans')}>
-                                        <Button label={'Edit'} BgColor={'bg-primary'} textColor={'text-white'} buttonWidth={'w-24'}/>
-                                    </div>: ""
-                                }
-                            </div>
+                        )}
                         </div>
-                        <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
-                            <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
-                            <div className='flex flex-row items-center gap-10'>
-                            {report.report_data.medications.map((tem) => (
-                                <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
-                            ))}
-                            </div>
-                            {report.approved_by_doctor_id !== 0 || isDoctor ? 
-                                <div className='w-full flex flex-row justify-end border-[1px] border-dashed border-primary rounded-lg h-12' onClick={() => openModalHandler('medications')}>
-                                    <Button label={"Edit"} BgColor={"bg-primary/20"} textColor={"text-black"}/>
-                                </div>: ""
-                            }
-                        </div>
-                        <EditReportModal open = {openModal} onClose={() => setOpenModal(false)} reportData={report} type={selectEditType}/>       
-                    </div>
-                }
-        </div>
+                    )}
+            </div>
         </div>}
     </div>
   )
