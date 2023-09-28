@@ -11,7 +11,7 @@ const Predict = async ({id, predictedClassName}) => {
               Authorization: `Bearer ${localStorage.getItem("token")}`
             }
           });
-      return response.data.data;
+      return response.data.data.original.data;
     } catch (error) {
       console.error('Error', error);
     }
