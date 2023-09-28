@@ -45,6 +45,13 @@ class StaffController extends Controller
             $query->where('gender_id', $genderId);
         }
 
+        if ($request->has('type')) {
+            $typeId = $request->input('type');
+            $query->whereHas('user.userType', function ($subquery) use ($typeId) {
+                $subquery->where('id', $typeId);
+            });
+        }
+
         $staff = $query->get()->map(function ($temp) {
             $temp['hired_at'] =  Carbon::parse( $temp->created_at)->format('Y-m-d');
             return $temp;
