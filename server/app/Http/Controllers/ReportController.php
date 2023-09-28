@@ -74,6 +74,7 @@ class ReportController extends Controller {
             'blood_type' => $report->patient->bloodType->name, 
             'patient_status' => $report->patient->status,
             'patient_name' => $report->patient->name, 
+            'image' => base64_encode(file_get_contents($report->image->path)), 
             'created_at' => $report->created_at, 
             'updated_at' => $report->updated_at, 
         ];

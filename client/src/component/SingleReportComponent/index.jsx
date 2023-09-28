@@ -31,9 +31,9 @@ const SingleReportComponent = () => {
         }
     }
 
-    const predict = async (image) => {
+    const predict = async () => {
         if (model) {
-          const inputTensor = tf.browser.fromPixels(image);
+          const inputTensor = tf.browser.fromPixels(document.getElementById('img'));
           const resizedInput = tf.image.resizeBilinear(inputTensor, [256, 256]);
           const input = resizedInput.expandDims(0);
           const prediction = model.predict(input);
@@ -44,8 +44,6 @@ const SingleReportComponent = () => {
           const classaNames = ['blunt', 'bullet', 'skintears'];
           const predictedClassName = classaNames[predictedClassIndex];
           console.log(predictedClassName);
-          console.log(predictionValues)
-          console.log(predictionValues)
         }
     };
       
@@ -95,7 +93,9 @@ const SingleReportComponent = () => {
                     </div>
                 </div>
                 {report.report_data === null ? 
-                    <div className='w-4/5 h-14' onClick={ () => predict(report.image)}>
+                    <div className='w-4/5 h-14' onClick={ () => predict()}>
+
+                        <img src={`data:image/jpeg;base64,${report.image}`} alt="" className='hidden' id='img'/>
                         <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
                     </div>
                     : 

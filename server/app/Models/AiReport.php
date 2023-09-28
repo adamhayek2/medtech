@@ -19,4 +19,8 @@ class AiReport extends Model {
     public function status() {
         return $this->belongsTo(Status::class, 'status');
     }
+
+    public function image() {
+        return $this->hasOne(Image::class, 'report_id');
+    }
 }
