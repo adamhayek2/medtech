@@ -25,7 +25,7 @@
 
 ### Mockups
 
-| Login Screen                        | Schedule Screen                     | Report Screen                                         |
+| Login Screen                        | Schedule Screen                      | Report Screen                                         |
 | ----------------------------------- | ------------------------------------ | ----------------------------------------------------- |
 | ![Landing](./readme/demo/login.png) | ![fsdaf](./readme/demo/schedule.png) | ![fsdaf](./readme/demo/Single%20report-%20mockup.png) |
 
@@ -59,11 +59,11 @@
 
 ### MedTech is built using the following technologies:
 
-- React is a popular JavaScript library for building user interfaces. You used it to create the frontend of my application, providing a responsive and interactive user experience
+- React is a popular JavaScript library for building user interfaces. I used it to create the frontend of my application, providing a responsive and interactive user experience
 - Laravel is a powerful PHP framework for developing web applications. It was used to build the backend of my project, handling tasks like user authentication, database interactions, and API endpoints.
 - MySQL is a widely-used open-source relational database management system. In my project, it stored and managed hospital data, ensuring data integrity and efficient retrieval.
 - TensorFlow is an open-source machine learning framework developed by Google. I leveraged TensorFlow for image detection, allowing my application to analyze and interpret images, potentially for medical diagnostics or other purposes.
-- Arduino is a hardware and software platform for building electronic projects. You used Arduino to create a robot that scans images of patients. This integration of hardware and software enabled automated image capture and potentially improved the efficiency of patient data acquisition.
+- Arduino is a hardware and software platform for building electronic projects. I used Arduino to create a robot that scans images of patients. This integration of hardware and software enabled automated image capture and potentially improved the efficiency of patient data acquisition.
 - Utilized Firebase Cloud Messaging (FCM) for real-time push notifications, enhancing user engagement and timely updates in the healthcare application.
 
 <br><br>
