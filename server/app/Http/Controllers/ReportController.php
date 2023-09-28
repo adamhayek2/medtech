@@ -101,13 +101,12 @@ class ReportController extends Controller {
         }
 
         $report->update([
-            'status' => true,
             'approved_by_doctor_id' => $user->id
         ]);
 
         return response()->json([
             "status" => "success", 
-            "messgae" => "Report Labled Aprroved Successfully"
+            "messgae" => $report
         ]);
     }
 
