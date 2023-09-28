@@ -15,6 +15,9 @@ class OpenAIController extends Controller {
             'diagnosis' => 'required|string',
         ]);
 
+        $doctorsType = Request::create('/path/to/your/api/endpoint', 'GET', ['type' => 2]);
+        $doctors = app('App\Http\Controllers\StaffController')->getStaff($doctorsType);
+        $doctorsData = json_decode($doctors->getContent());
 
         $prompt = 'I have a patient in emergency room';
         $prompt .= ".\nhe is a victim of". $request->diagnosis;
@@ -22,9 +25,14 @@ class OpenAIController extends Controller {
         $prompt .= "\nThe response should contain medications object wich have the name, dosage, and frequency";
         $prompt .= "\nThe response should contain scans object wich have the name and date";
         $prompt .= "\nThe response should contain blood_tests object wich have the name and date";
-        $prompt .= "\nThe response should contain appointments object wich have the appointment_date, reason, notes";
+        $prompt .= "\nThe response should contain appointments object wich have the doctor_id, appointment_date, reason, notes";
+        $prompt .= "\nThis is a list of doctors:";
+        foreach ($doctorsData->data as $doctor) {
+            $prompt .= "Doctor ID: {$doctor->id}, Major: {$doctor->major}, Department: {$doctor->department->name}\n";
+        }
         $prompt .= "\nThe JSON object should be in this format { \"blood_tests\": [ {\"name\": \"\", \"date\":\"\"} ],.......]}.";
         $prompt .= "\nfill the json objects with a prediction from your data";
+        $prompt .= "\nmake sure that all dates are after today's date which is 28/9/2023";
 
 
         $result = OpenAI::completions()->create([
