@@ -29,7 +29,7 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
         };
 
     const addObject = () => {
-        type === 'blood_tests' ? setBloodTest([...bloodTest, { name: '', date: '' }]) : type === 'scans' ? setScan([...scan, { name: '', date: '' }]) : setMedications([...medication, { medication_name: '', frequency: '', value: '' }]);
+        type === 'blood_tests' ? setBloodTest([...bloodTest, { name: '', date: '' }]) : type === 'scans' ? setScan([...scan, { name: '', date: '' }]) : setMedications([...medication, { name: '', frequency: '', value: '' }]);
     };
 
     const edit = async (e) => {
@@ -103,7 +103,7 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
                     <div key={i} className="flex flex-col justify-between w-full gap-3">
                     <Input
                         name="Name"
-                        value={index.medication_name}
+                        value={index.name}
                         type="text"
                         onChange={(e) => handleObjectChange(i, 'name', e.target.value)}
                         placeholder="Name"
