@@ -25,7 +25,7 @@ class OpenAIController extends Controller {
         $prompt .= "\nThe response should contain medications object wich have the name, dosage, and frequency";
         $prompt .= "\nThe response should contain scans object wich have the name and date";
         $prompt .= "\nThe response should contain blood_tests object wich have the name and date";
-        $prompt .= "\nThe response should contain appointments object wich have the doctor_id, appointment_date, reason, notes";
+        $prompt .= "\nThe response should contain appointments object wich have the doctor_id, appointment_date, reason";
         $prompt .= "\nThis is a list of doctors:";
         foreach ($doctorsData->data as $doctor) {
             $prompt .= "Doctor ID: {$doctor->id}, Major: {$doctor->major}, Department: {$doctor->department->name}\n";
