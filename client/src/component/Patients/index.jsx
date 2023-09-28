@@ -65,7 +65,7 @@ const Patients = () => {
           <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
           <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
         </div> : 
-        <div className={`flex flex-row flex-wrap gap-10 ${patients.length <= 4 ? ' justify-start' :'justify-between'}`}>
+        <div className={`flex flex-row flex-wrap gap-10  justify-start`}>
           {patients.map((patient) => (
             <PatienCard key={patient.id} id={patient.id} name={patient.full_name} status={patient.status.name}/>
             ))}

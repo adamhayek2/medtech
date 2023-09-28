@@ -8,6 +8,7 @@ import PageTitle from '../PageTite';
 import Button from '../base/Button';
 import Medication from '../base/Medication';
 import EditReportModal from '../modals/EditReportModal';
+import Predict from '../../apis/Predict';
 
 const model_url = '/model/model.json'
 
@@ -41,9 +42,18 @@ const SingleReportComponent = () => {
     
           const predictedClassIndex = predictionValues.indexOf(Math.max(...predictionValues));
     
-          const classaNames = ['blunt', 'bullet', 'skintears'];
+          const classaNames = ['blunt force', 'bullet', 'skintears'];
           const predictedClassName = classaNames[predictedClassIndex];
           console.log(predictedClassName);
+
+          try {
+            setError(false); 
+            const response = await Predict({id, predictedClassName}); 
+            setReport(response)
+            console.log(response)
+          } catch (error) {
+            setError(true); 
+          }
         }
     };
       
@@ -146,7 +156,7 @@ const SingleReportComponent = () => {
                             <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
                             <div className='flex flex-row items-center gap-10'>
                             {report.report_data.medications.map((tem) => (
-                                <Medication name={tem.medication_name} frequency={tem.frequency} to={"Heart regolation"} dosage={tem.dosage}/>
+                                <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
                             ))}
                             </div>
                             {report.approved_by_doctor_id !== 0 || isDoctor ? 

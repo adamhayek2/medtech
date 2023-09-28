@@ -43,9 +43,11 @@ class OpenAIController extends Controller {
             'label' => $request->diagnosis,
         ]);
 
+        $modified_report = app('App\Http\Controllers\ReportController')->singleReport($report->id);
+
         return response()->json([
             "status" => "success", 
-            "messgae" => "Report Created successfully"
+            "data" => $modified_report
         ]);
 
     }

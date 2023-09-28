@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Patient;
 use App\Models\AiReport;
+use Illuminate\Support\Facades\Http;
 use App\Models\Room;
 use Carbon\Carbon;
 
@@ -96,10 +97,15 @@ class PatientController extends Controller {
 
         $room->patient_id = $patient->id;
         $room->save();
+        
+        $sendRobot = Http::post('http://192.168.1.102/goto_room', [
+            'room' => $roome->id,
+        ]);
 
         return response()->json([
             'status' => 'success',
             'data' => $patient,
+            'robot' => 'Ther Robot is going to room'. $room->id 
         ]);
     }
     

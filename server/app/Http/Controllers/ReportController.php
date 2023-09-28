@@ -147,6 +147,7 @@ class ReportController extends Controller {
         $report = new AiReport;
 
         $report->patient_id = Patient::latest()->first()->id;
+        $report->status = false;
 
         $report->save();
 

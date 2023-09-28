@@ -55,7 +55,7 @@ const ReportsComponent = () => {
             <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
             <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
           </div> : 
-          <div className={`flex flex-row flex-wrap gap-10 ${reports.length <= 4 ? 'justify-start' :'justify-between'}`}>
+          <div className={`flex flex-row flex-wrap gap-10  justify-start`}>
           {reports.map((report) => (
             <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.time}/>
           ))}
