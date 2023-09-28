@@ -131,6 +131,11 @@ const SingleReportComponent = () => {
                             </div>
                         ) : (
                             <div className='w-full flex flex-col gap-10'>
+                                {report.approved_by_doctor_id === 0 || report.approved_by_doctor_id === null ? 
+                                    <div className='w-full h-14' onClick={ () => predict()}>
+                                        <Button label={'approve'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                                    </div>
+                                : null}
                                 <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
                                     <h1 className='text-[22px] font-bold text-primary'>Tests</h1>
                                     <div className='flex flex-row items-center gap-10'>
