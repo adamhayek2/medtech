@@ -141,7 +141,7 @@ const AddStaff = ({open, onClose}) => {
                 <DropdownMenu placeholder={"depatment"} onChange={setDepartment} options={data.departments}/>
                 <DropdownMenu placeholder={"role"} onChange={setUserType} options={data.userTypes}/>
                 <div className='w-full h-[56px]'>
-                    <Button label={'Edit Password'} BgColor={'bg-primary'} textColor={'text-white'} />
+                    <Button label={'Add'} BgColor={'bg-primary'} textColor={'text-white'} />
                 </div>
             </form>
         </div>
