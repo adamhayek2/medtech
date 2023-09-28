@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use OpenAI\Laravel\Facades\OpenAI;
+use App\Models\AiReport;
 
 
 class OpenAIController extends Controller {
     function prompt(Request $request){
+
+        $request->validate([
+            'report_id' => 'required|integer',
+            'diagnosis' => 'required|string',
+        ]);
+
+
         $prompt = 'I have a patient in emergency room';
         $prompt .= ".\nhe is a victim of". $request->diagnosis;
         $prompt .= "\nI want you to generate a report for him in json format";
@@ -25,8 +33,22 @@ class OpenAIController extends Controller {
             'prompt' => $prompt,
         ]);
 
-        echo $result['choices'][0]['text'];
+        $report = AiReport::find($request->report_id);
+        if (!$report) {
+            return response()->json(['error' => 'Report not found'], 404);
+        }
+        $report->update([
+            'status' => true,
+            'report_data' => $result['choices'][0]['text'],
+            'label' => $request->diagnosis,
+        ]);
+
+        return response()->json([
+            "status" => "success", 
+            "messgae" => "Report Created successfully"
+        ]);
+
     }
 
-    
+
 }

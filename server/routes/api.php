@@ -42,7 +42,7 @@ Route::group(["middleware" => "auth:api"], function() {
     }); 
     
     Route::group(["prefix" => "reports"], function () {
-        Route::get("open_ai", [OpenAIController::class, 'prompt']);
+        Route::post("open_ai", [OpenAIController::class, 'prompt']);
         Route::get('/search', [ReportController::class,'search']);
         Route::get("/{id?}", [ReportController::class, "singleReport"]);
         Route::post("/create", [ReportController::class, "create"]);
