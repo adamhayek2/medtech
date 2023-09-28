@@ -72,7 +72,7 @@ const Authentication = () => {
                     </div>
                     <p className='underline text-white text-sm'>Forgot password?</p>
                   </div>
-                  <div className={`text-sm text-center text-white absolute bottom-20 ${error ? "" : "hidden"}`}>
+                  <div className={`text-sm text-center text-white relative ${error ? "" : "hidden"}`}>
                     Username or password is incorrect,kindly try again 
                   </div>
                   <div className='h-12'>
