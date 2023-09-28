@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const Predict = async (id, diagnose) => {
+const Predict = async ({id, predictedClassName}) => {
     try {
-        const response = await axios.post(`http://127.0.0.1:8000/api/report/open_ai`,{
-              report_id: id,
-              diagnosis: diagnose,
-            }, 
+        const response = await axios.post(`http://127.0.0.1:8000/api/reports/open_ai`,{
+            report_id: id,
+            diagnosis: predictedClassName,
+          }, 
         {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`

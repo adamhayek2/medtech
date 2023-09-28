@@ -48,7 +48,7 @@ const SingleReportComponent = () => {
 
           try {
             setError(false); 
-            const response = await Predict({id, predictedClassName}); 
+            const response = await Predict({ id, predictedClassName}); 
             setReport(response)
             console.log(response)
           } catch (error) {
