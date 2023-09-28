@@ -11,6 +11,7 @@ import Button from '../base/Button';
 import Medication from '../base/Medication';
 import EditReportModal from '../modals/EditReportModal';
 import Predict from '../../apis/Predict';
+import ApproveReport from '../../apis/ApproveReport';
 
 const model_url = '/model/model.json'
 
@@ -62,6 +63,17 @@ const SingleReportComponent = () => {
           }
         }
     };
+
+    const approveReport = async () => {
+        try {
+          setError(false); 
+          const response = await ApproveReport({id}); 
+          setReport(response)
+          console.log(response)
+        } catch (error) {
+          setError(true); 
+        }
+    }
       
 
     useEffect(() => {
@@ -132,7 +144,7 @@ const SingleReportComponent = () => {
                         ) : (
                             <div className='w-full flex flex-col gap-10'>
                                 {report.approved_by_doctor_id === 0 || report.approved_by_doctor_id === null ? 
-                                    <div className='w-full h-14' onClick={ () => predict()}>
+                                    <div className='w-full h-14' onClick={ () => approveReport()}>
                                         <Button label={'approve'} BgColor={'bg-primary'} textColor={'text-white'}/>
                                     </div>
                                 : null}
