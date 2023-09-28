@@ -24,8 +24,8 @@ const ReportCard = ({patientName, id, status, report, date}) => {
             
             <p className='text-base font-futuraBK'>{date}</p>
         </div>
-        {status === null ?
-        <div className=''>
+        {report === null ?
+        <div className='h-full items-end'>
             <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
         </div>
         
