@@ -57,7 +57,7 @@ const ReportsComponent = () => {
           </div> : 
           <div className={`flex flex-row flex-wrap gap-10  justify-start`}>
           {reports.map((report) => (
-            <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.status} report={report.report_data} date={report.time}/>
+            <ReportCard key={report.id} patientName={report.full_name} id={report.id} status={report.approved_by_doctor_id} report={report.report_data} date={report.time}/>
           ))}
           </div>
         }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as SingleReportSVG } from "../../resources/svg/single_report_icon.svg";
+import { ReactComponent as ApprovedReportSVG } from "../../resources/svg/approved_report_icon.svg";
 import Button from '../base/Button';
 
 
@@ -17,7 +18,7 @@ const ReportCard = ({patientName, id, status, report, date}) => {
     <div className='flex flex-col gap-6 p-6 rounded-lg w-1/5 h-fit grow-0 bg-white cursor-pointer justify-start h-full' onClick={openReport}>
         <div className='flex flex-row gap-3 justify-center items-center'>
             <p className='text-[22px] font-bold font text-primary'>{id}</p>
-            <SingleReportSVG/>
+            {status === 0 || status === null? <SingleReportSVG/> : <ApprovedReportSVG/>}
         </div>
         <div className='flex flex-col gap-3 justify-center items-center'>
             <p className='text-base font-futuraBK'>{patientName}</p>
@@ -48,7 +49,7 @@ const ReportCard = ({patientName, id, status, report, date}) => {
                     </tr>
                     <tr>
                         <td align='right' className='font-bold border-r-2 pr-2'>Medications </td>
-                        <td><p className='truncate w-32 px-2 py-1'>{report.medications.map(medication => medication.medication_name).join(', ')}</p></td>
+                        <td><p className='truncate w-32 px-2 py-1'>{report.medications.map(medication => medication.name).join(', ')}</p></td>
                     </tr>
                 </tbody>
             </table>
