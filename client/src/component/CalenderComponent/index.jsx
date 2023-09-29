@@ -38,17 +38,9 @@ const CalenderComponent = () => {
   }, []);
 
   useEffect(() => {
-    console.log(events); // This will log the updated events array
+    console.log(events);
 }, [events]);
 
-  // const events = [
-  //   {
-  //     title: 'Event 1',
-  //     start: new Date(2023, 8, 12, 10, 0),
-  //     end: new Date(2023, 8, 12, 11, 30),
-  //     patient: 'adam hayek',
-  //   },
-  // ];
   return (
     <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
       {events.length === 0 ? "No events" : <Calendar
