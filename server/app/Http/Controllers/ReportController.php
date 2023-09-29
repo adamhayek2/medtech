@@ -100,13 +100,15 @@ class ReportController extends Controller {
             return response()->json(['error' => 'Report not found'], 404);
         }
 
-        $report->update([
-            'approved_by_doctor_id' => $user->id
-        ]);
+        $report->approved_by_doctor_id = $user->id;
+        
+        $report->save();
+
+        $modified_report = app('App\Http\Controllers\ReportController')->singleReport($report->id);
 
         return response()->json([
             "status" => "success", 
-            "messgae" => $report
+            "data" => $modified_report
         ]);
     }
 
