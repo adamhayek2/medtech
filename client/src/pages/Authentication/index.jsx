@@ -9,7 +9,7 @@ import * as heartBeat from '../../resources/animations/heartbeat.json'
 
 
 const Authentication = () => {
-
+  localStorage.removeItem('token');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
