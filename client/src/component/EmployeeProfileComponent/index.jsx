@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
+import Lottie from 'react-lottie';
 import PageTitle from '../PageTite';
 import Button from '../base/Button';
 import StaffProfile from '../../apis/StaffProfile';
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
+import * as loadingSVG from '../../resources/animations/loading.json'
 import EditStaff from '../modals/EditStaff';
 
 
@@ -12,13 +14,15 @@ const EmployeeProfileComponent = () => {
     const [employee, setEmployee] = useState([]);
     const [openModal, setOpenModal] = useState(false)
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const fetchEmployeeProfile = async () => {
         try {
+          setLoading(true);
           setError(false); 
           const response = await StaffProfile({id}); 
           setEmployee(response)
-          console.log(response)
+          setLoading(false);
         } catch (error) {
           setError(true); 
         }
@@ -28,9 +32,21 @@ const EmployeeProfileComponent = () => {
         fetchEmployeeProfile();
       }, []);
 
+    const defaultOptions = {
+    loop: true,
+    autoplay: true, 
+    animationData: loadingSVG,
+    rendererSettings: {
+        preserveAspectRatio: 'xMidYMid slice'
+    }
+    };
+
   return (
     <div className='min-h-screen w-5/6 ml-auto'>
     {employee.length === 0 || error ? 
+        loading ? <div className="w-full h-full flex flex-col items-center justify-center">
+            <Lottie options={defaultOptions} height={430} width={515} />
+        </div> : 
         <div className='w-full h-full flex flex-col items-center'>
             <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
             <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
