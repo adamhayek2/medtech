@@ -3,7 +3,6 @@ import { useDebounce } from "@uidotdev/usehooks";
 import GetStaff from '../../apis/GetStaff';
 import PageTitle from '../PageTite';
 import SearchInput from '../base/SearchInput';
-import PatienCard from '../PatientCard';
 import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
 import { ReactComponent as AddSVG } from "../../resources/svg/add.svg";
 import EmployeeCard from '../EmployeeCard';

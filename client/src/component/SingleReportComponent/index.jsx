@@ -4,6 +4,7 @@ import Lottie from 'react-lottie';
 import * as tf from '@tensorflow/tfjs';
 import { ReactComponent as BloodTestSVG } from "../../resources/svg/blood-test.svg";
 import { ReactComponent as ScansSVG } from "../../resources/svg/scan.svg";
+import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
 import * as loadingSVG from '../../resources/animations/loading.json'
 import SingleReport from '../../apis/SingleReport';
 import PageTitle from '../PageTite';
@@ -27,10 +28,11 @@ const SingleReportComponent = () => {
 
     const fetchSingleReport = async () => {
         try {
+          setLoading(true);
           setError(false); 
           const response = await SingleReport({id}); 
           setReport(response)
-          console.log(response)
+          setLoading(false);
         } catch (error) {
           setError(true); 
         }
@@ -56,8 +58,7 @@ const SingleReportComponent = () => {
             setError(false); 
             const response = await Predict({ id, predictedClassName}); 
             setReport(response)
-            console.log(response)
-            setLoading(false)
+            setLoading(false);
           } catch (error) {
             setError(true); 
           }
@@ -103,7 +104,14 @@ const SingleReportComponent = () => {
   return (
     <div className='min-h-screen w-5/6 ml-auto'>
     {report.length === 0 || error ?
-        <div>no reports</div> :
+        loading ? <div className="w-full h-full flex flex-col items-center justify-center">
+            <Lottie options={defaultOptions} height={430} width={515} />
+            </div> : 
+                <div className='w-full h-full flex flex-col items-center'>
+                    <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
+                    <div className='text-[36px] font-bold text-primary opacity-1'>No Recored found</div>
+              </div>
+            :
         <div className='min-h-screen flex flex-col gap-14 bg-grey p-14'>
             <div className='w-full flex flex-row justify-between'>
             <PageTitle title={`Report ${report.id}`}/>
