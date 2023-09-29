@@ -10,7 +10,8 @@ import SinglePatient from './pages/SinglePatient';
 import Employees from './pages/Employees';
 import EmployeeProfile from './pages/EmployeeProfile';
 import { fetchToken, onMessageListener } from './utils/initializingFirebase';
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast'
+import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
   const [notifications, setNotifications] = useState([]);
@@ -64,22 +65,24 @@ function App() {
      <Toaster position='top-center'/>
       <BrowserRouter> 
         <Routes>
-          <Route path="/" element={<Authentication />}/> 
-          <Route path="/patients" element={<Home/>}/> 
-          <Route path="/patient/:id" element={<SinglePatient/>}/> 
-          <Route path="/reports" element={<Reports/>}/> 
-          <Route path="/report/:id" element={<SingleReport/>}/> 
-          <Route path="/schedule" element={<Schedule/>}/> 
+          <Route path="/" element={<Authentication />}/>
+          <Route element={<PrivateRoutes/>}>
+            <Route path="/patients" element={<Home/>}/> 
+            <Route path="/patient/:id" element={<SinglePatient/>}/> 
+            <Route path="/reports" element={<Reports/>}/> 
+            <Route path="/report/:id" element={<SingleReport/>}/> 
+            <Route path="/schedule" element={<Schedule/>}/> 
 
 
-          <Route path="/dashboard" element={<Dashboard/>}/> 
-          <Route path="/employees" element={<Employees/>}/> 
-          <Route path="/employee/:id" element={<EmployeeProfile/>}/> 
+            <Route path="/dashboard" element={<Dashboard/>}/> 
+            <Route path="/employees" element={<Employees/>}/> 
+            <Route path="/employee/:id" element={<EmployeeProfile/>}/> 
+          </Route>
         </Routes>
       </BrowserRouter> 
     </>
     
-  );
+  )
 }
 
-export default App;
+export default App
