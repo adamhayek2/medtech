@@ -25,7 +25,7 @@ const DashboardComponent = () => {
 
   return (
     <>
-    {dashboardData.lenght === 0 || error ? 
+    {!dashboardData.lenght || error ? 
       
       <div className='min-h-screen w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
           <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>

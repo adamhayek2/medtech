@@ -29,7 +29,7 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
         };
 
     const addObject = () => {
-        type === 'blood_tests' ? setBloodTest([...bloodTest, { name: '', date: '' }]) : type === 'scans' ? setScan([...scan, { name: '', date: '' }]) : setMedications([...medication, { name: '', frequency: '', value: '' }]);
+        type === 'blood_tests' ? setBloodTest([...bloodTest, { name: '', date: '' }]) : type === 'scans' ? setScan([...scan, { name: '', date: '' }]) : setMedications([...medication, { name: '', frequency: '', value: '', purpose: '' }]);
     };
 
     const edit = async (e) => {
@@ -123,6 +123,14 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
                         type="text"
                         onChange={(e) => handleObjectChange(i, 'frequency', e.target.value)}
                         placeholder="Frequency"
+                        theme="blue"
+                    />
+                    <Input
+                        name="purpose"
+                        value={index.purpose}
+                        type="text"
+                        onChange={(e) => handleObjectChange(i, 'purpose', e.target.value)}
+                        placeholder="purpose"
                         theme="blue"
                     />
                     </div>
