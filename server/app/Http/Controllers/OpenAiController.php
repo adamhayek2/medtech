@@ -22,7 +22,7 @@ class OpenAIController extends Controller {
         $prompt = 'I have a patient in emergency room';
         $prompt .= ".\nhe is a victim of". $request->diagnosis;
         $prompt .= "\nI want you to generate a report for him in json format";
-        $prompt .= "\nThe response should contain medications object wich have the name, dosage, and frequency";
+        $prompt .= "\nThe response should contain medications object wich have the name, dosage, purpose, and frequency";
         $prompt .= "\nThe response should contain scans object wich have the name and date";
         $prompt .= "\nThe response should contain blood_tests object wich have the name and date";
         $prompt .= "\nThe response should contain appointments object wich have the doctor_id,reason, start, end in dateTime format ";
