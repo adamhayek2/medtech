@@ -200,7 +200,7 @@ const SingleReportComponent = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
-                                    <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
+                                    <h1 className='text-[22px] font-bold text-primary'>Prescription</h1>
                                     <div className='flex flex-row items-center gap-10 flex-wrap'>
                                     {report.report_data.medications.map((tem) => (
                                         <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
