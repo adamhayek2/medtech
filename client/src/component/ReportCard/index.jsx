@@ -17,12 +17,10 @@ const ReportCard = ({patientName, id, status, report, date}) => {
   return (
     <div className='flex flex-col gap-6 p-6 rounded-lg w-1/5 h-80 grow-0 bg-white cursor-pointer justify-start justify-between' onClick={openReport}>
         <div className='flex flex-row gap-3 justify-center items-center'>
-            <p className='text-[22px] font-bold font text-primary'>{id}</p>
+            <p className='text-[22px] font-bold font text-primary'>{patientName}</p>
             {status === 0 || status === null? <SingleReportSVG/> : <ApprovedReportSVG/>}
         </div>
-        <div className='flex flex-col gap-3 justify-center items-center'>
-            <p className='text-base font-futuraBK'>{patientName}</p>
-            
+        <div className='flex flex-col gap-3 justify-center items-center'>            
             <p className='text-base font-futuraBK'>{date}</p>
         </div>
         {report === null ?
