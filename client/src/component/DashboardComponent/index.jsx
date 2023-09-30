@@ -3,6 +3,7 @@ import PageTitle from '../PageTite'
 import DashboardStatisticsCard from '../DashboardStatisticsCard'
 import LineChart from '../LineChart'
 import GetDashboard from '../../apis/GetDashboard';
+import { ReactComponent as NotFoundSVG } from "../../resources/svg/not_found.svg";
 
 const DashboardComponent = () => {
   const [dashboardData, setDashboardData] = useState([]);
@@ -24,8 +25,17 @@ const DashboardComponent = () => {
 
   return (
     <>
-    {dashboardData.length === 0 || error ? 
-      <div>no reports</div> : 
+    {dashboardData.lenght === 0 || error ? 
+      
+      <div className='min-h-screen w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
+          <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
+          <div className='text-[36px] font-bold text-primary opacity-1'>No Patient's are in today yet</div>
+      </div> : 
+      dashboardData.reportsTodayCount === 0 ? 
+      <div className='min-h-screen w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
+          <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
+          <div className='text-[36px] font-bold text-primary opacity-1'>No Patient's are in today yet</div>
+      </div> : 
       <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
           <div className='w-full flex flex-row justify-between'>
             <PageTitle title={"Dashboard"}/>
