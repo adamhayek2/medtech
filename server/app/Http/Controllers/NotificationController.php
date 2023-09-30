@@ -40,14 +40,8 @@ class NotificationController extends Controller {
         $title = $request->title;
         $body = $request->body;
 
-        $users = User::whereHas('userType', function ($query) {
-                        $query->where('type', 'doctor');
-                    })
-                    ->whereHas('staff', function ($query) {
-                        $query->whereHas('department', function ($subQuery) {
-                            $subQuery->where('name', 'emergency');
-                    });
-                });
+        $users = User::where('user_type_id', 2 );
+                        
         
         $tokens = $users->pluck('fcm_token')->toArray();
 

@@ -67,5 +67,6 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::post('report/{id}/update_report_data', [ReportController::class,'updateReportData']);
         Route::post('report/approve_report', [ReportController::class,'approveReport']);
     }); 
+    Route::post('send', [NotificationController::class,'reportNotifications']);
     
 });

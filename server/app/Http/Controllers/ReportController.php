@@ -159,6 +159,9 @@ class ReportController extends Controller {
 
         $image->save();
 
+        $notf_request = Request::create('App\Http\Controllers\NotificationController\reportNotifications', 'POST', ['title' => 'New Report', 'body' => 'New patient in, Generate a report!']);
+        $temp = app('App\Http\Controllers\NotificationController')->reportNotifications($notf_request);
+        
         return response()->json(['message' => 'Image saved successfully'], 201);
     }
     

@@ -98,9 +98,14 @@ class PatientController extends Controller {
         $room->patient_id = $patient->id;
         $room->save();
         
-        $sendRobot = Http::post('http://192.168.1.102/goto_room', [
-            'room' => $roome->id,
-        ]);
+        $url = 'http://192.168.44.133/goto_room';
+
+
+        $data = [
+            'room' => $room->id,
+        ];
+
+        $response = Http::post($url, $data);
 
         return response()->json([
             'status' => 'success',

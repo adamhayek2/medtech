@@ -10,7 +10,7 @@ import SinglePatient from './pages/SinglePatient';
 import Employees from './pages/Employees';
 import EmployeeProfile from './pages/EmployeeProfile';
 import { fetchToken, onMessageListener } from './utils/initializingFirebase';
-import toast, { Toaster } from 'react-hot-toast'
+import toast, { Toaster } from 'react-hot-toast';
 import PrivateRoutes from './utils/PrivateRoutes';
 
 function App() {
