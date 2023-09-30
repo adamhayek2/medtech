@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import * as tf from '@tensorflow/tfjs';
 import { ReactComponent as BloodTestSVG } from "../../resources/svg/blood-test.svg";
@@ -24,8 +25,9 @@ const SingleReportComponent = () => {
     const [error, setError] = useState(false);
     const [model, setModel] = useState(null);
     const [loading, setLoading] = useState(false);
-  
 
+    const navigate = useNavigate();
+  
     const fetchSingleReport = async () => {
         try {
           setLoading(true);
@@ -114,14 +116,13 @@ const SingleReportComponent = () => {
             :
         <div className='min-h-screen flex flex-col gap-14 bg-grey p-14'>
             <div className='w-full flex flex-row justify-between'>
-            <PageTitle title={`Report ${report.id}`}/>
+            <PageTitle title={`${report.patient_name}'s report`}/>
             </div>
             <div className='flex flex-row gap-10'>
                 <div className='w-1/5 flex flex-col h-full gap-10'>
-                    <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
+                    <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center' onClick={() =>{navigate(`/patient/${report.patient.id}`)}}>
                         <h1 className='text-[22px] font-bold text-primary'>{report.patient_name}</h1>
-                        <p className='text-[#7D7D7D]'>Patient ID: {report.patient.id}</p>
-                        <Button label={'View Profile'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                        <Button label={'View Profile'} BgColor={'bg-primary'} textColor={'text-white'} />
                     </div>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[#7D7D7D]'>Status:</h1>
@@ -158,7 +159,7 @@ const SingleReportComponent = () => {
                                 : null}
                                 <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
                                     <h1 className='text-[22px] font-bold text-primary'>Tests</h1>
-                                    <div className='flex flex-row items-center gap-10'>
+                                    <div className='flex flex-row items-center gap-10 flex-wrap'>
                                     {report.report_data.blood_tests.map((tem) => (
                                         <div className='flex flex-row items-center gap-3'>
                                             <BloodTestSVG/>
@@ -179,7 +180,7 @@ const SingleReportComponent = () => {
                                 </div>
                                 <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
                                     <h1 className='text-[22px] font-bold text-primary'>Scans</h1>
-                                    <div className='flex flex-row items-center gap-10'>
+                                    <div className='flex flex-row items-center gap-10 flex-wrap'>
                                     {report.report_data.scans.map((tem) => (
                                         <div className='flex flex-row items-center gap-3'>
                                             <ScansSVG/>
@@ -200,7 +201,7 @@ const SingleReportComponent = () => {
                                 </div>
                                 <div className='flex flex-col px-14 py-8 bg-white rounded-lg gap-10 items-start '>
                                     <h1 className='text-[22px] font-bold text-primary'>Prescreption</h1>
-                                    <div className='flex flex-row items-center gap-10'>
+                                    <div className='flex flex-row items-center gap-10 flex-wrap'>
                                     {report.report_data.medications.map((tem) => (
                                         <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
                                     ))}
