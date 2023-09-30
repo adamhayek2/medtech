@@ -100,6 +100,29 @@ class NotificationController extends Controller {
         ], 200);
     }
 
+    public function forgotPasswordNotification(Request $request) {
+        $title = $request->title;
+        $body = $request->body;
+
+        $users = User::where('user_type_id', 1);
+
+        $token = $user->fcm_token;
+
+        $message = CloudMessage::fromArray([
+            'token' => $token,
+            'notification' => [
+                'title' => $title,
+                'body' => $body
+                ],
+            ]);
+        $this->notification->send($message);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Notification sent',
+        ], 200);
+    }
+
     public function getNotifications() {
         $user = Auth::user();
 

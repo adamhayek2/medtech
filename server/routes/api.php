@@ -19,7 +19,7 @@ Route::group(["prefix" => "guest"], function() {
     Route::get('unauthorized', [AuthController::class, 'unauthorized']) -> name("unauthorized");
     Route::post('login', [AuthController::class,'login']);
     Route::post('register', [AuthController::class,'register']);
-
+    Route::post('forgot_password', [NotificationController::class,'forgotPasswordNotification']);
 });
 
 
