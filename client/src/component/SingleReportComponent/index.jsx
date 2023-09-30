@@ -203,7 +203,7 @@ const SingleReportComponent = () => {
                                     <h1 className='text-[22px] font-bold text-primary'>Prescription</h1>
                                     <div className='flex flex-row items-center gap-10 flex-wrap'>
                                     {report.report_data.medications.map((tem) => (
-                                        <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage}/>
+                                        <Medication name={tem.name} frequency={tem.frequency} dosage={tem.dosage} purpose={tem.purpose}/>
                                     ))}
                                     </div>
                                     {report.approved_by_doctor_id !== 0 || isDoctor ? 
