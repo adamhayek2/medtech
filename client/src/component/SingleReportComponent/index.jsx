@@ -25,6 +25,7 @@ const SingleReportComponent = () => {
     const [error, setError] = useState(false);
     const [model, setModel] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [showContent, setShowContent] = useState(false);
 
     const navigate = useNavigate();
   
@@ -146,9 +147,18 @@ const SingleReportComponent = () => {
                     ) : (
                         <div className='w-4/5 flex flex-col gap-10'>
                         {report.report_data === null ? (
-                            <div className='w-full h-14' onClick={ () => predict()}>
-                                <img src={`data:image/jpeg;base64,${report.image}`} alt="" className='hidden' id='img'/>
-                                <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                            <div className='flex flex-col w-full items-center gap-10'>
+                                <div className=' w-full h-14'  onClick={ () => predict()}>
+                                    <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                                </div>
+                                <div className='w-[400px] h-[400px] relative overflow-hidden' >
+                                    <img src={`data:image/jpeg;base64,${report.image}`} alt=""  id='img' className={!showContent ? "blur" : "" }/>
+                                    <div className={showContent ? 'hidden' : `top-0 absolute h-full w-full flex flex-col text-white flex flex-col gap-4 justify-center items-center`} >
+                                        <div>This image contains sensitive content</div>
+                                        <div className='w-full border-b-2 border-solid border-white'></div>
+                                        <div className='text-xl font-bold cursor-pointer'onClick={() => {setShowContent(true)}}>Show anyway</div>
+                                    </div>
+                                </div>
                             </div>
                         ) : (
                             <div className='w-full flex flex-col gap-10'>

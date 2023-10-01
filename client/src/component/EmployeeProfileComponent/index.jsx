@@ -59,7 +59,6 @@ const EmployeeProfileComponent = () => {
                 <div className='w-1/5 flex flex-col h-full gap-10'>
                     <div className='flex flex-col px-16 py-8 bg-white rounded-lg gap-[22px] items-center'>
                         <h1 className='text-[22px] font-bold text-primary'>{`${employee.first_name} ${employee.last_name}`}</h1>
-                        <p className='text-[#7D7D7D]'>Staff ID: {employee.id}</p>
                         <div onClick={() => setOpenModal(true)} className='w-full'>
                             <Button label={'Edit Profile'} BgColor={'bg-primary'} textColor={'text-white'} />
                         </div>
