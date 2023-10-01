@@ -5,7 +5,8 @@ import Input from '../../component/base/Input';
 import Button from '../../component/base/Button';
 import UserLogin from '../../apis/UserLogin';
 import { ReactComponent as LogoSVG } from "../../resources/svg/logo.svg";
-import * as heartBeat from '../../resources/animations/heartbeat.json'
+import * as heartBeat from '../../resources/animations/heartbeat.json';
+import ForgotPassword from '../../apis/ForgotPassword';
 
 
 const Authentication = () => {
@@ -33,6 +34,16 @@ const Authentication = () => {
     }
     
   };
+
+
+  const forgotPassword = async () => {
+        try {
+          setError(false); 
+          await ForgotPassword({username}); 
+        } catch (error) {
+          setError(true); 
+        }
+    }
 
   const defaultOptions = {
     loop: true,
@@ -70,7 +81,7 @@ const Authentication = () => {
                         placeholder="Password"
                       />
                     </div>
-                    <p className='underline text-white text-sm mt-2'>Forgot password?</p>
+                    <p className='underline text-white text-sm mt-2 cursor-pointer' onClick={forgotPassword}>Forgot password?</p>
                   </div>
                   <div className={`text-sm text-center text-white relative ${error ? "" : "hidden"}`}>
                     Username or password is incorrect,kindly try again 

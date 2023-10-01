@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const apiUrl = 'http://127.0.0.1:8000/api/guest/forgot_password';
 
-const loginUser = async ({username}) => {
+const ForgotPassword = async ({username}) => {
   try {
     const response = await axios.post(apiUrl, {
       username,
@@ -14,4 +14,4 @@ const loginUser = async ({username}) => {
   }
 };
 
-export default loginUser;
+export default ForgotPassword;
