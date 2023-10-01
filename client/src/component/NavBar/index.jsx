@@ -5,10 +5,12 @@ import { ReactComponent as NotificationSVG } from "../../resources/svg/notificat
 import { ReactComponent as Profile } from "../../resources/svg/profile.svg";
 import UserLogout from '../../apis/UserLogout';
 import Notifications from '../modals/Notifications';
+import Button from '../base/Button';
 
 const NavBar = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState(false);
 
   const handleMouseEnter = () => {
@@ -18,6 +20,12 @@ const NavBar = () => {
   const handleMouseLeave = () => {
     setShowOptions(false);
   };
+
+  const adminCheck = () => {
+    localStorage.getItem('role') === 'admin' ? 
+    setIsAdmin(true) :
+    setIsAdmin(false);
+  }
 
   const navigate = useNavigate();
 
@@ -36,6 +44,10 @@ const NavBar = () => {
       console.error('error:', error);
     }
   } 
+
+  useEffect(() => {
+    adminCheck();
+  }, []);
 
   return (
     <div className='sticky top-0 flex-no-wrap relative flex w-full items-center justify-between bg-primary py-2 shadow-md shadow-black/5 dark:bg-neutral-600 dark:shadow-black/10 lg:flex-wrap lg:justify-start lg:py-6 z-10'>
@@ -57,9 +69,14 @@ const NavBar = () => {
                   )}
                 </div>
                 <div className='text-xl text-white'>{localStorage.getItem('username')}</div>
-              </div>
+                {isAdmin ? 
+                  <div className='h-12 w-48'>
+                  <Button label={"New Meeting"} BgColor={'bg-white'} textColor={'text-primary'}/>
+                </div> : null
+                }             
             </div>
-            <Notifications open = {openModal} onClose={() => setOpenModal(false)}/>
+          </div>
+          <Notifications open = {openModal} onClose={() => setOpenModal(false)}/>
             
         </div>
     
