@@ -4,6 +4,7 @@ import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
 import CreateStaff from '../../../apis/CreateStaff';
+import ModalTitle from '../../base/ModalTitle';
 
 const AddStaff = ({open, onClose}) => {
     const [fistName, setFirstName] = useState('');
@@ -69,6 +70,7 @@ const AddStaff = ({open, onClose}) => {
                 onSubmit={addStaff}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
+                <ModalTitle title={'Employee registration'}/>
                 <div className=' flex flex-row gap-3'>
                     <Input
                     name="First name"

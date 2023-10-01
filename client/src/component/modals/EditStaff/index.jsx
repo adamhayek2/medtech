@@ -5,6 +5,7 @@ import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
 import EditStaffInfos from '../../../apis/EditStaffProfile';
+import ModalTitle from '../../base/ModalTitle';
 
 const EditStaff = ({open, onClose, profileInfos}) => {
     const { id } = useParams();
@@ -65,6 +66,7 @@ const EditStaff = ({open, onClose, profileInfos}) => {
                 onSubmit={edit}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
+                <ModalTitle title={`Edit Profile`}/>
                 <div className=' flex flex-row gap-3'>
                     <Input
                     name="First name"

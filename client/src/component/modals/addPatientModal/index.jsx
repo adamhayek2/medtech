@@ -5,6 +5,7 @@ import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
 import AddStaff from '../../../apis/AddPatient';
 import AddPatient from '../../../apis/AddPatient';
+import ModalTitle from '../../base/ModalTitle';
 
 const AddPatientModal = ({open, onClose}) => {
     const [firstName, setFirstName] = useState('');
@@ -62,6 +63,7 @@ const AddPatientModal = ({open, onClose}) => {
                 onSubmit={add}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
+                <ModalTitle title={'Add patient'} />
                 <div className=' flex flex-row gap-3'>
                     <Input
                     name="First name"

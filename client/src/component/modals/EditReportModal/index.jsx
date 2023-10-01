@@ -4,6 +4,7 @@ import Input from '../../base/Input';
 import Button from '../../base/Button';
 import EditStaffInfos from '../../../apis/EditStaffProfile';
 import EditReport from '../../../apis/EditReport';
+import ModalTitle from '../../base/ModalTitle';
 
 const EditReportModal = ({open, onClose, reportData, type}) => {
     const { id } = useParams();
@@ -56,6 +57,7 @@ const EditReportModal = ({open, onClose, reportData, type}) => {
                 onSubmit={edit}
                 className={`flex flex-col bg-white w-1/4 p-10 justify-center items-center transition-transform duration-[0.2s] ease-[ease-in-out] gap-6 ${!open ? 'translate-x-full' : 'translate-x-0'}`}
             >
+                <ModalTitle title={'Edit report'}/>
                 {type === 'blood_tests' &&
                     bloodTest.map((index, i) => (
                         <div key={i} className="flex flex-row justify-between w-full gap-2">
