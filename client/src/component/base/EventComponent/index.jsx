@@ -11,7 +11,7 @@ const EventComponent = ({event}) => {
           {moment(event.start).format('LT')} - {moment(event.end).format('LT')}
         </div>
       </div>
-      <div className='w-2 bg-white h-full rounded shadow-[-9px_0px_100px_19px_rgba(255,255,255,0.85)]'></div>
+      <div className='w-2 bg-white h-full rounded '></div>
     </div>
   )
 }
