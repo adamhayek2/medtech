@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import { useParams } from 'react-router-dom';
 import Input from '../../base/Input';
 import Button from '../../base/Button';
-import EditStaffInfos from '../../../apis/EditStaffProfile';
 import EditReport from '../../../apis/EditReport';
 import ModalTitle from '../../base/ModalTitle';
 

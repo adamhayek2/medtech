@@ -1,4 +1,4 @@
-// #include <camera_functions.h>
+#include <camera_functions.h>
 
 #define enA 10   // PWM pin for Motor 1
 #define enB 11   // PWM pin for Motor 2
@@ -15,7 +15,7 @@ void setup() {
   pinMode(in3, OUTPUT);
   pinMode(in4, OUTPUT);
   Serial.begin(9600);
-  // initializeCamera();
+  initializeCamera();
 
 }
 
@@ -31,7 +31,7 @@ void loop() {
       room0to1();
       Serial.println("iam in room 1");
       delay(1000);
-      // captureImage();
+      captureImage();
       delay(1000);
       room1to0();
       Serial.println("iam in room 0");
@@ -42,7 +42,7 @@ void loop() {
       room0to2();
       Serial.println("iam in room 2");
       delay(1000);
-      // captureImage();
+      captureImage();
       delay(1000);
       room2to0();
       Serial.println("iam in room 0");

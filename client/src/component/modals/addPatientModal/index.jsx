@@ -3,7 +3,6 @@ import Input from '../../base/Input';
 import Button from '../../base/Button';
 import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
-import AddStaff from '../../../apis/AddPatient';
 import AddPatient from '../../../apis/AddPatient';
 import ModalTitle from '../../base/ModalTitle';
 

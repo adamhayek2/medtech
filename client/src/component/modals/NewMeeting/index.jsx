@@ -1,10 +1,7 @@
-import React, {useState,useEffect} from 'react'
-import { useParams } from 'react-router-dom';
+import React, {useState} from 'react'
 import Input from '../../base/Input';
 import Button from '../../base/Button';
-import DropdownMenu from '../../base/DropdownMenu';
 import GetData from '../../../apis/GetData';
-import EditStaffInfos from '../../../apis/EditStaffProfile';
 import ModalTitle from '../../base/ModalTitle';
 import DropdownSearch from '../../base/DropdownSearch';
 import NewMeetingAPI from '../../../apis/NewMeetingAPI';

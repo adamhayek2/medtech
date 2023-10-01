@@ -98,7 +98,7 @@ class PatientController extends Controller {
         $room->patient_id = $patient->id;
         $room->save();
         
-        $url = 'http://192.168.44.133/goto_room';
+        $url = 'http://192.168.48.19/goto_room';
 
 
         $data = [
