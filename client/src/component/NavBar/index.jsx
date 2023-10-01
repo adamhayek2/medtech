@@ -46,21 +46,21 @@ const NavBar = () => {
             </div>
             <div className='flex justify-center items-center gap-6'>
                 <NotificationSVG height={"35px"} width={"32px"} onClick={() => setOpenModal(true)} />
-                <div onMouseEnter={handleMouseEnter}
-                    >
+                <div onMouseEnter={handleMouseEnter}>
                   <Profile height={"35px"}/>
                   {showOptions && (
-                    <div className="flex flex-col gap-3 absolute translate-x-[-120px] translate-y-[5px] bg-white w-40 rounded-lg"
+                    <div className="flex flex-col gap-1 absolute translate-x-[-120px] translate-y-[5px] bg-white w-40 rounded-lg"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}>
-                      <button onClick={handleSeeProfileClick} className='px-6 py-3 hover:bg-primary/20 hover:text-primary hover:font-bold transition transition ease-in-out transition-delay-none duration-150'>See Profile</button>
                       <button onClick={handleLogoutClick} className='px-6 py-3 hover:bg-primary/20 hover:text-primary hover:font-bold transition transition ease-in-out transition-delay-none duration-150'>Logout</button>
                     </div>
                   )}
                 </div>
+                <div className='text-xl text-white'>{localStorage.getItem('username')}</div>
               </div>
             </div>
             <Notifications open = {openModal} onClose={() => setOpenModal(false)}/>
+            
         </div>
     
   )

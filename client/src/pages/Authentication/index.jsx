@@ -26,6 +26,7 @@ const Authentication = () => {
       const response = await UserLogin(username, password, fcm_token);
       localStorage.setItem('token', response.token);
       localStorage.setItem('role', response.user_type.type);
+      localStorage.setItem('username', response.username)
       setError(false); 
       localStorage.getItem('role') === 'admin' ? navigate('/dashboard') : navigate('/patients');
     } catch (error) {
