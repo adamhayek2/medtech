@@ -105,7 +105,6 @@ class NotificationController extends Controller {
             'username' => 'required|string|max:255',
         ]);
         
-        $user = Auth::user()->staff->fullName;
         $title = $request->usermame;
         $body = 'forgot his password, please reset it';
 
