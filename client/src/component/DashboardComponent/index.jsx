@@ -27,16 +27,16 @@ const DashboardComponent = () => {
     <>
     {!dashboardData.lenght || error ? 
       
-      <div className='min-h-screen w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
+      <div className='min-h-89 w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
           <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
           <div className='text-[36px] font-bold text-primary opacity-1'>No Patient's are in today yet</div>
       </div> : 
       dashboardData.reportsTodayCount === 0 ? 
-      <div className='min-h-screen w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
+      <div className='min-h-89 w-5/6 flex flex-col bg-grey p-14 ml-auto justify-center items-center'>
           <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
           <div className='text-[36px] font-bold text-primary opacity-1'>No Patient's are in today yet</div>
       </div> : 
-      <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
+      <div className='min-h-89 w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
           <div className='w-full flex flex-row justify-between'>
             <PageTitle title={"Dashboard"}/>
           </div>

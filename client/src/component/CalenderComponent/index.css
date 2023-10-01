@@ -97,3 +97,6 @@
     background-color:  rgba(53, 64, 216, 0.07) !important;
 }
 
+.min-h-89{
+    min-height: 89vh;
+}

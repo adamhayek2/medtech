@@ -60,7 +60,7 @@ Route::group(["middleware" => "auth:api"], function() {
         Route::post('add_staff', [StaffController::class,'add']);
         Route::post('edit_staff/{id?}', [StaffController::class,'edit']);
         Route::get('staff_profile/{id?}', [StaffController::class,'singleStaff']);
-        Route::get('create_meeting', [MeetingController::class,'create']);
+        Route::post('create_meeting', [MeetingController::class,'create']);
     }); 
 
     Route::group(["middleware" => "auth.doc", 'prefix' => 'doctor'], function(){

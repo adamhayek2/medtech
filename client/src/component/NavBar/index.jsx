@@ -6,10 +6,12 @@ import { ReactComponent as Profile } from "../../resources/svg/profile.svg";
 import UserLogout from '../../apis/UserLogout';
 import Notifications from '../modals/Notifications';
 import Button from '../base/Button';
+import NewMeeting from '../modals/NewMeeting';
 
 const NavBar = () => {
   const [showOptions, setShowOptions] = useState(false);
-  const [openModal, setOpenModal] = useState(false);
+  const [openNotificationModal, setOpenNotificationModal] = useState(false);
+  const [openMeetingModal, setOpenMeetingModal] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState(false);
 
@@ -57,7 +59,7 @@ const NavBar = () => {
                 <h1 className='text-4xl text-white'>medtech</h1>
             </div>
             <div className='flex justify-center items-center gap-6'>
-                <NotificationSVG height={"35px"} width={"32px"} onClick={() => setOpenModal(true)} />
+                <NotificationSVG height={"35px"} width={"32px"} onClick={() => setOpenNotificationModal(true)} />
                 <div onMouseEnter={handleMouseEnter}>
                   <Profile height={"35px"}/>
                   {showOptions && (
@@ -70,14 +72,14 @@ const NavBar = () => {
                 </div>
                 <div className='text-xl text-white'>{localStorage.getItem('username')}</div>
                 {isAdmin ? 
-                  <div className='h-12 w-48'>
+                  <div className='h-12 w-48' onClick={() => setOpenMeetingModal(true)}>
                   <Button label={"New Meeting"} BgColor={'bg-white'} textColor={'text-primary'}/>
                 </div> : null
                 }             
             </div>
           </div>
-          <Notifications open = {openModal} onClose={() => setOpenModal(false)}/>
-            
+          <Notifications open = {openNotificationModal} onClose={() => setOpenNotificationModal(false)}/>
+          <NewMeeting open = {openMeetingModal} onClose={() => setOpenMeetingModal(false)}/>
         </div>
     
   )

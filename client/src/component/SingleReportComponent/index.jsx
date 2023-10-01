@@ -105,7 +105,7 @@ const SingleReportComponent = () => {
       };
 
   return (
-    <div className='min-h-screen w-5/6 ml-auto'>
+    <div className='min-h-89 w-5/6 ml-auto'>
     {report.length === 0 || error ?
         loading ? <div className="w-full h-full flex flex-col items-center justify-center">
             <Lottie options={defaultOptions} height={430} width={515} />
@@ -115,7 +115,7 @@ const SingleReportComponent = () => {
                     <div className='text-[36px] font-bold text-primary opacity-1'>No Recored found</div>
               </div>
             :
-        <div className='min-h-screen flex flex-col gap-14 bg-grey p-14'>
+        <div className='min-h-89 flex flex-col gap-14 bg-grey p-14'>
             <div className='w-full flex flex-row justify-between'>
             <PageTitle title={`${report.patient_name}'s report`}/>
             </div>
@@ -142,14 +142,14 @@ const SingleReportComponent = () => {
 
                 {loading ? (
                     <div className="w-4/5 flex justify-center items-center">
-                        <Lottie options={defaultOptions} height={400} width={500} />
+                        <Lottie options={defaultOptions} height={430} width={515} />
                     </div>
                     ) : (
                         <div className='w-4/5 flex flex-col gap-10'>
                         {report.report_data === null ? (
                             <div className='flex flex-col w-full items-center gap-10'>
                                 <div className=' w-full h-14'  onClick={ () => predict()}>
-                                    <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+                                    <Button label={'Analyse'} BgColor={'bg-primary'} textColor={'text-white'}/>
                                 </div>
                                 <div className='w-[400px] h-[400px] relative overflow-hidden' >
                                     <img src={`data:image/jpeg;base64,${report.image}`} alt=""  id='img' className={!showContent ? "blur" : "" }/>

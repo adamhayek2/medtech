@@ -42,7 +42,7 @@ const EmployeeProfileComponent = () => {
     };
 
   return (
-    <div className='min-h-screen w-5/6 ml-auto'>
+    <div className='min-h-89 w-5/6 ml-auto'>
     {employee.length === 0 || error ? 
         loading ? <div className="w-full h-full flex flex-col items-center justify-center">
             <Lottie options={defaultOptions} height={430} width={515} />
@@ -51,7 +51,7 @@ const EmployeeProfileComponent = () => {
             <NotFoundSVG width={'400px'} height={'400px'} className='opacity-50'/>
             <div className='text-[36px] font-bold text-primary opacity-1'>No Records</div>
         </div> : 
-        <div className='min-h-screen flex flex-col gap-14 bg-grey p-14'>
+        <div className='min-h-89 flex flex-col gap-14 bg-grey p-14'>
             <div className='w-full flex flex-row justify-between'>
             <PageTitle title={`${employee.user.user_type.id === 2 ? `Dr. ${employee.first_name} ${employee.last_name}` : `${employee.first_name} ${employee.last_name}`}`}/>
             </div>

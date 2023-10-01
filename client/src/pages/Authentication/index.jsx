@@ -84,8 +84,8 @@ const Authentication = () => {
                     </div>
                     <p className='underline text-white text-sm mt-2 cursor-pointer' onClick={forgotPassword}>Forgot password?</p>
                   </div>
-                  <div className={`text-sm text-center text-white relative ${error ? "" : "hidden"}`}>
-                    Username or password is incorrect,kindly try again 
+                  <div className={`text-sm text-center text-white relative font-bold text-base ${error ? "" : "hidden"}`}>
+                    Username or password is incorrect, kindly try again 
                   </div>
                   <div className='h-12'>
                     <Button label={"Login"} BgColor={'bg-white'} textColor={'text-primary'}/>

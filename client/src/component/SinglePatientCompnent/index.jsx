@@ -41,7 +41,7 @@ const SinglePatientComponent = () => {
 
   return (
     
-    <div className='min-h-screen w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
+    <div className='min-h-89 w-5/6 flex flex-col gap-14 bg-grey p-14 ml-auto'>
       {!reports || error || reports.length === 0? 
         loading ? <div className="w-full h-full flex flex-col items-center justify-center">
         <Lottie options={defaultOptions} height={430} width={515} />
