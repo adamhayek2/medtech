@@ -101,8 +101,13 @@ class NotificationController extends Controller {
     }
 
     public function forgotPasswordNotification(Request $request) {
-        $title = $request->title;
-        $body = $request->body;
+        $request->validate([
+            'username' => 'required|string|max:255',
+        ]);
+        
+        $user = Auth::user()->staff->fullName;
+        $title = $request->usermame;
+        $body = 'forgot his password, please reset it';
 
         $users = User::where('user_type_id', 1);
 
