@@ -2,7 +2,30 @@
 
 <br><br>
 
+<!-- Table of Content-->
+
+<img src="./readme/title8.svg"/>
+
+<br><br>
+
+- [Project Philosophy](#philosophy)
+- [User Stories](#user-stories)
+- [Prototyping](#mockups)
+- [Demo](#demo)
+  - [User Screens](#user-screens)
+  - [Admin Screens](#admin-screens)
+- [Tech Stack](#stacks)
+- [OpenAi](#opneai)
+- [How to Run](#how-to-run)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+
+<br><br>
+
 <!-- project philosophy -->
+
+<a name="philosophy"></a>
+
 <img src="./readme/title2.svg"/>
 
 > A system that transfers the medical feild to another level
@@ -19,6 +42,9 @@
 <br><br>
 
 <!-- Prototyping -->
+
+<a name="prototyping"></a>
+
 <img src="./readme/title3.svg"/>
 
 > I designed MedTech using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
@@ -32,29 +58,34 @@
 <br><br>
 
 <!-- Implementation -->
+
+<a name="demo"></a>
+
 <img src="./readme/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, I implemented Medtech with the following features:
 
-### User Screens
-
-| Login screen                             | Patients Screen                           | Reports Screen                           |
-| ---------------------------------------- | ----------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/demo/user/Login.png) | ![fsdaf](./readme/demo/user/Patients.png) | ![fsdaf](./readme/demo/user/Reports.png) |
-
-| Single Report Screen                               | Single Report Screen                                 | Schedule Screen                              |
-| -------------------------------------------------- | ---------------------------------------------------- | -------------------------------------------- |
-| ![Landing](./readme/demo/user/Single%20Report.png) | ![fsdaf](./readme/demo/user/Single%20Report%202.png) | ![fsdaf](./readme/demo/user/Schedule%20.png) |
-
-### Admin Screens (Web)
+### Admin Screens
 
 | Dashboard screen                          | Employees screen                            | Employee Profile screen                              |
 | ----------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
 | ![Landing](./readme/demo/admin/Admin.png) | ![fsdaf](./readme/demo/admin/Employees.png) | ![fsdaf](./readme/demo/admin/Employee%20Profile.png) |
 
+### User Screens
+
+| Login screen                             | Patients Screen                           | Reports Screen                           |
+| ---------------------------------------- | ----------------------------------------- | ---------------------------------------- |
+| ![Landing](./readme/demo/user/Login.gif) | ![fsdaf](./readme/demo/user/patients.gif) | ![fsdaf](./readme/demo/user/Reports.gif) |
+
+| Single Report Screen                             | Single Report Screen                      | Schedule Screen                               |
+| ------------------------------------------------ | ----------------------------------------- | --------------------------------------------- |
+| ![Landing](./readme/demo/user/Single-Report.gif) | ![fsdaf](./readme/demo/user/schedule.gif) | ![fsdaf](./readme/demo/user/add-patients.gif) |
+
 <br><br>
 
 <!-- Tech stack -->
+
+<a name="stacks"></a>
 <img src="./readme/title5.svg"/>
 
 ### MedTech is built using the following technologies:
@@ -68,12 +99,63 @@
 
 <br><br>
 
+<a name="opneai"></a>
+<img src="./readme/title7.svg"/>
+
+> Here is an example of the outcome of my OpenAi API
+
+```Json
+{
+    "medications": [
+        {
+            "name": "Hydrocortisone Cream",
+            "dosage": "0.5g",
+            "purpose": "Treat skin tears",
+            "frequency": "4 times a day"
+        }
+    ],
+    "scans": [
+        {
+            "name": "CT Scan",
+            "date": "25/10/2023"
+        }
+    ],
+    "blood_tests": [
+        {
+            "name": "CBC",
+            "date": "29/09/2023"
+        }
+    ],
+    "appointments": [
+        {
+            "doctor_id": 1,
+            "reason": "Follow Up on Treatment",
+            "start": "30/09/2023 15:00",
+            "end": "30/09/2023 16:00"
+        }
+    ]
+}
+
+```
+
+<br><br>
+
 <!-- How to run -->
 <img src="./readme/title6.svg"/>
 
 > To set up MedTech locally, follow these steps:
 
 ### Prerequisites
+
+- Arduino IDE: You'll need the Arduino IDE to upload code to the Arduino board and ESP8266 microchip.
+
+- Arduino Uno: The main control board for the car and paths.
+
+- ESP8266 (Hardware): Used for wireless communication between the system and the arduino.
+
+- OV7670 (Hardware): A camera module for capturing pictures of the patients.
+
+### Installation
 
 This is an example of how to list things you need to use the software and how to install them.
 
@@ -90,6 +172,8 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   https://github.com/me-no-dev/ESPAsyncWebServer/blob/f71e3d427b5be9791a8a2c93cf8079792c3a9a26/library.json,https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
   ```
+- From the Boards manager you should be able to download esp32 board to upload the code to it
+
 - Upload Arduino files to boards
 
-Now, you should be able to run Coffee Express locally and explore its features.
+Now, you should be able to run MedTech locally and explore its features.

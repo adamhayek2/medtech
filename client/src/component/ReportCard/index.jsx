@@ -25,7 +25,7 @@ const ReportCard = ({patientName, id, status, report, date}) => {
         </div>
         {report === null ?
         <div className='h-20 items-end'>
-            <Button label={'Predict'} BgColor={'bg-primary'} textColor={'text-white'}/>
+            <Button label={'Analyse'} BgColor={'bg-primary'} textColor={'text-white'}/>
         </div>
         
         : 
