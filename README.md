@@ -16,6 +16,7 @@
   - [Admin Screens](#admin-screens)
 - [Tech Stack](#stacks)
 - [OpenAi](#opneai)
+- [OpenAi](#arduino)
 - [How to Run](#how-to-run)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
