@@ -85,8 +85,7 @@ const EmployeesComponent = () => {
                     <EmployeeCard 
                         key={employee.id} 
                         id={employee.id} 
-                        // name={employee.user.user_type_id === 2 ? `Dr. ${employee.first_name} ${employee.last_name}` : `${employee.first_name} ${employee.last_name}`} 
-                        name={`${employee.first_name} ${employee.last_name}`}
+                        name={employee.user.user_type_id === 2 ? `Dr. ${employee.first_name} ${employee.last_name}` : `${employee.first_name} ${employee.last_name}`} 
                         major={employee.major} 
                         department={employee.department.name} 
                         hireDate={employee.hired_at}/>
