@@ -34,10 +34,13 @@
 
 ### User Stories
 
+- As a receptionist in a hospital, I would like to add patients coming into the system database, so the AI Doctor knows where he is needed to diagnose patients
+
 - As a doctor, I want to log in to my account so I can see my schedule and tasks
 - As a doctor working in the ER, I want an AI-powered robot that assists me in diagnosing and starting the treatment process by sending me a report immediately to approve so the patients don’t wait when the ER gets crowded.
 
 - As an admin, I want a scheduling system to request and schedule meetings efficiently taking into consideration the staff availability and hospital needs. So the meeting can be scheduled at the perfect time.
+- As an admin, I want to receive up-to-date statistics about the hospital, allowing me to make informed decisions and track the hospital's performance.
 
 <br><br>
 
