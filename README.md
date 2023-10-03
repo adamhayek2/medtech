@@ -70,7 +70,7 @@
 
 ### Admin Screens
 
-| Dashboard screen                          | Employees screen                                     |
+| Dashboard screen                          | Employee profile screen                              |
 | ----------------------------------------- | ---------------------------------------------------- |
 | ![Landing](./readme/demo/admin/Admin.png) | ![fsdaf](./readme/demo/admin/Employee%20Profile.png) |
 
@@ -148,6 +148,16 @@
 }
 
 ```
+
+<a name="arduino"></a>
+
+<img src="./readme/title11.svg"/>
+
+> Here is the circuit of the Arduino:
+
+| Circuit                                       |
+| --------------------------------------------- |
+| ![Landing](./readme/demo/arduino/arduino.png) |
 
 <br><br>
 
