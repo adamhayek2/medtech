@@ -156,7 +156,7 @@
 
 > Here is the circuit of the Arduino:
 
-| Circuit                                       | Schedule Screen                                  |
+| Circuit                                       | Demo going to second room                        |
 | --------------------------------------------- | ------------------------------------------------ |
 | ![Landing](./readme/demo/arduino/arduino.png) | ![fsdaf](./readme/demo/arduino/adruino-demo.gif) |
 
