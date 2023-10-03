@@ -64,7 +64,7 @@
 
 <a name="demo"></a>
 
-<img src="./readme/title4.svg"/>
+<img src="./readme/title10.svg"/>
 
 > Using the wireframes and mockups as a guide, I implemented Medtech with the following features:
 
