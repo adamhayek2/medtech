@@ -75,7 +75,7 @@
 
 | Login screen                             | Patients Screen                           | Reports Screen                           |
 | ---------------------------------------- | ----------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/demo/user/Login.gif) | ![fsdaf](./readme/demo/user/patients.gif) | ![fsdaf](./readme/demo/user/Reports.gif) |
+| ![Landing](./readme/demo/user/Login.gif) | ![fsdaf](./readme/demo/user/patients.gif) | ![fsdaf](./readme/demo/user/reports.gif) |
 
 | Single Report Screen                             | Single Report Screen                      | Schedule Screen                               |
 | ------------------------------------------------ | ----------------------------------------- | --------------------------------------------- |
