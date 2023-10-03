@@ -70,19 +70,27 @@
 
 ### Admin Screens
 
-| Dashboard screen                          | Employees screen                            | Employee Profile screen                              |
-| ----------------------------------------- | ------------------------------------------- | ---------------------------------------------------- |
-| ![Landing](./readme/demo/admin/Admin.png) | ![fsdaf](./readme/demo/admin/Employees.png) | ![fsdaf](./readme/demo/admin/Employee%20Profile.png) |
+| Dashboard screen                          | Employees screen                                     |
+| ----------------------------------------- | ---------------------------------------------------- |
+| ![Landing](./readme/demo/admin/Admin.png) | ![fsdaf](./readme/demo/admin/Employee%20Profile.png) |
+
+| Add employee screen                            | Employee profile screen                     |
+| ---------------------------------------------- | ------------------------------------------- |
+| ![Landing](./readme/demo/admin/staff-page.gif) | ![fsdaf](./readme/demo/admin/add-staff.gif) |
 
 ### User Screens
 
-| Login screen                             | Patients Screen                           | Reports Screen                           |
-| ---------------------------------------- | ----------------------------------------- | ---------------------------------------- |
-| ![Landing](./readme/demo/user/Login.gif) | ![fsdaf](./readme/demo/user/patients.gif) | ![fsdaf](./readme/demo/user/reports.gif) |
+| Login screen                             | Patients Screen                           |
+| ---------------------------------------- | ----------------------------------------- |
+| ![Landing](./readme/demo/user/Login.gif) | ![fsdaf](./readme/demo/user/patients.gif) |
 
-| Single Report Screen                             | Single Report Screen                      | Schedule Screen                               |
-| ------------------------------------------------ | ----------------------------------------- | --------------------------------------------- |
-| ![Landing](./readme/demo/user/Single-Report.gif) | ![fsdaf](./readme/demo/user/schedule.gif) | ![fsdaf](./readme/demo/user/add-patients.gif) |
+| Single Report Screen                             | Reports Screen                           |
+| ------------------------------------------------ | ---------------------------------------- |
+| ![Landing](./readme/demo/user/Single-Report.gif) | ![fsdaf](./readme/demo/user/reports.gif) |
+
+| Single Report Screen                      | Schedule Screen                               |
+| ----------------------------------------- | --------------------------------------------- |
+| ![fsdaf](./readme/demo/user/schedule.gif) | ![fsdaf](./readme/demo/user/add-patients.gif) |
 
 <br><br>
 

@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class StaffController extends Controller
 {
     public function getStaff(Request $request) {
-        $query = Staff::with(['user.userType', 'department', 'gender']);
+        $query = Staff::with([ 'department', 'gender']);
 
         if ($request->has('search')) {
             $search = $request->input('search');
@@ -45,12 +45,12 @@ class StaffController extends Controller
             $query->where('gender_id', $genderId);
         }
 
-        if ($request->has('type')) {
-            $typeId = $request->input('type');
-            $query->whereHas('user.userType', function ($subquery) use ($typeId) {
-                $subquery->where('id', $typeId);
-            });
-        }
+        // if ($request->has('type')) {
+        //     $typeId = $request->input('type');
+        //     $query->whereHas('user.userType', function ($subquery) use ($typeId) {
+        //         $subquery->where('id', $typeId);
+        //     });
+        // }
 
         $staff = $query->get()->map(function ($temp) {
             $temp['hired_at'] =  Carbon::parse( $temp->created_at)->format('Y-m-d');
